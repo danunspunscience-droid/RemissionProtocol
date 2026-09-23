@@ -17,7 +17,7 @@ ln -sf "$(pwd)/.hermes/skills"/* ~/.hermes/skills/ 2>/dev/null || true
 # 3. Ensure local D1 schema is hydrated
 if [ -f "schema.sql" ]; then
   echo "🗄️ Syncing local D1 schema..."
-  npx wrangler d1 execute remission-db --local --file=schema.sql >/dev/null 2>&1 || true
+  npx --yes wrangler d1 execute remission-db --local --file=schema.sql >/dev/null 2>&1 || true
 fi
 
 echo ""
