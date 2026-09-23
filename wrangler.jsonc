@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "remission-protocol",
+	"pages_build_output_dir": "./apps/web/dist",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "remission-db",
+			"database_id": "71f3ba43-eb86-4909-b343-96713b014478"
+		}
+	],
+	"r2_buckets": [
+		{
+			"bucket_name": "remission-media",
+			"binding": "remission_media"
+		}
+	]
+}
