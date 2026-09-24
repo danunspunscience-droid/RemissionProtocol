@@ -1227,3 +1227,126 @@
 - message: signal is aborted without reason
 - durationMs: 5
 
+## 2026-09-24 19:35:30.660Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 19:35:30.794Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 19:35:30.808Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-24 19:35:31.145Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 19:35:31.228Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 19:35:31.244Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-24 19:39:34.867Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-24 19:39:34.868Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-24 19:48:07.849Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-24 19:48:07.850Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-24 19:48:14.678Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-24 19:48:14.679Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-24 19:48:15.779Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-24 19:48:15.779Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-24 19:48:15.847Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 19:48:15.881Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 19:48:16.562Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-24 19:48:16.563Z navigate
+- url: http://localhost:3001/library
+- via: pushState
+
+## 2026-09-24 19:48:16.646Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 19:48:16.686Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 19:48:17.804Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
+
+## 2026-09-24 19:48:17.805Z navigate
+- url: http://localhost:3001/members
+- via: pushState
+
+## 2026-09-24 19:48:17.814Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-24 19:48:17.815Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-24 19:48:17.935Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"","valueLength":0,"text":""}
+
+## 2026-09-24 19:48:17.940Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 19:48:17.940Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 19:48:17.941Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-24 19:48:17.942Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 19:48:17.942Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 19:48:18.865Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-24 19:48:18.866Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
