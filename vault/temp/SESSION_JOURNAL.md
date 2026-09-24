@@ -1047,3 +1047,10 @@
 - url: http://localhost:3001/
 - title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
 
+## 2026-09-24 17:10:12.544Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-24 17:10:12.545Z navigate
+- url: http://localhost:3001/
+- via: pushState
+

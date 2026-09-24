@@ -1,59 +1,55 @@
-export const onRequestPost = async ({ env, request }) => {
+export async function onRequestPost(context) {
+  const { request, env } = context;
+  const db = env.DB || env.remission_db;
+
+  if (!db) {
+    return new Response(JSON.stringify({ error: 'D1 database binding missing' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     const { email, password } = await request.json();
-
     if (!email || !password) {
-      return Response.json({ error: 'Email and password are required' }, { status: 400 });
+      return new Response(JSON.stringify({ error: 'Email and password required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    // Query D1 for user record
-    let user;
-    try {
-      const { results } = await env.DB.prepare(
-        'SELECT id, email, password_hash FROM users WHERE email = ? LIMIT 1'
-      ).bind(email).all();
-      user = results[0];
-    } catch (dbErr) {
-      return Response.json({ error: 'Database error' }, { status: 500 });
+    const client = await db
+      .prepare("SELECT id, email, full_name, password_hash FROM client_profiles WHERE email = ? AND status = 'active'")
+      .bind(email)
+      .first();
+
+    if (!client) {
+      return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    if (!user || !user.password_hash) {
-      return Response.json({ error: 'Invalid credentials' }, { status: 401 });
-    }
+    const token = crypto.randomUUID();
+    const expiresAt = new Date(Date.now() + 86400000 * 7).toISOString(); // 7 days
 
-    // Verify password using WebCrypto SHA-256
-    const encoder = new TextEncoder();
-    const passwordBytes = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', passwordBytes);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    await db
+      .prepare("INSERT INTO client_sessions (id, client_id, token, expires_at) VALUES (?, ?, ?, ?)")
+      .bind(crypto.randomUUID(), client.id, token, expiresAt)
+      .run();
 
-    if (hashHex !== user.password_hash) {
-      return Response.json({ error: 'Invalid credentials' }, { status: 401 });
-    }
-
-    // Create session token
-    const tokenArray = new Uint32Array(5);
-    crypto.getRandomValues(tokenArray);
-    const sessionToken = tokenArray.map(v => v.toString(16)).join('');
-
-    // Insert session into database
-    try {
-      await env.DB.prepare(
-        'INSERT INTO sessions (token, user_id, expires) VALUES (?, ?, datetime("now", "+1 hour"))'
-      ).bind(sessionToken, user.id).run();
-    } catch (insertErr) {
-      return Response.json({ error: 'Failed to create session' }, { status: 500 });
-    }
-
-    // Set secure, HTTP-only, SameSite cookie
-    const cookie = `session=${sessionToken}; HttpOnly; SameSite=Strict; Path=/; Max-Age=3600`;
-
-    return Response.json(
-      { authed: true, user: { id: user.id, email: user.email } },
-      { status: 200, headers: { 'Set-Cookie': cookie } }
+    return new Response(
+      JSON.stringify({
+        success: true,
+        token,
+        client: { id: client.id, name: client.full_name, email: client.email },
+      }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (err) {
-    return Response.json({ error: 'Internal server error' }, { status: 500 });
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
-};
+}

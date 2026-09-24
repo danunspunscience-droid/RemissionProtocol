@@ -58,11 +58,7 @@ export default function ClientPortalPage() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-950 text-slate-400 p-12 text-center">
-        Authenticating client session.
-      </div>
-    );
+    return <div className="min-h-screen bg-slate-950 text-slate-400 p-12 text-center">Authenticating client session.</div>;
   }
 
   if (error) {
