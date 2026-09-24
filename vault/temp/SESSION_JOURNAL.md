@@ -1350,3 +1350,216 @@
 - url: http://localhost:3001/login
 - via: replaceState
 
+## 2026-09-24 19:59:54.825Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-24 19:59:54.826Z navigate
+- url: http://localhost:3001/library
+- via: pushState
+
+## 2026-09-24 19:59:54.899Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 19:59:54.938Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 20:00:09.157Z load
+- url: http://localhost:3001/admin-portal
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 20:00:09.287Z navigate
+- url: http://localhost:3001/admin-portal
+- via: replaceState
+
+## 2026-09-24 20:00:09.329Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 20:00:09.348Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 6
+
+## 2026-09-24 20:00:19.405Z load
+- url: http://localhost:3001/admin-portal
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 20:00:19.479Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 20:00:19.495Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 6
+
+## 2026-09-24 20:00:29.860Z load
+- url: http://localhost:3001/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 20:00:29.899Z navigate
+- url: http://localhost:3001/admin
+- via: replaceState
+
+## 2026-09-24 20:00:29.970Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 20:00:34.360Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-24 20:00:34.459Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-24 20:00:35.247Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-24 20:00:36.746Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:00:38.401Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:00:38.402Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:00:39.183Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign in"}
+
+## 2026-09-24 20:00:41.448Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 20:00:41.450Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:00:41.450Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:00:43.159Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 20:00:43.256Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+
+## 2026-09-24 20:00:43.258Z submit
+- action: http://localhost:3001/admin
+- fields: [{"label":"Email address","type":"email","value":"admin@local.test","length":16,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=8]","length":8,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+
+## 2026-09-24 20:00:43.269Z network.error
+- method: POST
+- url: http://localhost:3001/api/auth/login
+- status: 404
+- statusText: Not Found
+- requestBody: {"email":"admin@local.test","password":"[redacted:length=8]"}
+- durationMs: 10
+
+## 2026-09-24 20:00:43.270Z console.error
+- text: Fetch error from http://localhost:3001/api/auth/login: 
+
+## 2026-09-24 20:08:41.874Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 20:08:42.722Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-24 20:08:47.080Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 20:08:56.401Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 20:08:58.759Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-24 20:08:59.901Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-24 20:09:05.203Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:05.204Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:12.966Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:14.282Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:19.636Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:19.660Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:19.661Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:09:20.054Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:09:20.246Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-24 20:09:21.369Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-24 20:09:22.828Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:22.828Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+
+## 2026-09-24 20:09:22.829Z submit
+- action: http://localhost:3001/admin
+- fields: [{"label":"Email address","type":"email","value":"admin@metxbootcamp.com","length":22,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=22]","length":22,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+
+## 2026-09-24 20:09:22.838Z network.error
+- method: POST
+- url: http://localhost:3001/api/auth/login
+- status: 404
+- statusText: Not Found
+- requestBody: {"email":"admin@metxbootcamp.com","password":"[redacted:length=22]"}
+- durationMs: 8
+
+## 2026-09-24 20:09:22.838Z console.error
+- text: Fetch error from http://localhost:3001/api/auth/login: 
+
+## 2026-09-24 20:09:25.460Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:25.460Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:27.484Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:28.284Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+
+## 2026-09-24 20:09:28.385Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-24 20:09:29.365Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-24 20:09:29.719Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-24 20:09:30.407Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
