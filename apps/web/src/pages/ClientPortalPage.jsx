@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Activity, ShieldCheck, Plus, WifiOff, RefreshCw } from 'lucide-react';
+import { Activity, ShieldCheck, Plus, WifiOff, RefreshCw, FileText } from 'lucide-react';
 import { saveOfflineMetric, getOfflineMetrics, clearOfflineMetrics } from '../lib/offlineDb';
+import ClientDocumentsTab from '../components/ClientDocumentsTab';
 
 export default function ClientPortalPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState('telemetry');
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [pendingCount, setPendingCount] = useState(0);
   const [newMetric, setNewMetric] = useState({ metric_type: 'glucose', metric_value: '', unit: 'mg/dL', notes: '' });
@@ -138,14 +140,31 @@ export default function ClientPortalPage() {
             <h1 className="text-3xl font-extrabold text-white">Welcome, {data?.client?.name || 'Client'}</h1>
             <p className="text-slate-400 text-sm mt-1">Encrypted Client Portal & Metabolic Health Record</p>
           </div>
-          {isOffline && (
-            <span className="flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold rounded-full">
-              <WifiOff className="w-3.5 h-3.5" /> Offline Mode ({pendingCount} Queued)
-            </span>
-          )}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setActiveTab('telemetry')}
+              className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 border ${activeTab === 'telemetry' ? 'bg-teal-500/10 border-teal-500/40 text-teal-400' : 'bg-slate-900 border-slate-800 text-slate-400'}`}
+            >
+              <Activity className="w-4 h-4" /> Telemetry
+            </button>
+            <button
+              onClick={() => setActiveTab('documents')}
+              className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 border ${activeTab === 'documents' ? 'bg-teal-500/10 border-teal-500/40 text-teal-400' : 'bg-slate-900 border-slate-800 text-slate-400'}`}
+            >
+              <FileText className="w-4 h-4" /> Documents & Labs
+            </button>
+            {isOffline && (
+              <span className="flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold rounded-full">
+                <WifiOff className="w-3.5 h-3.5" /> ({pendingCount})
+              </span>
+            )}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {activeTab === 'documents' ? (
+          <ClientDocumentsTab token={token} />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
               <div className="flex justify-between items-center mb-4">
