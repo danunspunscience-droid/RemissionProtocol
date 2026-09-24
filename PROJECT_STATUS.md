@@ -3,7 +3,7 @@
 ## Overview
 Remission Protocol is an evidence-based, integrative metabolic medicine platform built on Cloudflare Pages, Cloudflare D1 Database, and Cloudflare R2 Object Storage.
 
-## Milestone Status: ALL 6 STAGES + ADVANCED CLIENT PORTAL COMPLETE (v2.4-client-documents)
+## Milestone Status: ALL 6 STAGES + FULL E2E SUITE DEPLOYED (v2.5-e2e-playwright)
 
 - **Stage 1: D1 Database Architecture & Core Schema** — COMPLETE (`v1.0-hero-baseline`)
 - **Stage 2: R2 Storage Engine & WebP Compression** — COMPLETE
@@ -14,11 +14,13 @@ Remission Protocol is an evidence-based, integrative metabolic medicine platform
 - **Stage 6.1: Remote Production Seeding & Vitest Contracts** — COMPLETE (`v2.2-seed-tests`)
 - **Stage 6.2: PWA IndexedDB Offline Telemetry & Background Sync** — COMPLETE (`v2.3-pwa-offline-telemetry`)
 - **Stage 6.3: Private Client R2 Document Management** — COMPLETE (`v2.4-client-documents`)
+- **Stage 6.4: Playwright E2E Automated Test Suite** — COMPLETE (`v2.5-e2e-playwright`)
 
-## Active Release & Verification State
-- **Active Release Tag:** `v2.4-client-documents`
+## Active Verification & Infrastructure State
+- **Active Release Tag:** `v2.5-e2e-playwright`
 - **Git Main Status:** Clean, synchronized with `origin/main`, deployed to Cloudflare Pages.
-- **Test Contracts:** Vitest edge API integration test suite (2/2 passing).
-- **PWA Capabilities:** Native IndexedDB offline queue (`RemissionOfflineDB`) with background sync flusher on `online` network events.
-- **Private Storage:** R2 client partition (`private/clients/{client_id}/`) guarded by Cloudflare Worker WebCrypto middleware.
-- **Reference Artifacts:** Active system maps retained in `vault/temp/`.
+- **E2E Automation:** Playwright runner (`playwright.config.js`) & Client Portal test suite (`apps/web/e2e/pwa_and_documents.spec.js`).
+- **Contract Tests:** Vitest edge API integration suite (`apps/web/vitest.config.js`, 2/2 passing).
+- **PWA Capabilities:** Native IndexedDB offline queue (`RemissionOfflineDB`) with auto-sync flusher on `online` events.
+- **Private Storage:** Guarded R2 client partition (`private/clients/{client_id}/`) under Cloudflare Worker WebCrypto session isolation.
+- **Reference Artifacts:** Comprehensive 3-phase analysis reports retained in `vault/temp/`.
