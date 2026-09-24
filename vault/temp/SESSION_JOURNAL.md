@@ -1054,3 +1054,176 @@
 - url: http://localhost:3001/
 - via: pushState
 
+## 2026-09-24 18:01:38.961Z load
+- url: http://localhost:3001/about
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 18:01:39.138Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 18:01:39.202Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 14
+
+## 2026-09-24 18:05:03.887Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-24 18:05:03.893Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-24 18:05:03.943Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-24 18:05:05.991Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 18:05:06.168Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 18:05:06.189Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 5
+
+## 2026-09-24 18:09:16.844Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-24 18:09:16.845Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-24 18:09:16.982Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 18:09:17.015Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 18:09:18.692Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-24 18:09:18.692Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-24 18:09:18.739Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-24 18:39:57.767Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
+
+## 2026-09-24 18:39:58.599Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-24 18:39:58.601Z navigate
+- url: http://localhost:3001/#method
+- via: replaceState
+
+## 2026-09-24 18:40:01.363Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-24 18:40:01.364Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-24 18:40:01.471Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 18:40:01.506Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-24 18:40:03.193Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-24 18:40:03.194Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-24 18:40:03.237Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-24 18:40:04.324Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-24 18:40:04.324Z navigate
+- url: http://localhost:3001/about
+- via: pushState
+
+## 2026-09-24 18:40:04.359Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 1
+
+## 2026-09-24 18:40:05.433Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-24 18:40:05.433Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-24 18:40:05.454Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-24 18:53:44.592Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 18:53:44.736Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 18:53:44.755Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-24 19:01:47.810Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-24 19:01:47.875Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-24 19:01:47.891Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 5
+
