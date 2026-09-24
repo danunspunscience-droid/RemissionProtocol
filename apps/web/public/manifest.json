@@ -1,0 +1,17 @@
+{
+  "short_name": "Remission",
+  "name": "Remission Protocol — Integrative Metabolic Platform",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/portal",
+  "background_color": "#040d0a",
+  "theme_color": "#040d0a",
+  "display": "standalone",
+  "orientation": "portrait",
+  "description": "Evidence-based metabolic medicine, physical health tracking, and concierge clinical protocols."
+}
