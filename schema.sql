@@ -214,3 +214,11 @@ CREATE INDEX IF NOT EXISTS idx_library_content_status ON library_content (status
 CREATE INDEX IF NOT EXISTS idx_library_content_type ON library_content (content_type);
 CREATE INDEX IF NOT EXISTS idx_resources_members_only ON resources (members_only);
 CREATE INDEX IF NOT EXISTS idx_founders_slug ON founders (slug);
+
+CREATE TABLE IF NOT EXISTS sessions (
+  id TEXT PRIMARY KEY,
+  token TEXT NOT NULL,
+  user_id TEXT NOT NULL,
+  expires TEXT NOT NULL,
+  created_at TEXT DEFAULT (DATETIME(\"now\"))
+);

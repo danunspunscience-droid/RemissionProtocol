@@ -4,6 +4,12 @@
 // Routes every _logs row to stdout/stderr on production
 // Forwards every _logs row to the session journal on development and continue writing to the database
 onModelCreate((e) => {
+    // Only log for dedicated log collections
+    const logCollections = ["_logs"];
+    if (!logCollections.includes(e.collection)) {
+        return;
+    }
+
     const env = $os.getenv("NODE_ENV")
 
     if (env === "production") {
