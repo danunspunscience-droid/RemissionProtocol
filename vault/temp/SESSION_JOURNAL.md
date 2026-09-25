@@ -1350,3 +1350,154 @@
 - url: http://localhost:3001/login
 - via: replaceState
 
+## 2026-09-25 19:21:11.707Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 1
+
+## 2026-09-25 19:21:14.976Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-25 19:21:14.977Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-25 19:21:15.016Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-25 19:21:18.033Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-25 19:21:18.189Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-25 19:21:18.206Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-25 19:21:19.231Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-25 19:21:19.232Z navigate
+- url: http://localhost:3001/
+- via: replaceState
+
+## 2026-09-25 19:23:42.099Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-25 19:23:42.099Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-25 19:23:43.152Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-25 19:23:43.153Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-25 19:23:43.238Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-25 19:23:43.285Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-25 19:23:43.968Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-25 19:23:43.969Z navigate
+- url: http://localhost:3001/library
+- via: pushState
+
+## 2026-09-25 19:23:44.070Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-25 19:23:44.116Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-25 19:23:44.480Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
+
+## 2026-09-25 19:23:44.481Z navigate
+- url: http://localhost:3001/members
+- via: pushState
+
+## 2026-09-25 19:23:44.493Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-25 19:23:44.493Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-25 19:23:44.612Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"","valueLength":0,"text":""}
+
+## 2026-09-25 19:23:44.616Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-25 19:23:44.617Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-25 19:23:44.617Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-25 19:23:44.619Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-25 19:23:44.619Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-25 19:23:45.691Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-25 19:23:45.692Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-25 19:23:48.657Z load
+- url: http://localhost:3001/apply
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-25 19:23:48.783Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-25 19:42:05.760Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-25 19:42:05.886Z navigate
+- url: http://localhost:3001/
+- via: replaceState
+
+## 2026-09-25 19:42:05.930Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-25 19:42:05.999Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 12
+
