@@ -2312,3 +2312,177 @@
 ## 2026-09-26 12:33:22.872Z console.error
 - text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
+## 2026-09-26 13:36:03.885Z load
+- url: http://localhost:3000/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 13:36:04.335Z navigate
+- url: http://localhost:3000/
+- via: replaceState
+
+## 2026-09-26 13:36:04.426Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 13:36:04.696Z console.warn
+- text: Using default hero baseline assets: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:04.727Z console.warn
+- text: Using default hero baseline assets: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:07.956Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 13:36:07.958Z navigate
+- url: http://localhost:3000/about
+- via: pushState
+
+## 2026-09-26 13:36:08.216Z console.warn
+- text: Using baseline founders data: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:08.305Z console.warn
+- text: Using baseline founders data: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:11.531Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 13:36:11.534Z navigate
+- url: http://localhost:3000/#method
+- via: pushState
+
+## 2026-09-26 13:36:11.777Z console.warn
+- text: Using default hero baseline assets: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:11.905Z console.warn
+- text: Using default hero baseline assets: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:13.507Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 13:36:13.508Z navigate
+- url: http://localhost:3000/about
+- via: pushState
+
+## 2026-09-26 13:36:13.632Z console.warn
+- text: Using baseline founders data: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:13.707Z console.warn
+- text: Using baseline founders data: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:18.107Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 13:36:18.108Z navigate
+- url: http://localhost:3000/#method
+- via: pushState
+
+## 2026-09-26 13:36:18.318Z console.warn
+- text: Using default hero baseline assets: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:18.409Z console.warn
+- text: Using default hero baseline assets: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:25.028Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 13:36:25.031Z navigate
+- url: http://localhost:3000/consultation
+- via: pushState
+
+## 2026-09-26 13:36:26.021Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
+
+## 2026-09-26 13:36:26.569Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 13:36:26.571Z navigate
+- url: http://localhost:3000/apply
+- via: pushState
+
+## 2026-09-26 13:36:27.124Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-26 13:36:27.125Z navigate
+- url: http://localhost:3000/login
+- via: pushState
+
+## 2026-09-26 13:36:27.733Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 13:36:27.735Z navigate
+- url: http://localhost:3000/apply
+- via: pushState
+
+## 2026-09-26 13:36:28.204Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
+
+## 2026-09-26 13:36:28.207Z navigate
+- url: http://localhost:3000/members
+- via: pushState
+
+## 2026-09-26 13:36:28.226Z navigate
+- url: http://localhost:3000/login
+- via: replaceState
+
+## 2026-09-26 13:36:28.227Z navigate
+- url: http://localhost:3000/login
+- via: replaceState
+
+## 2026-09-26 13:36:28.594Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-26 13:36:28.596Z navigate
+- url: http://localhost:3000/library
+- via: pushState
+
+## 2026-09-26 13:36:28.747Z console.error
+- text: Error loading library: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:28.880Z console.error
+- text: Error loading library: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:29.963Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
+
+## 2026-09-26 13:36:30.521Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 13:36:30.523Z navigate
+- url: http://localhost:3000/about
+- via: pushState
+
+## 2026-09-26 13:36:30.624Z console.warn
+- text: Using baseline founders data: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:30.690Z console.warn
+- text: Using baseline founders data: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:38.336Z load
+- url: http://localhost:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 13:36:38.565Z navigate
+- url: http://localhost:3000/admin
+- via: replaceState
+
+## 2026-09-26 13:36:38.824Z console.error
+- text: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+## 2026-09-26 13:36:38.910Z console.error
+- text: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+
+
+## 2026-09-26 Session Wrap-Up (agent) — Stage 5 Documentation & Remote Sync
+- branch: feature/admin-auth-cms (branch guard passed, not main)
+- build: PASS — vite 7.3.6, 2012 modules, ~4.5s
+- d1: PASS — PRAGMA foreign_key_check returned 0 rows
+- docs: PROJECT_STATUS.md and ARCHITECTURE.md rewritten with VERIFIED facts from the tree
+- corrections recorded: no admin_users table / no default seed credential (table is `admins`, zero rows locally);
+  functions/api/client/_middleware.js already exists; client_metrics/client_documents/appointments tables already exist;
+  imageCompression quality is 0.8 (not 0.82); AdminPage.jsx lives at apps/web/src/pages/ (not components/)
+- open bug: /admin throws "JSON.parse: unexpected character at line 1 column 1" (see journal entries 13:36:38) — unfixed
+- note: earlier "Stage 5 complete" notes in this journal contained unverified claims; PROJECT_STATUS.md now lists them as corrections
