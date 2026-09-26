@@ -3,23 +3,22 @@
 ## 1. System Core
 - **Frontend:** React + Vite + Tailwind CSS + Lucide React (`apps/web`)
 - **Edge API:** Cloudflare Pages Functions (`functions/api/*`)
-- **Shared edge helpers:** `functions/_lib/`
 - **Database Engine:** Cloudflare D1 SQLite (`remission-db`)
 - **Storage Engine:** Cloudflare R2 (`remission-media`)
 
-## 2. Authentication Standard
+## 2. Authentication Architecture
+- **Admin Authentication:** Edge-native WebCrypto `crypto.subtle.digest('SHA-256')` against D1 `admin_users` table with HTTP-Only `admin_session` cookie.
+- **Client Authentication:** WebCrypto `SHA-256` against D1 `client_users` table with HTTP-Only `client_session` cookie.
+- **Worker Auth Middleware:** `/api/client/_middleware.js` enforces session validation for all client routes except `/api/client/login`.
 
-### 2a. Admin Auth — WebCrypto HMAC-SHA-256 signed sessions
-- **Primitives:** `functions/_lib/adminSession.js`. Password hashing and payload signing both use `crypto.subtle.digest` / `crypto.subtle.sign` with SHA-256. No third-party crypto dependency.
-- **Session token:** base64url-encoded JSON payload with an appended HMAC-SHA-256 signature over the serialized payload. Base64url (`+/` → `-_`, `=` stripped) so the token is cookie-safe.
-- **Verification:** `crypto.subtle.verify` plus a `timingSafeEqualString` comparison on the signature before any payload field is trusted.
-- **Cookie:** `admin_session` — HTTP-Only, `Secure`, `SameSite=Strict`, `Path=/`, `Max-Age=28800` (8 hours, `SESSION_TTL_SECONDS`).
-- **Signing key:** deployment secret. `assertSecretConfigured(env)` runs before any token is minted; a missing secret returns HTTP 500 rather than issuing an unsigned session.
-- **Endpoints:** `POST /api/admin/login` (mint), `GET /api/admin/verify` (validate TTL + signature), `POST /api/admin/logout` (clear cookie). `requireAdmin.js` wraps the remaining `/api/admin/*` handlers.
-- **Credential store:** D1 table `admins`.
+## 3. Storage & Document Isolation Standards
+- **Public Assets:** `/public/` path in R2.
+- **Private Client Storage:** `/private/clients/{client_id}/` isolated via `files/[key].js` path checking against context identity.
+- **WebP Auto-Compression:** Client-side HTML5 Canvas conversion (`1920px` max dimension, `0.82` WebP quality).
 
-### 2b. Client Auth — opaque Bearer tokens
-- **Guard:** `functions/api/client/_middleware.js`. Client endpoints do not use HMAC sessions. They read an `Authorization: Bearer <token>` header and look the token up in D1 `client_sessions`, joined to `client_profiles`, rejecting rows where `expires_at <= datetime('now')`.
+## 4. Engineering Standards
+- **File Line Limit:** All React components and handlers must remain strictly under 300 lines (target <200 lines).
+- **D1 Query Safety:** All SQLite queries MUST use positional `?` parameter placeholders.
 - Because the token is a random opaque string compared server-side, revocation is immediate — a revoked row stops working with no wait for a token to expire.
 
 ## 3. Media Upload & WebP Auto-Compression Engine
