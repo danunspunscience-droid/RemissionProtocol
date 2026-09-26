@@ -1,57 +1,52 @@
 export async function onRequestGet(context) {
   const { env, data } = context;
-  const client = data.client;
+  const clientId = data.clientUser.id;
 
   try {
-    const db = env.DB || env.remission_db;
-    const { results } = await db
-      .prepare("SELECT * FROM client_metrics WHERE client_id = ? ORDER BY recorded_at DESC LIMIT 100")
-      .bind(client.client_id)
-      .all();
+    const { results } = await env.DB.prepare(
+      'SELECT id, metric_type, value, unit, notes, recorded_at FROM client_metrics WHERE client_id = ? ORDER BY recorded_at DESC LIMIT 100'
+    ).bind(clientId).all();
 
-    return new Response(JSON.stringify({ client: { name: client.full_name, email: client.email }, metrics: results || [] }), {
+    return new Response(JSON.stringify(results || []), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: 'Failed to fetch metrics', details: err.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 }
 
 export async function onRequestPost(context) {
-  const { env, request, data } = context;
-  const client = data.client;
+  const { request, env, data } = context;
+  const clientId = data.clientUser.id;
 
   try {
-    const db = env.DB || env.remission_db;
-    const { metric_type, metric_value, unit, notes } = await request.json();
+    const { metric_type, value, unit, notes } = await request.json();
 
-    if (!metric_type || metric_value === undefined || !unit) {
-      return new Response(JSON.stringify({ error: 'Missing required metric fields' }), {
+    if (!metric_type || value === undefined || !unit) {
+      return new Response(JSON.stringify({ error: 'metric_type, value, and unit are required.' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    const id = crypto.randomUUID();
-    await db
-      .prepare(
-        "INSERT INTO client_metrics (id, client_id, metric_type, metric_value, unit, notes, recorded_at) VALUES (?, ?, ?, ?, ?, ?, datetime('now'))"
-      )
-      .bind(id, client.client_id, metric_type, metric_value, unit, notes || '')
-      .run();
+    const metricId = `metric-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
 
-    return new Response(JSON.stringify({ success: true, id }), {
+    await env.DB.prepare(
+      'INSERT INTO client_metrics (id, client_id, metric_type, value, unit, notes) VALUES (?,?,?,?,?,?)'
+    ).bind(metricId, clientId, metric_type, value, unit, notes || null).run();
+
+    return new Response(JSON.stringify({ success: true, id: metricId }), {
       status: 201,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: 'Failed to record metric', details: err.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 }

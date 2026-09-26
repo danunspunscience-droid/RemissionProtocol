@@ -1,45 +1,39 @@
 export async function onRequest(context) {
-  const { request, env } = context;
-  const db = env.DB || env.remission_db;
+  const { request, next } = context;
+  const url = new URL(request.url);
 
-  if (!db) {
-    return new Response(JSON.stringify({ error: 'D1 binding missing' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  // Bypass auth check for login route
+  if (url.pathname === '/api/client/login') {
+    return next();
   }
 
-  const authHeader = request.headers.get('Authorization');
-  const token = authHeader ? authHeader.replace(/^Bearer\s+/i, '') : null;
+  const cookieHeader = request.headers.get('Cookie') || '';
+  const match = cookieHeader.match(/client_session=([^;]+)/);
 
-  if (!token) {
-    return new Response(JSON.stringify({ error: 'Unauthorized: Missing authentication token' }), {
+  if (!match) {
+    return new Response(JSON.stringify({ error: 'Unauthorized: Client session required.' }), {
       status: 401,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 
   try {
-    const session = await db
-      .prepare(
-        "SELECT s.client_id, c.email, c.full_name FROM client_sessions s JOIN client_profiles c ON s.client_id = c.id WHERE s.token = ? AND s.expires_at > datetime('now')"
-      )
-      .bind(token)
-      .first();
+    const sessionData = JSON.parse(atob(match[1]));
 
-    if (!session) {
-      return new Response(JSON.stringify({ error: 'Unauthorized: Invalid or expired session' }), {
+    if (Date.now() > sessionData.exp) {
+      return new Response(JSON.stringify({ error: 'Unauthorized: Client session expired.' }), {
         status: 401,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    context.data.client = session;
-    return await context.next();
-  } catch (err) {
-    return new Response(JSON.stringify({ error: 'Authentication verification failed', details: err.message }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
+    // Attach authenticated client identity to request context
+    context.data.clientUser = sessionData;
+    return next();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Unauthorized: Invalid session token.' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 }
