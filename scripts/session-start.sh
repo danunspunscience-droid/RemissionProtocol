@@ -5,22 +5,39 @@ echo "=================================================="
 echo " 🚀 REMISSION PROTOCOL — STARTING SESSION"
 echo "=================================================="
 
-# 1. Pull latest code from GitHub
-echo "📥 Syncing latest code from GitHub..."
-git pull --rebase origin main
-
-# 2. Symlink Hermes skills to local home directory
-echo "🧠 Linking Hermes skills..."
-mkdir -p ~/.hermes/skills
-ln -sf "$(pwd)/.hermes/skills"/* ~/.hermes/skills/ 2>/dev/null || true
-
-# 3. Ensure local D1 schema is hydrated (non-interactive CI mode)
-if [ -f "schema.sql" ]; then
-  echo "🗄️ Syncing local D1 schema..."
-  CI=true WRANGLER_SEND_METRICS=false npx wrangler d1 execute remission-db --local --file=schema.sql >/dev/null 2>&1 || true
+# 1. Pre-flight Guard: Check for uncommitted working tree changes
+if [ -n "$(git status --porcelain)" ]; then
+ echo "================================================================="
+ echo "⚠️ DIRTY WORKING TREE DETECTED!"
+ echo "You have uncommitted local changes. Commit, stash, or"
+ echo "discard them before syncing across physical coding rigs."
+ echo "================================================================="
+ git status --short
+ exit 1
 fi
 
-echo ""
-echo "✅ Rig synchronized and ready! Current status:"
-git status -s
+# 2. Sync remote refs from GitHub
+echo "📥 Fetching latest remote branches from GitHub."
+git fetch origin
+
+CURRENT_BRANCH=$(git branch --show-current)
+
+# 3. Pull updates based on branch state
+if [ "$CURRENT_BRANCH" = "main" ]; then
+ echo "🔄 Rebasing local 'main' with 'origin/main'."
+ git pull --rebase origin main
+ echo "✅ Local 'main' updated cleanly."
+else
+ echo "ℹ️ Active feature branch is '$CURRENT_BRANCH'."
+ echo "Checking if remote branch 'origin/$CURRENT_BRANCH' exists."
+ if git ls-remote --exit-code --heads origin "$CURRENT_BRANCH" >/dev/null 2>&1; then
+ echo "🔄 Pulling latest commits from 'origin/$CURRENT_BRANCH'."
+ git pull --rebase origin "$CURRENT_BRANCH"
+ else
+ echo "ℹ️ Branch 'origin/$CURRENT_BRANCH' does not exist yet on remote. Ready for push."
+ fi
+fi
+
+echo "=================================================="
+echo " ✅ SESSION STARTUP COMPLETE"
 echo "=================================================="

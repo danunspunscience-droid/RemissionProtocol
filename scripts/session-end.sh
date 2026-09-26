@@ -2,39 +2,38 @@
 set -e
 
 echo "=================================================="
-echo " 🏁 REMISSION PROTOCOL — WRAPPING UP SESSION"
+echo " 🏁 REMISSION PROTOCOL — ENDING SESSION"
 echo "=================================================="
 
-# 1. Run Pre-flight Build Verification
-echo "🔍 Running pre-flight build check..."
-npm run build --prefix apps/web 2>&1 | tail -n 15 || {
-  echo ""
-  echo "❌ Build verification failed! Fix errors or run 'git reset --hard HEAD' before ending session."
-  exit 1
-}
+CURRENT_BRANCH=$(git branch --show-current)
+echo "Active Branch: $CURRENT_BRANCH"
 
-# 2. Check Git Status
-echo ""
-echo "📋 Modified files:"
-git status -s
+# 1. Check working tree state
+UNCOMMITTED_CHANGES=$(git status --porcelain)
 
-if [ -z "$(git status --porcelain)" ]; then
-  echo "✨ Working directory clean. Nothing to commit."
-  echo "=================================================="
-  exit 0
+if [ -n "$UNCOMMITTED_CHANGES" ]; then
+ echo "================================================================="
+ echo "⚠️ UNCOMMITTED CHANGES DETECTED!"
+ echo "Staging all changes and prompting for session commit."
+ echo "================================================================="
+ git status --short
+
+ git add -A
+ read -p "Enter session commit message: " COMMIT_MSG
+ if [ -z "$COMMIT_MSG" ]; then
+ COMMIT_MSG="docs/chore: session wrap-up and status sync"
+ fi
+ git commit -m "$COMMIT_MSG"
+ echo "✅ Changes committed successfully."
+else
+ echo "✅ Working tree is clean. No local uncommitted changes."
 fi
 
-# 3. Prompt for Commit Message
-echo ""
-read -p "💬 Enter commit message (press Enter for 'wip: session sync'): " msg
-msg=${msg:-"wip: session sync"}
+# 2. Push active branch to GitHub
+echo "📤 Pushing '$CURRENT_BRANCH' to GitHub (origin)."
+git push origin "$CURRENT_BRANCH"
 
-# 4. Commit and Push
-git add .
-git commit -m "$msg"
-echo "📤 Pushing to GitHub..."
-git push origin main
-
-echo ""
-echo "✅ Session wrapped and backed up to GitHub!"
+echo "=================================================="
+echo " ✅ SESSION WRAP-UP & REMOTE SYNC COMPLETE"
+echo " You may now switch physical coding rigs safely."
 echo "=================================================="
