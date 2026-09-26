@@ -2486,3 +2486,436 @@
   imageCompression quality is 0.8 (not 0.82); AdminPage.jsx lives at apps/web/src/pages/ (not components/)
 - open bug: /admin throws "JSON.parse: unexpected character at line 1 column 1" (see journal entries 13:36:38) — unfixed
 - note: earlier "Stage 5 complete" notes in this journal contained unverified claims; PROJECT_STATUS.md now lists them as corrections
+## 2026-09-26 16:18:48.462Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 16:18:48.766Z navigate
+- url: http://localhost:3001/
+- via: replaceState
+
+## 2026-09-26 16:18:48.816Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 16:18:48.975Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:49.015Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:51.419Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 16:18:51.420Z navigate
+- url: http://localhost:3001/about
+- via: pushState
+
+## 2026-09-26 16:18:51.513Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:51.541Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:53.957Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 16:18:53.958Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-26 16:18:54.041Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:54.090Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:55.286Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-26 16:18:55.287Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-26 16:18:55.356Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:55.392Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:56.907Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-26 16:18:56.908Z navigate
+- url: http://localhost:3001/library
+- via: pushState
+
+## 2026-09-26 16:18:56.977Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:57.008Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:18:57.810Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
+
+## 2026-09-26 16:18:57.811Z navigate
+- url: http://localhost:3001/members
+- via: pushState
+
+## 2026-09-26 16:18:57.820Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-26 16:18:57.820Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-26 16:18:57.942Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"","valueLength":0,"text":""}
+
+## 2026-09-26 16:18:57.946Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:18:57.947Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:18:57.947Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 16:18:57.949Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:18:57.949Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:18:58.661Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 16:18:58.662Z navigate
+- url: http://localhost:3001/apply
+- via: pushState
+
+## 2026-09-26 16:18:59.452Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-26 16:18:59.453Z navigate
+- url: http://localhost:3001/login
+- via: pushState
+
+## 2026-09-26 16:18:59.565Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"","valueLength":0,"text":""}
+
+## 2026-09-26 16:18:59.567Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:18:59.567Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:18:59.567Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 16:18:59.569Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:18:59.569Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:19:00.475Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 16:19:00.475Z navigate
+- url: http://localhost:3001/consultation
+- via: pushState
+
+## 2026-09-26 16:19:01.803Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-26 16:19:01.804Z navigate
+- url: http://localhost:3001/login
+- via: pushState
+
+## 2026-09-26 16:19:01.916Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"","valueLength":0,"text":""}
+
+## 2026-09-26 16:19:01.917Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:19:01.917Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:19:01.917Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 16:19:01.918Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:19:01.918Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:19:06.163Z load
+- url: http://localhost:3001/ladmin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 16:19:06.210Z navigate
+- url: http://localhost:3001/ladmin
+- via: replaceState
+
+## 2026-09-26 16:19:06.236Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 16:19:06.314Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:19:06.354Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:19:17.928Z load
+- url: http://localhost:3001/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 16:19:17.973Z navigate
+- url: http://localhost:3001/admin
+- via: replaceState
+
+## 2026-09-26 16:19:18.082Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:19:18.126Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:19:25.926Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":" Resources"}
+
+## 2026-09-26 16:19:26.778Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":" Blogs & Vlogs"}
+
+## 2026-09-26 16:19:27.530Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":" Resources"}
+
+## 2026-09-26 16:19:27.989Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":" Hero Engine"}
+
+## 2026-09-26 16:19:28.052Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:19:28.089Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:20:04.037Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-26 16:20:04.038Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-26 16:20:04.061Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 16:20:04.124Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:20:04.173Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:07.136Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-26 16:25:07.137Z navigate
+- url: http://localhost:3001/login
+- via: pushState
+
+## 2026-09-26 16:25:07.289Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"","valueLength":0,"text":""}
+
+## 2026-09-26 16:25:07.290Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:25:07.290Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:25:07.290Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 16:25:07.290Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:25:07.290Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:25:08.325Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 16:25:08.326Z navigate
+- url: http://localhost:3001/apply
+- via: pushState
+
+## 2026-09-26 16:25:08.988Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 16:25:08.988Z navigate
+- url: http://localhost:3001/consultation
+- via: pushState
+
+## 2026-09-26 16:25:09.792Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 16:25:09.793Z navigate
+- url: http://localhost:3001/apply
+- via: pushState
+
+## 2026-09-26 16:25:10.299Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
+
+## 2026-09-26 16:25:10.299Z navigate
+- url: http://localhost:3001/members
+- via: pushState
+
+## 2026-09-26 16:25:10.311Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-26 16:25:10.311Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-26 16:25:10.425Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"","valueLength":0,"text":""}
+
+## 2026-09-26 16:25:10.426Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:25:10.426Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":null,"placeholder":"admin@remissionprotocol.com","label":"admin@remissionprotocol.com","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-26 16:25:10.426Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 16:25:10.427Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:25:10.427Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":null,"placeholder":"••••••••","label":"••••••••","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-26 16:25:10.689Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-26 16:25:10.689Z navigate
+- url: http://localhost:3001/library
+- via: pushState
+
+## 2026-09-26 16:25:10.758Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:10.789Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:11.281Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-26 16:25:11.281Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-26 16:25:11.343Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:11.371Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:11.758Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 16:25:11.758Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-26 16:25:11.849Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:11.887Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:12.141Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 16:25:12.141Z navigate
+- url: http://localhost:3001/about
+- via: pushState
+
+## 2026-09-26 16:25:12.233Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:12.259Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:12.580Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-26 16:25:12.581Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-26 16:25:12.659Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:12.698Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:13.465Z navigate
+- url: http://localhost:3001/about
+- via: popstate
+
+## 2026-09-26 16:25:13.527Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:13.553Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:14.695Z navigate
+- url: http://localhost:3001/#method
+- via: popstate
+
+## 2026-09-26 16:25:14.785Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:14.821Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:16.383Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 16:25:16.384Z navigate
+- url: http://localhost:3001/about
+- via: pushState
+
+## 2026-09-26 16:25:16.457Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:25:16.485Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:29:13.394Z load
+- url: http://localhost:3001/about
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 16:29:13.620Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 16:29:13.649Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
