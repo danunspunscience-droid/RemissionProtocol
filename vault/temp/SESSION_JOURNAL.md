@@ -1956,3 +1956,68 @@
 ## 2026-09-26 02:09:31.938Z console.warn
 - text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
+## 2026-09-26 02:17:09.093Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-26 02:17:09.094Z navigate
+- url: http://192.168.1.192:3000/
+- via: pushState
+
+## 2026-09-26 02:17:13.066Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Explore Our Resources"}
+
+## 2026-09-26 02:17:13.067Z navigate
+- url: http://192.168.1.192:3000/resources
+- via: pushState
+
+## 2026-09-26 02:17:13.217Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:17:13.300Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:17:16.438Z navigate
+- url: http://192.168.1.192:3000/
+- via: popstate
+
+## 2026-09-26 02:17:16.566Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:17:16.671Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:17:18.205Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 02:17:18.206Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: pushState
+
+## 2026-09-26 02:17:24.107Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 02:17:24.108Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: replaceState
+
+## 2026-09-26 02:17:25.447Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 02:17:25.448Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: replaceState
+
+## 2026-09-26 02:17:27.383Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 02:17:27.384Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
+
+## 2026-09-26 02:17:29.946Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 02:17:29.947Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: pushState
+
