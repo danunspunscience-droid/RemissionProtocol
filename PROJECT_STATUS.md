@@ -1,19 +1,35 @@
-# Remission Protocol — Project Status & Roadmap
+# Remission Protocol - Project Status
 
-## Overview
-Remission Protocol is an evidence-based, integrative metabolic medicine platform built on Cloudflare Pages, Cloudflare D1 Database, and Cloudflare R2 Object Storage[cite: 1].
+## Baseline Status: Post-Stage 6 Decoupled (Cloudflare Native)
+- **Active Branch:** `main` (Merged from `feature/flush-met-x`)
+- **Backend Architecture:** Native Cloudflare Pages Functions (`/api/*`) + Cloudflare D1 (`remission-db`) + Cloudflare R2 (`remission-media`)
+- **Legacy SDK Status:** 100% decoupled from PocketBase across all runtime pages and modules.
 
-## Active Milestone: Decoupling & Content Scrubbing (`feature/flush-met-x`)[cite: 1, 2]
+---
 
-- **Stage 1–6 Core Infrastructure:** COMPLETE (`v2.5-e2e-playwright` baseline tag)[cite: 1]
-- **Git Protection:** Physical `.git/hooks/pre-commit` installed to prevent direct commits to `main`[cite: 1].
-- **Phase 1 Audit Complete:** Identified 5 legacy "Met-X" references across `SignupPage.jsx` (line 57) and `HomePage.jsx` (lines 92, 265, 306, 385).
-- **Founders Audit Complete:** Verified zero hallucinated profiles ("Dr. Marcus Vance", "Elena Rostova") in source baseline[cite: 2].
+## Key Achievements (Milestone: PocketBase Decoupling & Met-X Purge)
+1. **Public React Pages Migrated to Pages Functions:**
+   - `HomePage.jsx` $\rightarrow$ `/api/hero_media` & `/api/files/`
+   - `AboutPage.jsx` $\rightarrow$ `/api/founders`
+   - `MembersPage.jsx` $\rightarrow$ `/api/resources?all=true`
+   - `ConsultationPage.jsx` $\rightarrow$ `/api/contact_requests`
+   - `ApplyPage.jsx` $\rightarrow$ `/api/membership_applications`
+   - `ClientPortalPage.jsx` $\rightarrow$ Route registered in `App.jsx` at `/portal`
+   - `podcastAudio.js` $\rightarrow$ Direct `/api/files/` audio URL resolution
 
-## Next Session Action Item
-- **Option A Execution:** Surgically scrub all 5 "Met-X" text leaks and decouple `HomePage.jsx` hero media hook from PocketBase to `/api/hero_media` while maintaining 100% visual layout parity[cite: 2].
+2. **Toxic "Met-X" Text Leak Purge:**
+   - 100% purged across all frontend source files, styles, and hero components.
 
-## Active Verification State
-- **Active Branch:** `feature/flush-met-x`[cite: 1]
-- **Pristine Release Baseline:** `v2.5-e2e-playwright`[cite: 1]
-- **Pre-Commit Guard:** Active (`.git/hooks/pre-commit`)[cite: 1]
+3. **Database Integrity & Local Seeding:**
+   - Created and executed `seed.sql` populating local Cloudflare D1 (`remission-db`) with baseline hero media, founder profiles, and public member resources.
+   - `PRAGMA foreign_key_check;` passing with 0 violations.
+
+4. **Playwright E2E Test Suite Validation:**
+   - Created `apps/web/e2e/public-routes.spec.js` testing rendering and route resolution for `/`, `/about`, `/members`, `/consultation`, `/apply`, and `/portal`.
+   - **Result:** 6/6 tests passing (`100% pass`).
+
+---
+
+## Next Recommended Steps
+1. Refactor administrative dashboard (`AdminPage.jsx`) to consume native D1/R2 Pages Functions (`/api/admin/*`).
+2. Implement Cloudflare Worker Auth guards for client portal document downloads (`functions/api/client/*`).

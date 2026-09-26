@@ -9,7 +9,7 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 },
   },
   webServer: {
-    command: 'npx wrangler pages dev apps/web/dist --port 8788',
+    command: 'npx wrangler pages dev ../../dist/apps/web --port 8788',
     port: 8788,
     reuseExistingServer: !process.env.CI,
     timeout: 120000,

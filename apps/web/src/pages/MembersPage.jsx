@@ -1,263 +1,128 @@
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-import {
-    ArrowUpRight,
-    Loader2,
-    Lock,
-    BookOpen,
-    ClipboardList,
-    FileText,
-    ShieldCheck,
-    Sparkles,
-    KeyRound,
-} from 'lucide-react';
-import pb from '@/lib/pocketbaseClient';
-import { useAuth } from '@/contexts/AuthContext';
-import Reveal from '@/components/Reveal';
+import React, { useState, useEffect } from 'react';
+import { Download, Lock, ShieldCheck } from 'lucide-react';
 
-const FORMAT_META = {
-    guide: { label: 'Guide', icon: BookOpen },
-    protocol: { label: 'Protocol', icon: ClipboardList },
-    checklist: { label: 'Checklist', icon: FileText },
-    video: { label: 'Video', icon: BookOpen },
-    podcast: { label: 'Podcast', icon: BookOpen },
-};
-
-const CATEGORY_LABELS = {
-    foundations: 'Foundations',
-    nutrition: 'Nutrition',
-    movement: 'Movement',
-    sleep: 'Sleep & Recovery',
-    metabolic: 'Metabolic Health',
-    biomarkers: 'Biomarkers',
-    mindset: 'Mindset',
-};
-
-const PERKS = [
+export default function MembersPage() {
+  const [resources, setResources] = useState([
     {
-        icon: ClipboardList,
-        title: 'Training Protocols',
-        body: 'The exact zone 2, resistance, and mobility blueprints we prescribe — with heart-rate targets, progression rules, and deload logic.',
+      id: 'res-1',
+      title: 'Metabolic Survivorship Framework',
+      description: 'Comprehensive baseline framework for post-treatment physiological restoration and biomarker tracking.',
+      category: 'Guides',
+      file_path: '/api/files/protocol-guide.pdf',
+      members_only: 0
     },
     {
-        icon: ShieldCheck,
-        title: 'Metabolic Assessments',
-        body: 'How to read your quarterly panel the way our physician does: the 40+ markers, the thresholds, and what each trend means.',
-    },
-    {
-        icon: Sparkles,
-        title: 'Nutrition Guidelines',
-        body: 'Periodized nutrition and fasting protocols sequenced around your training blocks and lab cycles — not generic meal plans.',
-    },
-];
+      id: 'res-2',
+      title: 'Advanced Biomarker Reference Matrix',
+      description: 'Optimal clinical reference ranges for routine laboratory work, metabolic panels, and inflammatory markers.',
+      category: 'Clinical Tools',
+      file_path: '/api/files/biomarker-matrix.pdf',
+      members_only: 1
+    }
+  ]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-const MemberResourceCard = ({ resource }) => {
-    const meta = FORMAT_META[resource.format] || FORMAT_META.guide;
-    const Icon = meta.icon;
+  useEffect(() => {
+    async function loadResources() {
+      try {
+        const res = await fetch('/api/resources?all=true');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setResources(data);
+          }
+        }
+      } catch (err) {
+        console.warn("Using baseline resources state:", err);
+      }
+    }
+    loadResources();
+  }, []);
 
-    return (
-        <a
-            href={resource.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex h-full flex-col rounded-sm border border-brass/25 bg-jewel-foreground/[0.04] p-6 transition-all hover:-translate-y-1 hover:border-brass/60 hover:bg-jewel-foreground/[0.07]"
-        >
-            <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brass">
-                    <Icon size={14} /> {meta.label}
-                </span>
-                <span className="text-xs uppercase tracking-[0.2em] text-jewel-foreground/45">
-                    {CATEGORY_LABELS[resource.category] || resource.category}
-                </span>
+  const categories = ['All', ...new Set(resources.map(r => r.category || 'General'))];
+
+  const filteredResources = selectedCategory === 'All'
+    ? resources
+    : resources.filter(r => (r.category || 'General') === selectedCategory);
+
+  return (
+    <div className="min-h-screen bg-stone-900 text-stone-100 pt-28 pb-20 px-6 font-sans">
+      <div className="max-w-7xl mx-auto space-y-12">
+        <div className="space-y-4 max-w-3xl">
+          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-500">
+            <ShieldCheck className="w-4 h-4" /> Member Knowledge Vault
+          </div>
+          <h1 className="text-3xl md:text-5xl font-serif text-white">
+            Resources & Protocols
+          </h1>
+          <p className="text-stone-400 text-base md:text-lg font-light leading-relaxed">
+            Evidence-based guides, clinical reference tools, and metabolic framework documentation for Remission Protocol members and clinicians.
+          </p>
+        </div>
+
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-2 border-b border-stone-800 pb-4">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 text-xs font-medium tracking-wide rounded-sm transition-all ${
+                selectedCategory === cat
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-stone-800 text-stone-400 hover:text-stone-200 hover:bg-stone-700'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Resources Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredResources.map((item) => (
+            <div
+              key={item.id || item.title}
+              className="bg-stone-950 border border-stone-800 rounded-sm p-6 flex flex-col justify-between hover:border-stone-700 transition-all shadow-md"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono uppercase text-stone-500 tracking-wider">
+                    {item.category || 'General'}
+                  </span>
+                  {item.members_only ? (
+                    <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase bg-amber-950 text-amber-400 border border-amber-800/60 px-2 py-0.5 rounded-xs">
+                      <Lock className="w-3 h-3" /> Members Only
+                    </span>
+                  ) : (
+                    <span className="text-[10px] font-mono uppercase bg-stone-800 text-stone-300 px-2 py-0.5 rounded-xs">
+                      Public
+                    </span>
+                  )}
+                </div>
+
+                <h2 className="text-lg font-serif text-stone-100 font-semibold leading-snug">
+                  {item.title}
+                </h2>
+
+                <p className="text-sm text-stone-400 font-light leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-stone-900 flex items-center justify-between">
+                <a
+                  href={item.file_path ? (item.file_path.startsWith('http') || item.file_path.startsWith('/api/') ? item.file_path : `/api/files/${item.file_path}`) : '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-xs font-medium text-amber-500 hover:text-amber-400 transition-colors gap-1.5"
+                >
+                  <Download className="w-4 h-4" /> Access Document
+                </a>
+              </div>
             </div>
-            <h3 className="mt-4 font-display text-xl font-medium leading-snug tracking-tight text-jewel-foreground">
-                {resource.title}
-            </h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-jewel-foreground/65">{resource.summary}</p>
-            <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brass transition-colors group-hover:text-jewel-foreground">
-                Open resource <ArrowUpRight size={14} />
-            </span>
-        </a>
-    );
-};
-
-const MembersPage = () => {
-    const { user, isAuthed } = useAuth();
-    const [resources, setResources] = useState(null);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        let cancelled = false;
-        setError(null);
-
-        pb.collection('resources')
-            .getFullList({ filter: 'members_only = true', sort: '-created' })
-            .then((records) => {
-                if (!cancelled) setResources(records);
-            })
-            .catch((err) => {
-                if (!cancelled) setError(err.message || 'Could not load the member library.');
-            });
-
-        return () => {
-            cancelled = true;
-        };
-    }, [isAuthed]);
-
-    return (
-        <>
-            <Helmet>
-                <title>Member Access | Remission Protocol — Protocols, Assessments & Blueprints</title>
-                <meta
-                    name="description"
-                    content="The Remission Protocol member library: exclusive training protocols, metabolic assessments, and nutrition guidelines — the same documents our survivorship coaching clients use between sessions."
-                />
-            </Helmet>
-
-            {/* Hero */}
-            <section className="relative overflow-hidden bg-jewel pb-24 pt-40 text-jewel-foreground md:pt-48">
-                <div
-                    className="pointer-events-none absolute inset-0 opacity-[0.06]"
-                    style={{
-                        backgroundImage:
-                            'radial-gradient(circle at 20% 20%, var(--brass) 0, transparent 40%), radial-gradient(circle at 80% 60%, var(--brass) 0, transparent 35%)',
-                    }}
-                    aria-hidden="true"
-                />
-                <div className="container relative">
-                    <Reveal>
-                        <span className="inline-flex items-center gap-2 rounded-sm border border-brass/40 bg-brass/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-brass">
-                            <KeyRound size={14} /> Member Access
-                        </span>
-                    </Reveal>
-                    <Reveal delay={0.1}>
-                        <h1 className="mt-6 max-w-3xl font-display text-4xl font-light leading-tight tracking-tight md:text-6xl">
-                            The library we build{' '}
-                            <em className="font-medium text-brass">our members around.</em>
-                        </h1>
-                    </Reveal>
-                    <Reveal delay={0.2}>
-                        <p className="mt-6 max-w-xl text-base leading-relaxed text-jewel-foreground/75">
-                            This is the working material behind every Remission Protocol plan — the protocols, assessments,
-                            and blueprints our physician and coaching team use between sessions. Reserved for
-                            members of the practice.
-                        </p>
-                    </Reveal>
-                    <Reveal delay={0.3}>
-                        <p className="mt-8 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-jewel-foreground/55">
-                            <ShieldCheck size={14} className="text-brass" />
-                            {user?.email ? `Signed in as ${user.email}` : 'Signed in'}
-                        </p>
-                    </Reveal>
-                </div>
-            </section>
-
-            {/* Perks */}
-            <section className="border-b border-border bg-card py-20 md:py-24">
-                <div className="container">
-                    <Reveal>
-                        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-                            What&apos;s inside
-                        </p>
-                        <h2 className="mt-4 max-w-2xl font-display text-3xl font-light tracking-tight text-foreground md:text-4xl">
-                            Three categories of high-value, practice-tested material.
-                        </h2>
-                    </Reveal>
-                    <div className="mt-12 grid gap-8 md:grid-cols-3">
-                        {PERKS.map((perk, index) => (
-                            <Reveal key={perk.title} delay={index * 0.08}>
-                                <div className="flex h-full flex-col rounded-sm border border-border bg-background p-7">
-                                    <perk.icon size={26} className="text-primary" />
-                                    <h3 className="mt-5 font-display text-xl font-medium tracking-tight text-foreground">
-                                        {perk.title}
-                                    </h3>
-                                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{perk.body}</p>
-                                </div>
-                            </Reveal>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Member library */}
-            <section className="bg-jewel py-20 text-jewel-foreground md:py-24">
-                <div className="container">
-                    <Reveal>
-                        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                            <div>
-                                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-brass">
-                                    <Lock size={14} /> Member library
-                                </span>
-                                <h2 className="mt-4 font-display text-3xl font-light tracking-tight md:text-4xl">
-                                    Protocols, checklists &amp; blueprints
-                                </h2>
-                            </div>
-                            <p className="max-w-sm text-sm leading-relaxed text-jewel-foreground/60">
-                                Updated each quarter alongside our member lab cycles. Open any document to
-                                read, download, or print.
-                            </p>
-                        </div>
-                    </Reveal>
-
-                    {resources === null && !error && (
-                        <div className="mt-14 flex items-center gap-3 text-jewel-foreground/70">
-                            <Loader2 className="h-5 w-5 animate-spin" /> Loading the member library…
-                        </div>
-                    )}
-
-                    {error && (
-                        <p className="mt-14 rounded-sm border border-oxblood/50 bg-oxblood/20 p-4 text-sm text-jewel-foreground">
-                            {error} Please refresh the page to try again.
-                        </p>
-                    )}
-
-                    {resources !== null && resources.length === 0 && !error && (
-                        <p className="mt-14 text-sm text-jewel-foreground/60">
-                            Member resources are being prepared. Check back soon.
-                        </p>
-                    )}
-
-                    <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {resources &&
-                            resources.map((resource, index) => (
-                                <Reveal key={resource.id} delay={index * 0.06}>
-                                    <MemberResourceCard resource={resource} />
-                                </Reveal>
-                            ))}
-                    </div>
-
-                    <Reveal delay={0.1}>
-                        <div className="mt-16 flex flex-col items-start gap-6 rounded-sm border border-brass/30 bg-brass/10 p-8 md:flex-row md:items-center md:justify-between md:p-10">
-                            <div className="max-w-xl">
-                                <h3 className="font-display text-2xl font-light leading-snug md:text-3xl">
-                                    Want the full coaching experience?
-                                </h3>
-                                <p className="mt-3 text-sm leading-relaxed text-jewel-foreground/70">
-                                    These documents are the reference layer. The work happens in consultation
-                                    and coaching — physician-guided, coach-delivered, measured in biomarkers.
-                                </p>
-                            </div>
-                            <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-                                <Link
-                                    to="/apply"
-                                    className="inline-flex h-12 shrink-0 items-center justify-center rounded-sm bg-brass px-8 text-sm font-semibold text-white transition-all hover:bg-accent active:scale-[0.98]"
-                                >
-                                    Apply for Membership
-                                </Link>
-                                <Link
-                                    to="/consultation"
-                                    className="inline-flex h-12 shrink-0 items-center justify-center rounded-sm border border-jewel-foreground/40 px-8 text-sm font-semibold text-jewel-foreground transition-all hover:border-jewel-foreground hover:bg-jewel-foreground/10 active:scale-[0.98]"
-                                >
-                                    Request a Consultation
-                                </Link>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
-        </>
-    );
-};
-
-export default MembersPage;
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -54,7 +54,7 @@ const SignupPage = () => {
                             Create your <em className="font-medium text-primary">member account</em>
                         </h1>
                         <p className="mt-2 text-sm text-muted-foreground">
-                            Free access to the Met-X protocol library.
+                            Free access to the Remission Protocol library.
                         </p>
 
                         <form onSubmit={handleSubmit} className="mt-8 space-y-5">

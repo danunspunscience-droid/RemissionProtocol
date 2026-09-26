@@ -1,16 +1,12 @@
-import pb from '@/lib/pocketbaseClient';
-
-// Storage boundary for podcast audio.
-//
-// Audio files currently live in PocketBase file storage and are resolved here
-// from the `audio_file` file field. To migrate to Cloudflare Workers + R2
-// later, replace this single function to return the R2 URL (e.g. read from a
-// stored `audio_file_url` text field). Every component reads the playable URL
-// through getAudioUrl, so the storage backend can be swapped without touching
-// the player or admin UI.
-export const getAudioUrl = (rec) => {
-    if (!rec || !rec.audio_file) return '';
-    return pb.files.getURL(rec, rec.audio_file);
-};
-
-export default getAudioUrl;
+// Audio files are served via native Cloudflare Pages Functions /api/files/ endpoint or public R2 CDN
+export function getAudioUrl(rec) {
+  if (!rec) return "";
+  if (typeof rec === "string") {
+    if (rec.startsWith("http") || rec.startsWith("/api/")) return rec;
+    return `/api/files/${rec}`;
+  }
+  const audioPath = rec.audio_file || rec.file || rec.url || "";
+  if (!audioPath) return "";
+  if (audioPath.startsWith("http") || audioPath.startsWith("/api/")) return audioPath;
+  return `/api/files/${audioPath}`;
+}

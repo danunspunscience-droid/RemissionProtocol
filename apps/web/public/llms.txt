@@ -1,10 +1,6 @@
 ## Pages
 - [- Our Store](/productdetail): No description available
-- [About the Founders | Remission Protocol — Concierge Health Coaching for Cancer Survivors, Austin TX](/about): Remission Protocol was founded by Dr. Daniel Lee, MD, ABOM and elite performance coach Steve Hudson — a rare combination of physician science, elite coaching, and lived survivorship experience. Concierge health coaching for cancer survivors, grounded in immuno-oncology, epigenetic reprogramming, and metabolic resilience.
 - [Admin Sign In · Remission Protocol](/admin): No description available
-- [Apply for Membership | Remission Protocol — Concierge Health Coaching for Cancer Survivors, Austin TX](/apply): Apply for membership at Remission Protocol, a deliberately small concierge survivorship coaching practice for cancer survivors in Austin, TX. Share your history, your goals, and your timeline — our physician-guided team reviews every application personally.
 - [Consultation Confirmed | Remission Protocol](/success): Your Remission Protocol consultation is confirmed. We look forward to meeting you in Austin.
 - [Create a Member Account | Remission Protocol](/signup): Create a free Remission Protocol member account to unlock the private library of survivorship coaching protocols, checklists, and training blueprints.
-- [Member Access | Remission Protocol — Protocols, Assessments & Blueprints](/members): The Remission Protocol member library: exclusive training protocols, metabolic assessments, and nutrition guidelines — the same documents our survivorship coaching clients use between sessions.
 - [Member Login | Remission Protocol](/login): Sign in to your Remission Protocol member account to access the private resource library.
-- [Request a Consultation | Remission Protocol — Austin, TX](/consultation): Book a private concierge health coaching consultation with the Remission Protocol physician-guided team in Austin, TX. Choose a date and time, reserve online, and begin the work of thriving after treatment.

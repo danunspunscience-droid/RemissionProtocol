@@ -1,3 +1,4 @@
+import ClientPortalPage from "./pages/ClientPortalPage";
 import React from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -45,7 +46,8 @@ function App() {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/success" element={<SuccessPage />} />
-                            <Route path="*" element={<HomePage />} />
+                            <Route path="/portal" element={<ClientPortalPage />} />
+        <Route path="*" element={<HomePage />} />
                         </Routes>
                     </main>
                     <SiteFooter />
