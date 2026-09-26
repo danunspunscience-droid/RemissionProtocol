@@ -155,4 +155,14 @@
 - [ ] Test R2 management endpoint availability
 - [ ] Assess PocketBase migration complexity and timeline
 - [ ] Review security configuration and implement missing controls
+
+## Diagnostic Analysis: R2 Streaming Issues
+- [ ] Root Cause 1: Malformed Key Path Resolution (`/api/files/public/hero/.`) - `params.path` captures trailing segments incorrectly.
+- [ ] Root Cause 2: Lack of Key Sanitization in `[[path]].js` (trailing dots/slashes).
+- [ ] Root Cause 3: Defensive binding check missing for `env.STORAGE`.
+
+*Action Plan*:
+1. Sanitize key paths in `functions/api/files/[[path]].js`.
+2. Add explicit guard for `env.STORAGE`.
+3. Verify alignment between `HeroAdmin.jsx` upload paths and `CinematicHero.jsx` retrieval.
 - [ ] Validate performance optimizations and caching strategies

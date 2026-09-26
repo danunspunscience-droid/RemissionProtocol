@@ -1,31 +1,23 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "remission-protocol",
-	"pages_build_output_dir": "dist/apps/web",
-	"compatibility_date": "2026-01-01",
-	"compatibility_flags": ["nodejs_compat"],
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "remission-db",
-			"database_id": "71f3ba43-eb86-4909-b343-96713b014478"
-		}
-	],
-	"r2_buckets": [
-		{
-			"binding": "STORAGE",
-			"bucket_name": "remission-media"
-		},
-		{
-			"binding": "remission_media",
-			"bucket_name": "remission-media"
-		},
-		{
-			"binding": "MEDIA_BUCKET",
-			"bucket_name": "remission-media"
-		}
-	],
-	"vars": {
-		"ADMIN_SESSION_SECRET": "local-dev-only-not-a-production-secret"
-	}
+ "$schema": "./node_modules/wrangler/config-schema.json",
+ "name": "remission-protocol",
+ "pages_build_output_dir": "dist/apps/web",
+ "compatibility_date": "2026-01-01",
+ "compatibility_flags": ["nodejs_compat"],
+ "d1_databases": [
+ {
+ "binding": "DB",
+ "database_name": "remission-db",
+ "database_id": "71f3ba43-eb86-4909-b343-96713b014478"
+ }
+ ],
+ "r2_buckets": [
+ {
+ "binding": "STORAGE",
+ "bucket_name": "remission-media"
+ }
+ ],
+ "vars": {
+ "ADMIN_SESSION_SECRET": "local-dev-only-not-a-production-secret"
+ }
 }

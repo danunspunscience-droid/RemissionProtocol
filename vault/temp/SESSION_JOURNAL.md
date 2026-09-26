@@ -2919,3 +2919,42 @@
 ## 2026-09-26 16:29:13.649Z console.warn
 - text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
+## 2026-09-26 18:31:36.442Z console.error
+- text: [vite] SyntaxError: The requested module '/src/lib/imageCompression.js' does not provide an export named 'compressImage'
+
+## 2026-09-26 18:31:36.443Z console.error
+- text: [vite] Failed to reload /src/components/admin/HeroAdmin.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 18:32:21.070Z console.error
+- text: [vite] SyntaxError: Invalid or unexpected token
+
+## 2026-09-26 18:32:21.071Z console.error
+- text: [vite] Failed to reload /src/components/admin/HeroAdmin.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 18:32:21.071Z console.error
+- text: [vite] SyntaxError: Invalid or unexpected token
+
+## 2026-09-26 18:32:21.074Z console.error
+- text: [vite] Failed to reload /src/components/admin/BlogAdmin.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 19:23:21.498Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-26 19:23:21.499Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-26 19:23:21.538Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 19:23:21.628Z console.warn
+- text: Using baseline hero configuration: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 19:23:21.662Z console.warn
+- text: Using baseline hero configuration: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
