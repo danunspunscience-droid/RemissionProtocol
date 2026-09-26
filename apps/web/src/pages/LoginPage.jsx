@@ -1,111 +1,93 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link, useNavigate } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { Lock, Mail, ShieldAlert, ArrowRight } from 'lucide-react';
 
-const LoginPage = () => {
-    const { login } = useAuth();
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
-    const [submitting, setSubmitting] = useState(false);
+export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setError(null);
-        setSubmitting(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
 
-        try {
-            await login(email, password);
-            navigate('/members');
-        } catch (err) {
-            setError('We could not sign you in with those credentials. Please check your email and password.');
-        } finally {
-            setSubmitting(false);
-        }
-    };
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
 
-    return (
-        <>
-            <Helmet>
-                <title>Member Login | Remission Protocol</title>
-                <meta
-                    name="description"
-                    content="Sign in to your Remission Protocol member account to access the private resource library."
-                />
-            </Helmet>
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Login failed.');
 
-            <section className="flex min-h-[80vh] items-center bg-jewel px-4 pb-20 pt-32">
-                <div className="mx-auto w-full max-w-md">
-                    <div className="rounded-sm border border-border bg-card p-8 shadow-xl md:p-10">
-                        <h1 className="font-display text-3xl font-light tracking-tight text-foreground">
-                            Member <em className="font-medium text-primary">login</em>
-                        </h1>
-                        <p className="mt-2 text-sm text-muted-foreground">
-                            Access the member resource library.
-                        </p>
+      navigate('/admin');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-                        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-                            <div>
-                                <label htmlFor="login-email" className="mb-2 block text-sm font-medium text-foreground">
-                                    Email
-                                </label>
-                                <input
-                                    id="login-email"
-                                    type="email"
-                                    required
-                                    autoComplete="email"
-                                    value={email}
-                                    onChange={(event) => setEmail(event.target.value)}
-                                    className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                                    placeholder="you@example.com"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="login-password" className="mb-2 block text-sm font-medium text-foreground">
-                                    Password
-                                </label>
-                                <input
-                                    id="login-password"
-                                    type="password"
-                                    required
-                                    autoComplete="current-password"
-                                    value={password}
-                                    onChange={(event) => setPassword(event.target.value)}
-                                    className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                                    placeholder="Your password"
-                                />
-                            </div>
+  return (
+    <div className="min-h-screen bg-stone-950 flex items-center justify-center px-4 py-20 font-sans">
+      <div className="max-w-md w-full bg-stone-900 border border-stone-800 rounded-sm p-8 space-y-6">
+        <div className="text-center space-y-2">
+          <div className="inline-flex p-3 bg-stone-950 border border-stone-800 rounded-full text-amber-500 mb-2">
+            <Lock className="w-6 h-6" />
+          </div>
+          <h1 className="text-2xl font-serif text-white">Admin Authentication</h1>
+          <p className="text-xs font-mono text-stone-400">Remission Protocol Governance Portal</p>
+        </div>
 
-                            {error && (
-                                <p className="rounded-sm border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">
-                                    {error}
-                                </p>
-                            )}
+        {error && (
+          <div className="p-3 bg-red-950/60 border border-red-800 text-red-200 text-xs rounded-sm flex items-center gap-2">
+            <ShieldAlert className="w-4 h-4 shrink-0" />
+            <span>{error}</span>
+          </div>
+        )}
 
-                            <button
-                                type="submit"
-                                disabled={submitting}
-                                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-sm bg-primary text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 active:scale-[0.98] disabled:opacity-60"
-                            >
-                                {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
-                                {submitting ? 'Signing in…' : 'Sign in'}
-                            </button>
-                        </form>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs font-mono uppercase text-stone-400 mb-1">Email</label>
+            <div className="relative">
+              <Mail className="w-4 h-4 text-stone-500 absolute left-3 top-2.5" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@remissionprotocol.com"
+                className="w-full bg-stone-950 border border-stone-800 text-stone-100 pl-10 pr-3 py-2 text-sm rounded-sm focus:border-amber-600 outline-none"
+                required
+              />
+            </div>
+          </div>
 
-                        <p className="mt-6 text-center text-sm text-muted-foreground">
-                            No account yet?{' '}
-                            <Link to="/signup" className="font-semibold text-primary transition-colors hover:text-accent">
-                                Create one
-                            </Link>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </>
-    );
-};
+          <div>
+            <label className="block text-xs font-mono uppercase text-stone-400 mb-1">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full bg-stone-950 border border-stone-800 text-stone-100 px-3 py-2 text-sm rounded-sm focus:border-amber-600 outline-none"
+              required
+            />
+          </div>
 
-export default LoginPage;
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-2.5 bg-amber-700 hover:bg-amber-600 text-white text-xs font-mono uppercase tracking-wider rounded-sm flex items-center justify-center gap-2 transition-colors"
+          >
+            <span>{loading ? 'Authenticating...' : 'Sign In'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

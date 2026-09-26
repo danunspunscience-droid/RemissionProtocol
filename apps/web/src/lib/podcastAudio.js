@@ -10,3 +10,4 @@ export function getAudioUrl(rec) {
   if (audioPath.startsWith("http") || audioPath.startsWith("/api/")) return audioPath;
   return `/api/files/${audioPath}`;
 }
+export default getAudioUrl;

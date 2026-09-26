@@ -1,6 +1,4 @@
 ## Pages
 - [- Our Store](/productdetail): No description available
-- [Admin Sign In · Remission Protocol](/admin): No description available
 - [Consultation Confirmed | Remission Protocol](/success): Your Remission Protocol consultation is confirmed. We look forward to meeting you in Austin.
 - [Create a Member Account | Remission Protocol](/signup): Create a free Remission Protocol member account to unlock the private library of survivorship coaching protocols, checklists, and training blueprints.
-- [Member Login | Remission Protocol](/login): Sign in to your Remission Protocol member account to access the private resource library.

@@ -1,4 +1,8 @@
+import { requireAdmin } from '../../_lib/requireAdmin.js';
+
 export async function onRequestGet(context) {
+  const guard = await requireAdmin(context);
+  if (guard) return guard;
   const { env } = context;
   try {
     const db = env.DB || env.remission_db;
@@ -11,6 +15,8 @@ export async function onRequestGet(context) {
 }
 
 export async function onRequestPost(context) {
+  const guard = await requireAdmin(context);
+  if (guard) return guard;
   const { env, request } = context;
   try {
     const db = env.DB || env.remission_db;

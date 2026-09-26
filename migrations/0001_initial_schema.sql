@@ -220,5 +220,5 @@ CREATE TABLE IF NOT EXISTS sessions (
   token TEXT NOT NULL,
   user_id TEXT NOT NULL,
   expires TEXT NOT NULL,
-  created_at TEXT DEFAULT (DATETIME(\"now\"))
+  created_at TEXT DEFAULT (DATETIME('now'))
 );

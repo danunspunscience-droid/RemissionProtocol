@@ -2021,3 +2021,294 @@
 - url: http://192.168.1.192:3000/consultation
 - via: pushState
 
+## 2026-09-26 11:04:26.439Z load
+- url: http://192.168.1.192:3000/consultation
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 11:04:28.603Z load
+- url: http://192.168.1.192:3000/consultation
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 11:04:28.693Z window.error
+- message: Uncaught SyntaxError: The requested module '/src/lib/podcastAudio.js' does not provide an export named 'default'
+- source: http://192.168.1.192:3000/src/pages/AdminPage.jsx
+- line: 8
+- col: 8
+- stack: SyntaxError: The requested module '/src/lib/podcastAudio.js' does not provide an export named 'default'
+
+## 2026-09-26 11:15:31.471Z load
+- url: http://192.168.1.192:3000/consultation
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 11:15:31.524Z window.error
+- message: Uncaught SyntaxError: The requested module '/src/lib/podcastAudio.js' does not provide an export named 'default'
+- source: http://192.168.1.192:3000/src/pages/AdminPage.jsx
+- line: 8
+- col: 8
+- stack: SyntaxError: The requested module '/src/lib/podcastAudio.js' does not provide an export named 'default'
+
+## 2026-09-26 11:15:33.790Z load
+- url: http://192.168.1.192:3000/consultation
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 11:15:33.830Z window.error
+- message: Uncaught SyntaxError: The requested module '/src/lib/podcastAudio.js' does not provide an export named 'default'
+- source: http://192.168.1.192:3000/src/pages/AdminPage.jsx
+- line: 8
+- col: 8
+- stack: SyntaxError: The requested module '/src/lib/podcastAudio.js' does not provide an export named 'default'
+
+## 2026-09-26 11:18:28.549Z load
+- url: http://192.168.1.192:3000/consultation
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 11:18:28.709Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: replaceState
+
+## 2026-09-26 11:18:36.973Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 11:18:36.975Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 11:18:37.062Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 11:18:37.261Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 11:18:37.338Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 11:18:38.797Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-26 11:18:38.798Z navigate
+- url: http://192.168.1.192:3000/
+- via: pushState
+
+## 2026-09-26 11:18:42.328Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 11:18:42.329Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
+
+## 2026-09-26 11:18:43.709Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-26 11:18:43.710Z navigate
+- url: http://192.168.1.192:3000/login
+- via: pushState
+
+## 2026-09-26 11:18:51.151Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 11:18:51.152Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: pushState
+
+## 2026-09-26 11:19:14.133Z load
+- url: http://192.168.1.192:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 11:19:14.225Z navigate
+- url: http://192.168.1.192:3000/admin
+- via: replaceState
+
+## 2026-09-26 11:19:14.373Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 11:19:18.683Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:19:18.834Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:19:35.831Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:19:42.079Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign in"}
+
+## 2026-09-26 11:20:19.122Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign in"}
+
+## 2026-09-26 11:20:23.009Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:20:23.154Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:20:40.310Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:20:40.459Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign in"}
+
+## 2026-09-26 11:20:41.448Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:20:41.578Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-26 11:20:50.626Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:20:50.627Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:20:50.786Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+
+## 2026-09-26 11:20:50.788Z submit
+- action: http://192.168.1.192:3000/admin
+- fields: [{"label":"Email address","type":"email","value":"admin@metxbootcamp.com","length":22,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=22]","length":22,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+
+## 2026-09-26 11:20:50.797Z network.error
+- method: POST
+- url: http://192.168.1.192:3000/api/auth/login
+- status: 404
+- statusText: Not Found
+- requestBody: {"email":"admin@metxbootcamp.com","password":"[redacted:length=22]"}
+- durationMs: 8
+
+## 2026-09-26 11:20:50.798Z console.error
+- text: Fetch error from http://192.168.1.192:3000/api/auth/login: 
+
+## 2026-09-26 11:20:56.071Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:20:56.249Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:21:07.296Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:21:07.443Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:21:07.443Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:22:00.073Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:23:27.481Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:23:28.967Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:23:31.462Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:23:38.411Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:24:02.098Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:24:04.048Z click
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:24:10.477Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+
+## 2026-09-26 11:24:10.478Z submit
+- action: http://192.168.1.192:3000/admin
+- fields: [{"label":"Email address","type":"email","value":"admin@metxbootcamp.com","length":22,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=22]","length":22,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+
+## 2026-09-26 11:24:10.485Z network.error
+- method: POST
+- url: http://192.168.1.192:3000/api/auth/login
+- status: 404
+- statusText: Not Found
+- requestBody: {"email":"admin@metxbootcamp.com","password":"[redacted:length=22]"}
+- durationMs: 6
+
+## 2026-09-26 11:24:10.485Z console.error
+- text: Fetch error from http://192.168.1.192:3000/api/auth/login: 
+
+## 2026-09-26 11:24:12.365Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+
+## 2026-09-26 11:24:12.523Z click
+- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+
+## 2026-09-26 11:24:12.524Z submit
+- action: http://192.168.1.192:3000/admin
+- fields: [{"label":"Email address","type":"email","value":"admin@metxbootcamp.com","length":22,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=22]","length":22,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+
+## 2026-09-26 11:24:12.531Z network.error
+- method: POST
+- url: http://192.168.1.192:3000/api/auth/login
+- status: 404
+- statusText: Not Found
+- requestBody: {"email":"admin@metxbootcamp.com","password":"[redacted:length=22]"}
+- durationMs: 7
+
+## 2026-09-26 11:24:12.531Z console.error
+- text: Fetch error from http://192.168.1.192:3000/api/auth/login: 
+
+## 2026-09-26 11:24:14.432Z click
+- element: {"tag":"form","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Email addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-26 11:25:41.395Z click
+- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+
+## 2026-09-26 12:06:12.520Z load
+- url: http://192.168.1.192:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 12:06:13.860Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 12:09:42.359Z console.error
+- text: [vite] Failed to reload /src/pages/AdminPage.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 12:14:21.481Z load
+- url: http://192.168.1.192:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 12:14:25.749Z load
+- url: http://192.168.1.192:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 12:15:40.698Z load
+- url: http://192.168.1.192:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 12:15:41.185Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 12:15:41.258Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 12:33:22.484Z load
+- url: http://192.168.1.192:3000/admin
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 12:33:22.807Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 12:33:22.872Z console.error
+- text: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+

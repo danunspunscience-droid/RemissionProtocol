@@ -14,5 +14,10 @@
 			"bucket_name": "remission-media",
 			"binding": "remission_media"
 		}
-	]
+	],
+	"vars": {
+		// Override per-environment with `wrangler pages secret put ADMIN_SESSION_SECRET`.
+		// This local-only default exists so the emulator can issue sessions.
+		"ADMIN_SESSION_SECRET": "local-dev-only-not-a-production-secret"
+	}
 }
