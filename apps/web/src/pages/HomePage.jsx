@@ -89,7 +89,7 @@ const STATS = [
 
 const TESTIMONIALS = [
     {
-        quote: 'After my diagnosis, every specialist told me what to avoid. Met-X was the first team to tell me what to build.',
+        quote: 'After my diagnosis, every specialist told me what to avoid. Remission Protocol was the first team to tell me what to build.',
         name: 'M.R.',
         role: 'Founder, Austin',
     },
@@ -104,11 +104,24 @@ const HomePage = () => {
     const [liveHero, setLiveHero] = useState(null);
 
     useEffect(() => {
-        pb.collection('hero_media')
-            .getFirstListItem("status='published'")
-            .then(setLiveHero)
-            .catch(() => setLiveHero(null));
-    }, []);
+    async function loadHeroMedia() {
+      try {
+        const res = await fetch('/api/hero_media');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            const published = data.find(item => item.is_published) || data[0];
+            if (published) {
+              setLiveHero(published);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Using default hero baseline assets:", err);
+      }
+    }
+    loadHeroMedia();
+  }, []);
 
     const heroHeadline = liveHero?.headline || 'Live Beyond the Prognosis.';
     const heroSubheading =
@@ -116,7 +129,7 @@ const HomePage = () => {
         'For high-achievers who have cleared active treatment and refuse to simply wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness. Not disease management. Survivorship excellence.';
     const heroCtaLabel = liveHero?.cta_label || 'Request a Consultation';
     const heroCtaLink = liveHero?.cta_link || '/consultation';
-    const heroFileUrl = liveHero?.file ? pb.files.getURL(liveHero, liveHero.file) : null;
+    const heroFileUrl = liveHero?.file ? (liveHero.file.startsWith('http') || liveHero.file.startsWith('/api/') ? liveHero.file : `/api/files/${liveHero.file}`) : null;
     const heroPosition = liveHero?.object_position || 'center';
 
     return (
@@ -262,7 +275,7 @@ const HomePage = () => {
                             <div className="absolute -left-4 -top-4 h-full w-full rounded-sm border border-brass/40" aria-hidden="true" />
                             <img
                                 src={METHOD_IMAGE}
-                                alt="Met-X physician and strength coach reviewing biomarker reports together"
+                                alt="Remission Protocol physician and strength coach reviewing biomarker reports together"
                                 className="relative aspect-[3/2] w-full rounded-sm object-cover shadow-2xl"
                                 loading="lazy"
                                 decoding="async"
@@ -303,7 +316,7 @@ const HomePage = () => {
                         <div className="mt-8 max-w-2xl rounded-sm border border-brass/30 bg-brass/[0.07] p-6">
                             <p className="text-sm leading-relaxed text-foreground">
                                 <span className="font-semibold text-primary">A coaching practice, not a clinic.</span>{' '}
-                                Met-X does not diagnose, treat, or replace your physician. Every protocol is
+                                Remission Protocol does not diagnose, treat, or replace your physician. Every protocol is
                                 educational and designed to run alongside your existing care — never instead
                                 of it.
                             </p>
@@ -382,7 +395,7 @@ const HomePage = () => {
                         <Reveal>
                             <img
                                 src={PORTRAIT_IMAGE}
-                                alt="Vibrant Met-X member in her sixties, training outdoors in Austin"
+                                alt="Vibrant Remission Protocol member in her sixties, training outdoors in Austin"
                                 className="aspect-[3/4] w-full rounded-sm object-cover shadow-2xl"
                                 loading="lazy"
                                 decoding="async"

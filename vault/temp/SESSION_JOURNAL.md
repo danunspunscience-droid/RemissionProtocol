@@ -1350,28 +1350,128 @@
 - url: http://localhost:3001/login
 - via: replaceState
 
-## 2026-09-24 19:59:54.825Z click
+## 2026-09-25 19:21:11.707Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 1
+
+## 2026-09-25 19:21:14.976Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-25 19:21:14.977Z navigate
+- url: http://localhost:3001/
+- via: pushState
+
+## 2026-09-25 19:21:15.016Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-25 19:21:18.033Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-25 19:21:18.189Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-25 19:21:18.206Z network.error
+- method: GET
+- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-25 19:21:19.231Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
+
+## 2026-09-25 19:21:19.232Z navigate
+- url: http://localhost:3001/
+- via: replaceState
+
+## 2026-09-25 19:23:42.099Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-25 19:23:42.099Z navigate
+- url: http://localhost:3001/#method
+- via: pushState
+
+## 2026-09-25 19:23:43.152Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-25 19:23:43.153Z navigate
+- url: http://localhost:3001/resources
+- via: pushState
+
+## 2026-09-25 19:23:43.238Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-25 19:23:43.285Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-25 19:23:43.968Z click
 - element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
 
-## 2026-09-24 19:59:54.826Z navigate
+## 2026-09-25 19:23:43.969Z navigate
 - url: http://localhost:3001/library
 - via: pushState
 
-## 2026-09-24 19:59:54.899Z console.error
+## 2026-09-25 19:23:44.070Z console.error
 - text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 19:59:54.938Z console.error
+## 2026-09-25 19:23:44.116Z console.error
 - text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:09.157Z load
-- url: http://localhost:3001/admin-portal
-- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+## 2026-09-25 19:23:44.480Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
 
-## 2026-09-24 20:00:09.287Z navigate
-- url: http://localhost:3001/admin-portal
+## 2026-09-25 19:23:44.481Z navigate
+- url: http://localhost:3001/members
+- via: pushState
+
+## 2026-09-25 19:23:44.493Z navigate
+- url: http://localhost:3001/login
 - via: replaceState
 
-## 2026-09-24 20:00:09.329Z console.error
+## 2026-09-25 19:23:44.493Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-25 19:23:44.612Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"","valueLength":0,"text":""}
+
+## 2026-09-25 19:23:44.616Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-25 19:23:44.617Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"login-email","placeholder":"you@example.com","label":"Email","value":"admin@local.test","valueLength":16,"text":""}
+
+## 2026-09-25 19:23:44.617Z focus
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+
+## 2026-09-25 19:23:44.619Z change
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-25 19:23:44.619Z blur
+- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"login-password","placeholder":"Your password","label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+
+## 2026-09-25 19:23:45.691Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
+
+## 2026-09-25 19:23:45.692Z navigate
+- url: http://localhost:3001/login
+- via: replaceState
+
+## 2026-09-25 19:23:48.657Z load
+- url: http://localhost:3001/apply
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-25 19:23:48.783Z console.error
 - text: 
     Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
     
@@ -1379,39 +1479,37 @@
     
     Please update the following components: %s SideEffect(NullComponent2)
 
-## 2026-09-24 20:00:09.348Z network.error
+## 2026-09-25 19:42:05.760Z load
+- url: http://localhost:3001/
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-25 19:42:05.886Z navigate
+- url: http://localhost:3001/
+- via: replaceState
+
+## 2026-09-25 19:42:05.930Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-25 19:42:05.999Z network.error
 - method: GET
 - url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
 - message: signal is aborted without reason
-- durationMs: 6
+- durationMs: 12
 
-## 2026-09-24 20:00:19.405Z load
-- url: http://localhost:3001/admin-portal
+## 2026-09-26 01:03:11.176Z load
+- url: http://192.168.1.192:3000/
 - title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
 
-## 2026-09-24 20:00:19.479Z console.error
-- text: 
-    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
-    
-    * Move code with side effects to componentDidMount, and set initial state in the constructor.
-    
-    Please update the following components: %s SideEffect(NullComponent2)
-
-## 2026-09-24 20:00:19.495Z network.error
-- method: GET
-- url: http://localhost:3001/hcgi/platform/api/collections/hero_media/records?page=1&perPage=1&filter=status%3D%27published%27&skipTotal=1
-- message: signal is aborted without reason
-- durationMs: 6
-
-## 2026-09-24 20:00:29.860Z load
-- url: http://localhost:3001/admin
-- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
-
-## 2026-09-24 20:00:29.899Z navigate
-- url: http://localhost:3001/admin
+## 2026-09-26 01:03:11.414Z navigate
+- url: http://192.168.1.192:3000/
 - via: replaceState
 
-## 2026-09-24 20:00:29.970Z console.error
+## 2026-09-26 01:03:11.510Z console.error
 - text: 
     Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
     
@@ -1419,147 +1517,442 @@
     
     Please update the following components: %s SideEffect(NullComponent2)
 
-## 2026-09-24 20:00:34.360Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+## 2026-09-26 01:03:11.724Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:34.459Z click
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+## 2026-09-26 01:03:11.754Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:35.247Z click
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=0]","valueLength":0,"text":""}
+## 2026-09-26 01:03:42.309Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
 
-## 2026-09-24 20:00:36.746Z change
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:03:42.310Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
 
-## 2026-09-24 20:00:38.401Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:03:43.920Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
 
-## 2026-09-24 20:00:38.402Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:03:43.921Z navigate
+- url: http://192.168.1.192:3000/resources
+- via: pushState
 
-## 2026-09-24 20:00:39.183Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign in"}
+## 2026-09-26 01:03:44.045Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:41.448Z change
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+## 2026-09-26 01:03:44.116Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:41.450Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:03:44.969Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
 
-## 2026-09-24 20:00:41.450Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:03:44.970Z navigate
+- url: http://192.168.1.192:3000/library
+- via: pushState
 
-## 2026-09-24 20:00:43.159Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+## 2026-09-26 01:03:45.102Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:43.256Z click
-- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+## 2026-09-26 01:03:45.216Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:00:43.258Z submit
-- action: http://localhost:3001/admin
-- fields: [{"label":"Email address","type":"email","value":"admin@local.test","length":16,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=8]","length":8,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+## 2026-09-26 01:03:45.871Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
 
-## 2026-09-24 20:00:43.269Z network.error
-- method: POST
-- url: http://localhost:3001/api/auth/login
-- status: 404
-- statusText: Not Found
-- requestBody: {"email":"admin@local.test","password":"[redacted:length=8]"}
-- durationMs: 10
+## 2026-09-26 01:03:46.681Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
 
-## 2026-09-24 20:00:43.270Z console.error
-- text: Fetch error from http://localhost:3001/api/auth/login: 
+## 2026-09-26 01:03:46.682Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
 
-## 2026-09-24 20:08:41.874Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+## 2026-09-26 01:03:47.463Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Login"}
 
-## 2026-09-24 20:08:42.722Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:03:47.464Z navigate
+- url: http://192.168.1.192:3000/login
+- via: pushState
 
-## 2026-09-24 20:08:47.080Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+## 2026-09-26 01:03:48.724Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
 
-## 2026-09-24 20:08:56.401Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+## 2026-09-26 01:03:48.725Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
 
-## 2026-09-24 20:08:58.759Z click
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@local.test","valueLength":16,"text":""}
+## 2026-09-26 01:09:37.699Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
 
-## 2026-09-24 20:08:59.901Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:09:37.701Z navigate
+- url: http://192.168.1.192:3000/
+- via: pushState
 
-## 2026-09-24 20:09:05.203Z change
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:09:37.879Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:05.204Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:09:37.986Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:12.966Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:10:45.357Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
 
-## 2026-09-24 20:09:14.282Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:10:45.358Z navigate
+- url: http://192.168.1.192:3000/resources
+- via: pushState
 
-## 2026-09-24 20:09:19.636Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:10:45.498Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:19.660Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:10:45.602Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:19.661Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:10:47.376Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
 
-## 2026-09-24 20:09:20.054Z click
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:10:47.376Z navigate
+- url: http://192.168.1.192:3000/library
+- via: pushState
 
-## 2026-09-24 20:09:20.246Z click
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=8]","valueLength":8,"text":""}
+## 2026-09-26 01:10:47.513Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:21.369Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:10:47.624Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:22.828Z change
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+## 2026-09-26 01:10:48.886Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
 
-## 2026-09-24 20:09:22.828Z click
-- element: {"tag":"button","role":null,"ariaLabel":null,"name":null,"type":"submit","id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Sign in"}
+## 2026-09-26 01:10:48.887Z navigate
+- url: http://192.168.1.192:3000/members
+- via: pushState
 
-## 2026-09-24 20:09:22.829Z submit
-- action: http://localhost:3001/admin
-- fields: [{"label":"Email address","type":"email","value":"admin@metxbootcamp.com","length":22,"redacted":false},{"label":"Password","type":"password","value":"[redacted:length=22]","length":22,"redacted":true},{"label":"[submit]","type":"submit","value":"","length":0,"redacted":false}]
+## 2026-09-26 01:10:48.898Z navigate
+- url: http://192.168.1.192:3000/login
+- via: replaceState
 
-## 2026-09-24 20:09:22.838Z network.error
-- method: POST
-- url: http://localhost:3001/api/auth/login
-- status: 404
-- statusText: Not Found
-- requestBody: {"email":"admin@metxbootcamp.com","password":"[redacted:length=22]"}
-- durationMs: 8
+## 2026-09-26 01:10:48.899Z navigate
+- url: http://192.168.1.192:3000/login
+- via: replaceState
 
-## 2026-09-24 20:09:22.838Z console.error
-- text: Fetch error from http://localhost:3001/api/auth/login: 
+## 2026-09-26 01:22:42.780Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
 
-## 2026-09-24 20:09:25.460Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"password","id":"password","placeholder":null,"label":"Password","value":"[redacted:length=22]","valueLength":22,"text":""}
+## 2026-09-26 01:22:42.781Z navigate
+- url: http://192.168.1.192:3000/about
+- via: pushState
 
-## 2026-09-24 20:09:25.460Z focus
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:22:42.900Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:27.484Z click
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:22:43.009Z console.warn
+- text: Using baseline founders data: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:28.284Z blur
-- element: {"tag":"input","role":null,"ariaLabel":null,"name":null,"type":"email","id":"email","placeholder":null,"label":"Email address","value":"admin@metxbootcamp.com","valueLength":22,"text":""}
+## 2026-09-26 01:22:57.455Z click
+- element: {"tag":"a","role":null,"ariaLabel":"Remission Protocol home","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol"}
 
-## 2026-09-24 20:09:28.385Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:22:57.455Z navigate
+- url: http://192.168.1.192:3000/
+- via: pushState
 
-## 2026-09-24 20:09:29.365Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:22:57.620Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:29.719Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:22:57.709Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-## 2026-09-24 20:09:30.407Z click
-- element: {"tag":"div","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"RemissionProtocol · AdminSign in to manage portalEmail addressPasswordSign inInvalid credentials. Please try again."}
+## 2026-09-26 01:22:59.398Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
+
+## 2026-09-26 01:23:05.518Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:23:05.519Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 01:23:17.115Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-26 01:23:17.116Z navigate
+- url: http://192.168.1.192:3000/resources
+- via: pushState
+
+## 2026-09-26 01:23:17.278Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:23:17.360Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:23:18.973Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:23:18.974Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 01:23:19.100Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:23:19.198Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:28:55.377Z load
+- url: http://192.168.1.192:3000/#method
+- title: Remission Protocol | Concierge Health Coaching for Cancer Survivors — Austin, TX
+
+## 2026-09-26 01:28:55.977Z console.error
+- text: 
+    Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+    
+    * Move code with side effects to componentDidMount, and set initial state in the constructor.
+    
+    Please update the following components: %s SideEffect(NullComponent2)
+
+## 2026-09-26 01:28:56.355Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:28:56.362Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:30:13.891Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:30:13.895Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: replaceState
+
+## 2026-09-26 01:30:15.746Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:30:15.747Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: replaceState
+
+## 2026-09-26 01:30:17.212Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:30:17.213Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: replaceState
+
+## 2026-09-26 01:30:18.895Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:30:18.896Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: replaceState
+
+## 2026-09-26 01:30:26.200Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-26 01:30:26.202Z navigate
+- url: http://192.168.1.192:3000/library
+- via: pushState
+
+## 2026-09-26 01:30:26.355Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:30:26.446Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:30:28.115Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 01:30:28.116Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
+
+## 2026-09-26 01:30:36.083Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:30:36.085Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 01:30:36.240Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:30:36.333Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:30:36.425Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:30:36.426Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: replaceState
+
+## 2026-09-26 01:47:24.145Z console.error
+- text: [vite] SyntaxError: The requested module '/src/lib/podcastAudio.js?t=1790387244119' does not provide an export named 'default'
+
+## 2026-09-26 01:47:24.146Z console.error
+- text: [vite] Failed to reload /src/pages/AdminPage.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 01:47:33.038Z console.error
+- text: [vite] Failed to reload /src/pages/HomePage.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 01:47:45.677Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:21.110Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 01:52:21.115Z navigate
+- url: http://192.168.1.192:3000/about
+- via: pushState
+
+## 2026-09-26 01:52:21.194Z network.error
+- method: GET
+- url: http://192.168.1.192:3000/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-26 01:52:36.995Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
+
+## 2026-09-26 01:52:37.791Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 01:52:37.792Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 01:52:37.929Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:38.009Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:39.313Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-26 01:52:39.314Z navigate
+- url: http://192.168.1.192:3000/resources
+- via: pushState
+
+## 2026-09-26 01:52:39.422Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:39.494Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:40.453Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Content Library"}
+
+## 2026-09-26 01:52:40.453Z navigate
+- url: http://192.168.1.192:3000/library
+- via: pushState
+
+## 2026-09-26 01:52:40.568Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:40.667Z console.error
+- text: Error loading library: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 01:52:41.445Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Member Access"}
+
+## 2026-09-26 01:52:41.446Z navigate
+- url: http://192.168.1.192:3000/members
+- via: pushState
+
+## 2026-09-26 01:52:41.456Z navigate
+- url: http://192.168.1.192:3000/login
+- via: replaceState
+
+## 2026-09-26 01:52:41.457Z navigate
+- url: http://192.168.1.192:3000/login
+- via: replaceState
+
+## 2026-09-26 01:52:42.622Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 01:52:42.623Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
+
+## 2026-09-26 01:52:53.560Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Request a Consultation "}
+
+## 2026-09-26 01:52:53.562Z navigate
+- url: http://192.168.1.192:3000/consultation
+- via: pushState
+
+## 2026-09-26 01:57:25.389Z console.error
+- text: [vite] Failed to reload /src/App.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+
+## 2026-09-26 02:04:59.253Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 02:04:59.254Z navigate
+- url: http://192.168.1.192:3000/about
+- via: pushState
+
+## 2026-09-26 02:04:59.285Z network.error
+- method: GET
+- url: http://192.168.1.192:3000/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 2
+
+## 2026-09-26 02:05:00.232Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 02:05:00.233Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 02:05:00.394Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:05:00.476Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:05:01.521Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Resources"}
+
+## 2026-09-26 02:05:01.522Z navigate
+- url: http://192.168.1.192:3000/resources
+- via: pushState
+
+## 2026-09-26 02:05:01.653Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:05:01.715Z console.error
+- text: Error fetching resources: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:05:02.754Z click
+- element: {"tag":"nav","role":null,"ariaLabel":"Primary","name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"AboutThe MethodResourcesContent LibraryMember AccessApplyMember LoginRequest a Consultation "}
+
+## 2026-09-26 02:05:04.001Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"Apply"}
+
+## 2026-09-26 02:05:04.003Z navigate
+- url: http://192.168.1.192:3000/apply
+- via: pushState
+
+## 2026-09-26 02:09:29.996Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"About"}
+
+## 2026-09-26 02:09:29.997Z navigate
+- url: http://192.168.1.192:3000/about
+- via: pushState
+
+## 2026-09-26 02:09:30.029Z network.error
+- method: GET
+- url: http://192.168.1.192:3000/hcgi/platform/api/collections/founders/records?page=1&perPage=1000&skipTotal=1&sort=sort_order
+- message: signal is aborted without reason
+- durationMs: 3
+
+## 2026-09-26 02:09:31.644Z click
+- element: {"tag":"a","role":null,"ariaLabel":null,"name":null,"type":null,"id":null,"placeholder":null,"label":null,"value":null,"valueLength":0,"text":"The Method"}
+
+## 2026-09-26 02:09:31.645Z navigate
+- url: http://192.168.1.192:3000/#method
+- via: pushState
+
+## 2026-09-26 02:09:31.864Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+
+## 2026-09-26 02:09:31.938Z console.warn
+- text: Using default hero baseline assets: SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 

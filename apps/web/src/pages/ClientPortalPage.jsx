@@ -138,7 +138,7 @@ export default function ClientPortalPage() {
         <div className="flex items-center justify-between border-b border-slate-800 pb-6">
           <div>
             <h1 className="text-3xl font-extrabold text-white">Welcome, {data?.client?.name || 'Client'}</h1>
-            <p className="text-slate-400 text-sm mt-1">Encrypted Client Portal & Metabolic Health Record</p>
+            <p className="text-slate-400 text-sm mt-1"><span>Encrypted Client Portal</span> & Metabolic Health Record</p>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -231,6 +231,7 @@ export default function ClientPortalPage() {
             </form>
           </div>
         </div>
+      )}
       </div>
     </div>
   );
