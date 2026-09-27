@@ -1,28 +1,37 @@
-# Remission Protocol — Project Status & System State
+# Remission Protocol — Project Status & Roadmap
 
-## Current Active Branch: `feature/prod-validation`
-- **Production App URL:** https://d8106b75.remission-protocol.pages.dev
-- **Remote D1 Database:** `remission-db` (ID: `71f3ba43-eb86-4909-b343-96713b014478`)
-- **Remote R2 Storage:** `remission-media`
+## Current Status
+- **Active Stage:** Stage 5 Complete / Transitioning to Stage 6 (Auth-Guarded Client Portal & PWA Metric Foundation)
+- **Active Branch:** `main` (Synchronized with `origin/main`)
+- **Deployment Target:** `https://remission-protocol.pages.dev` (Cloudflare Pages Production)
 
-## Completed Milestones (Stages 1–3 Hero Engine & R2 Multi-Image Carousel)
-1. Cloudflare D1 Schema & Foreign Key Integrity verified (`schema.sql`, `schema-stage6.sql`).
-2. **Stage 3: Decoupled Hero Engine & R2 Multi-Image Carousel Completed**:
-   - Refactored `HeroAdmin.jsx` with card-based reordering, image opacity sliders, custom object-position controls, and WebP client-side auto-compression (max 10 slides).
-   - Fixed client-side file upload binary extraction in `HeroAdmin.jsx` by explicitly unpacking raw Blob payloads prior to fetch transmission, eliminating 15-byte string writes to R2.
-   - Refactored `functions/api/files/[[path]].js` with path segment sanitization, ArrayBuffer stream materialization, and explicit `Content-Type: image/webp` headers.
-   - Implemented `onError` safety triggers in `CinematicHero.jsx` to gracefully fail back to `HERO_SCENES` baseline images if custom R2 assets fail to load.
-   - Configured `STORAGE -> remission-media` Cloudflare Pages Functions R2 bucket bindings across Production and Preview environments.
-   - Verified clean remote D1 foreign key checks (`PRAGMA foreign_key_check;`) and live Playwright E2E auth test suites (`tests/e2e/admin-live-auth.spec.js`).
-3. WebCrypto SHA-256 Auth & Cloudflare Worker Auth guards for private client vaults (`private/clients/{client_id}/`).
-4. Production deployment to Cloudflare Pages & D1 database seeding (`seed-production.sql`).
-5. Playwright E2E Master Test Suite (7/7 tests passing on production).
-6. Offline Service Worker PWA foundation with `idb-keyval` IndexedDB telemetry logging queue.
-7. Live WebCrypto Admin Credentials provisioned (`admin@metxbootcamp.com`).
+---
 
-## Next Session Restoration Steps (Stage 4)
-- Begin Stage 4: Public Content Hub & Resource CMS.
-- Build Content Library with high-res YouTube/Vimeo custom cover overrides.
-- Implement ungated downloadable protocol resources (PDFs, guides) according to Remission Protocol non-lead-magnet domain philosophy.
-- Custom Domain & Cloudflare DNS binding (`remissionprotocol.com`).
-- Extended Client Telemetry UI components for PWA offline sync.
+## Accomplishments (Stage 4 & Stage 5)
+1. **Stage 4 — Public Content Hub & Open Access Distribution:**
+   - Created D1 tables `library_content` and `resource_assets`.
+   - Implemented `/api/library` and `/api/resources` supporting GET, POST, and DELETE operations.
+   - Built `LibraryPage.jsx` with YouTube/Vimeo video embeds and high-res custom R2 cover overrides.
+   - Built `ResourcesPage.jsx` providing ungated protocol PDF asset downloads reflecting the non-lead-magnet philosophy.
+
+2. **Stage 5 — Integrated Admin Dashboard CMS:**
+   - Refactored `AdminPage.jsx` into a modular, tabbed control hub (`Hero Engine`, `Content Library`, `Clinical Resources`).
+   - Created `HeroAdmin.jsx` (<200 lines) supporting Ken Burns scale settings, object position controls, display durations, native HTML color swatch pickers (`overlay_color`), and opacity sliders.
+   - Extended `hero_copy` schema and `/api/hero_copy` to persist custom typography colors (`headline_color`, `italic_color`, `subheadline_color`) and contrast drop-shadow toggles (`text_shadow_enabled`).
+   - Implemented single-row SQL upsert logic and non-null JSON normalization in `/api/hero_copy` and `/api/hero` to ensure robust database persistence.
+   - Created `LibraryAdmin.jsx` and `ResourcesAdmin.jsx` for client-side WebP compression/upload of custom video covers and raw document upload of protocol PDFs directly to Cloudflare R2.
+
+---
+
+## Active Database Schemas (Cloudflare D1: `remission-db`)
+- `hero_copy`: `id`, `eyebrow_tag`, `headline_prefix`, `headline_italic`, `subheadline`, `headline_color`, `italic_color`, `subheadline_color`, `text_shadow_enabled`, `created_at`
+- `hero_slides`: `id`, `image_url`, `sort_order`, `display_duration_ms`, `transition_speed_ms`, `overlay_opacity`, `overlay_color`, `object_position`, `active`, `ken_burns_mode`, `zoom_scale`
+- `library_content`: `id`, `title`, `slug`, `category`, `description`, `video_url`, `custom_cover_url`, `published_at`, `created_at`
+- `resource_assets`: `id`, `title`, `slug`, `category`, `description`, `file_url`, `file_size_bytes`, `created_at`
+
+---
+
+## Next Restoration & Roadmap Steps (Stage 6)
+1. **Worker Auth Guards:** Implement Cloudflare Worker session middleware (`functions/api/client/*`) verifying D1 user sessions and role permissions.
+2. **Private Client Vault:** Establish secure R2 paths `/private/clients/{client_id}/` for isolated client health records and diagnostic PDFs.
+3. **Client Metric Engine:** Create D1 schema (`client_metrics`) to support metabolic, physical performance, and bio-marker tracking for high-achieving cancer survivors.
