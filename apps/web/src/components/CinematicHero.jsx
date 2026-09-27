@@ -9,7 +9,7 @@ const normalize = (scene) =>
   typeof scene === 'string'
     ? { src: scene, tilt: 0, position: 'center', grade: DEFAULT_GRADE, mode: 'zoom-in', zoomScale: 1.08, displayDurationMs: SCENE_DURATION, overlayOpacity: 60 }
     : {
-        src: scene.src || scene.image_url,
+        src: scene.image_url || scene.src,
         tilt: scene.tilt || 0,
         position: scene.object_position || scene.position || 'center',
         grade: scene.grade || DEFAULT_GRADE,
@@ -20,7 +20,7 @@ const normalize = (scene) =>
       };
 
 export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', className = '' }) {
-  const items = scenes.map(normalize);
+  const items = scenes.map(normalize).filter((s) => Boolean(s.src));
   const [active, setActive] = useState(0);
   const [loaded, setLoaded] = useState(() => items.map(() => false));
 
