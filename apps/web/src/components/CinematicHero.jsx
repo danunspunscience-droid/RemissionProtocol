@@ -7,12 +7,15 @@ const DEFAULT_GRADE = 'contrast(1.18) saturate(0.9) brightness(0.94)';
 
 const normalize = (scene) =>
   typeof scene === 'string'
-    ? { src: scene, tilt: 0, position: 'center', grade: DEFAULT_GRADE }
+    ? { src: scene, tilt: 0, position: 'center', grade: DEFAULT_GRADE, mode: 'zoom-in', zoomScale: 1.08, displayDurationMs: SCENE_DURATION }
     : {
-        src: scene.src || scene.image_url,
-        tilt: scene.tilt || 0,
-        position: scene.object_position || scene.position || 'center',
-        grade: scene.grade || DEFAULT_GRADE,
+        Src: scene.src || scene.image_url,
+        Tilt: scene.tilt || 0,
+        Position: scene.object_position || scene.position || 'center',
+        Grade: scene.grade || DEFAULT_GRADE,
+        Mode: scene.ken_burns_mode || 'zoom-in',
+        ZoomScale: Number(scene.zoom_scale) || 1.08,
+        DisplayDurationMs: Number(scene.display_duration_ms) || SCENE_DURATION,
       };
 
 export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', className = '' }) {
@@ -22,11 +25,12 @@ export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', cla
 
   useEffect(() => {
     if (items.length <= 1) return undefined;
-    const id = setInterval(() => {
+    const currentDuration = items[active].displayDurationMs || SCENE_DURATION;
+    const id = setTimeout(() => {
       setActive((prev) => (prev + 1) % items.length);
-    }, SCENE_DURATION);
-    return () => clearInterval(id);
-  }, [items.length]);
+    }, currentDuration);
+    return () => clearTimeout(id);
+  }, [items.length, active]);
 
   const markLoaded = (i) =>
     setLoaded((prev) => {
@@ -52,20 +56,22 @@ export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', cla
             }}
           >
             <KenBurnsView
-              src={scene.src}
-              isActive={isActive}
-              tilt={scene.tilt}
-              position={scene.position}
-              grade={scene.grade}
-              onLoad={() => markLoaded(i)}
-              isEager={i === 0}
-              alt={alt}
+              Src={scene.src}
+              IsActive={isActive}
+              Tilt={scene.tilt}
+              Position={scene.position}
+              Grade={scene.grade}
+              Mode={scene.mode}
+              ZoomScale={scene.zoomScale}
+              DurationMs={scene.displayDurationMs}
+              OnLoad={() => markLoaded(i)}
+              IsEager={i === 0}
+              Alt={alt}
             />
           </div>
         );
       })}
 
-      {/* Cinematic vignette */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{ boxShadow: 'inset 0 0 200px 50px rgba(0,0,0,0.55)' }}
@@ -73,8 +79,8 @@ export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', cla
 
       <noscript>
         <img
-          src={items[0].src}
-          alt={alt}
+          Src={items[0].src}
+          Alt={alt}
           className="absolute inset-0 h-full w-full object-cover"
         />
       </noscript>

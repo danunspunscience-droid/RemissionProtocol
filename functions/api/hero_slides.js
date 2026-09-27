@@ -1,64 +1,74 @@
 export async function onRequest(context) {
   const { request, env } = context;
-  const url = new URL(request.url);
   const method = request.method;
+
+  if (!env.DB) {
+    return new Response(JSON.stringify({ error: "DB binding missing" }), { status: 500 });
+  }
 
   try {
     if (method === 'GET') {
       const { results } = await env.DB.prepare(
-        "SELECT * FROM hero_slides WHERE active = 1 ORDER BY sort_order ASC, id ASC"
+        "SELECT * FROM hero_slides WHERE active = 1 ORDER BY sort_order ASC"
       ).all();
-      return new Response(JSON.stringify(results || []), {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return new Response(JSON.stringify(results || []), { headers: { 'Content-Type': 'application/json' } });
     }
 
     if (method === 'POST') {
-      const body = await request.json();
-      const { image_url, sort_order, display_duration_ms, transition_speed_ms, overlay_opacity, object_position } = body;
-
-      const { success } = await env.DB.prepare(
-        `INSERT INTO hero_slides (image_url, sort_order, display_duration_ms, transition_speed_ms, overlay_opacity, object_position)
-         VALUES (?, ?, ?, ?, ?, ?)`
+      const slide = await request.json();
+      const res = await env.DB.prepare(
+        `INSERT INTO hero_slides (image_url, sort_order, display_duration_ms, transition_speed_ms, overlay_opacity, object_position, active, ken_burns_mode, zoom_scale)
+         VALUES (?,?,?,?,?,?,?,?,?)`
       ).bind(
-        image_url,
-        sort_order || 0,
-        display_duration_ms || 6000,
-        transition_speed_ms || 1200,
-        overlay_opacity ?? 60,
-        object_position || 'center 30%'
+        slide.image_url,
+        slide.sort_order || 0,
+        slide.display_duration_ms || 6000,
+        slide.transition_speed_ms || 1200,
+        slide.overlay_opacity || 60,
+        slide.object_position || 'center 30%',
+        slide.active ? 1 : 0,
+        slide.ken_burns_mode || 'zoom-in',
+        slide.zoom_scale || 1.08
       ).run();
 
-      return new Response(JSON.stringify({ success }), { status: 201 });
+      return new Response(JSON.stringify({ success: true, id: res.meta.last_row_id }), { status: 201 });
     }
 
     if (method === 'PUT') {
       const { slides } = await request.json();
-      if (!Array.isArray(slides)) return new Response("Invalid slides array", { status: 400 });
-
-      for (const slide of slides) {
-        await env.DB.prepare(
-          `UPDATE hero_slides
-           SET sort_order = ?, display_duration_ms = ?, transition_speed_ms = ?, overlay_opacity = ?, object_position = ?, active = ?
-           WHERE id = ?`
-        ).bind(
-          slide.sort_order,
-          slide.display_duration_ms,
-          slide.transition_speed_ms,
-          slide.overlay_opacity,
-          slide.object_position,
-          slide.active ?? 1,
-          slide.id
-        ).run();
+      if (Array.isArray(slides)) {
+        for (const s of slides) {
+          if (s.id && typeof s.id === 'number') {
+            await env.DB.prepare(
+              `UPDATE hero_slides SET
+               sort_order = ?, display_duration_ms = ?, transition_speed_ms = ?,
+               overlay_opacity = ?, object_position = ?, active = ?,
+               ken_burns_mode = ?, zoom_scale = ?
+               WHERE id = ?`
+            ).bind(
+              s.sort_order,
+              s.display_duration_ms,
+              s.transition_speed_ms,
+              s.overlay_opacity,
+              s.object_position,
+              s.active ? 1 : 0,
+              s.ken_burns_mode || 'zoom-in',
+              s.zoom_scale || 1.08,
+              s.id
+            ).run();
+          }
+        }
       }
-      return new Response(JSON.stringify({ success: true }), { status: 200 });
+      return new Response(JSON.stringify({ success: true }));
     }
 
     if (method === 'DELETE') {
-      const slideId = url.searchParams.get('id');
-      if (!slideId) return new Response("Missing id parameter", { status: 400 });
-      await env.DB.prepare("DELETE FROM hero_slides WHERE id = ?").bind(slideId).run();
-      return new Response(JSON.stringify({ success: true }), { status: 200 });
+      const url = new URL(request.url);
+      const id = url.searchParams.get('id');
+      if (id) {
+        await env.DB.prepare("DELETE FROM hero_slides WHERE id =?").bind(id).run();
+      }
+      return new Response(JSON.stringify({ success: true }));
     }
 
     return new Response("Method not allowed", { status: 405 });
