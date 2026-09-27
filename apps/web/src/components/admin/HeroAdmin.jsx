@@ -26,96 +26,58 @@ export default function HeroAdmin() {
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file || slides.length >= 10) return;
-    setUploading(true);
-    setMsg('');
+    setUploading(true); setMsg('');
     try {
       const compressedResult = await compressImage(file, { maxWidth: 1920, maxHeight: 1920, quality: 0.82 });
       const imageBlob = compressedResult instanceof Blob ? compressedResult : (compressedResult.blob || compressedResult.file || compressedResult);
-
       const filename = `hero-${Date.now()}.webp`;
       const uploadRes = await fetch(`/api/files/public/hero/${filename}`, {
-        method: 'POST',
-        body: imageBlob,
-        headers: { 'Content-Type': 'image/webp' },
-        credentials: 'include'
+        method: 'POST', body: imageBlob, headers: { 'Content-Type': 'image/webp' }, credentials: 'include'
       });
-
       if (uploadRes.ok) {
         const data = await uploadRes.json();
-        const newSlide = {
-          id: 'temp-' + Date.now(),
-          image_url: data.url || `/api/files/public/hero/${filename}`,
-          sort_order: slides.length,
-          display_duration_ms: 6000,
-          transition_speed_ms: 1200,
-          overlay_opacity: 60,
-          overlay_color: '#022c22',
-          object_position: 'center 30%',
-          ken_burns_mode: 'zoom-in',
-          zoom_scale: 1.08,
-          active: 1
-        };
-        setSlides((prev) => [...prev, newSlide]);
-        setMsg(`Uploaded successfully (${data.size || imageBlob.size || 0} bytes).`);
+        setSlides((prev) => [...prev, {
+          id: 'temp-' + Date.now(), image_url: data.url || `/api/files/public/hero/${filename}`,
+          sort_order: slides.length, display_duration_ms: 6000, transition_speed_ms: 1200,
+          overlay_opacity: 60, overlay_color: '#022c22', object_position: 'center 30%',
+          ken_burns_mode: 'zoom-in', zoom_scale: 1.08, active: 1
+        }]);
+        setMsg(`Uploaded image (${data.size || imageBlob.size || 0} bytes).`);
       }
     } catch (err) { setMsg('Upload failed: ' + err.message); }
     finally { setUploading(false); }
   };
 
-  const updateSlide = (index, field, val) => {
-    const updated = [...slides];
-    updated[index][field] = val;
-    setSlides(updated);
+  const updateSlide = (i, field, val) => {
+    const updated = [...slides]; updated[i][field] = val; setSlides(updated);
   };
 
-  const moveSlide = (index, dir) => {
-    const target = index + dir;
+  const moveSlide = (i, dir) => {
+    const target = i + dir;
     if (target < 0 || target >= slides.length) return;
     const updated = [...slides];
-    const [moved] = updated.splice(index, 1);
+    const [moved] = updated.splice(i, 1);
     updated.splice(target, 0, moved);
-    updated.forEach((s, i) => (s.sort_order = i));
+    updated.forEach((s, idx) => (s.sort_order = idx));
     setSlides(updated);
   };
 
-  const deleteSlide = async (index, id) => {
-    if (typeof id === 'number') {
-      await fetch(`/api/hero_slides?id=${id}`, { method: 'DELETE', credentials: 'include' });
-    }
-    setSlides(slides.filter((_, i) => i !== index));
+  const deleteSlide = async (i, id) => {
+    if (typeof id === 'number') await fetch(`/api/hero_slides?id=${id}`, { method: 'DELETE', credentials: 'include' });
+    setSlides(slides.filter((_, idx) => idx !== i));
   };
 
   const handleSaveAll = async () => {
-    setSaving(true);
-    setMsg('');
+    setSaving(true); setMsg('');
     try {
-      await fetch('/api/hero_copy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(copy),
-        credentials: 'include'
-      });
-
+      await fetch('/api/hero_copy', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(copy), credentials: 'include' });
       for (const s of slides) {
         if (typeof s.id === 'string' && s.id.startsWith('temp-')) {
-          await fetch('/api/hero_slides', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(s),
-            credentials: 'include'
-          });
+          await fetch('/api/hero_slides', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(s), credentials: 'include' });
         }
       }
-
-      await fetch('/api/hero_slides', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slides }),
-        credentials: 'include'
-      });
-
-      setMsg('Hero Copy & Carousel Settings saved.');
-      fetchHeroData();
+      await fetch('/api/hero_slides', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slides }), credentials: 'include' });
+      setMsg('Hero settings saved successfully.'); fetchHeroData();
     } catch (err) { setMsg('Failed to save settings.'); }
     finally { setSaving(false); }
   };
@@ -153,15 +115,15 @@ export default function HeroAdmin() {
               )}
               <div className="grid flex-1 grid-cols-2 gap-3 md:grid-cols-6">
                 <div>
-                  <label className="text-[10px] uppercase text-muted-foreground">Display (ms)</label>
+                  <label className="text-[10px] uppercase text-muted-foreground font-semibold">Display (ms)</label>
                   <input type="number" value={slide.display_duration_ms || 6000} onChange={(e) => updateSlide(idx, 'display_duration_ms', Number(e.target.value))} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground" />
                 </div>
                 <div>
-                  <label className="text-[10px] uppercase text-muted-foreground">Position</label>
+                  <label className="text-[10px] uppercase text-muted-foreground font-semibold">Position</label>
                   <input type="text" value={slide.object_position || 'center 30%'} onChange={(e) => updateSlide(idx, 'object_position', e.target.value)} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground" />
                 </div>
                 <div>
-                  <label className="text-[10px] uppercase text-muted-foreground">Ken Burns</label>
+                  <label className="text-[10px] uppercase text-muted-foreground font-semibold">Ken Burns</label>
                   <select value={slide.ken_burns_mode || 'zoom-in'} onChange={(e) => updateSlide(idx, 'ken_burns_mode', e.target.value)} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground font-semibold">
                     <option value="zoom-in">Zoom In</option>
                     <option value="zoom-out">Zoom Out</option>
@@ -169,15 +131,15 @@ export default function HeroAdmin() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-[10px] uppercase text-muted-foreground">Zoom ({slide.zoom_scale || 1.08}x)</label>
+                  <label className="text-[10px] uppercase text-muted-foreground font-semibold">Zoom ({slide.zoom_scale || 1.08}x)</label>
                   <input type="range" min="1.02" max="1.30" step="0.01" value={slide.zoom_scale || 1.08} onChange={(e) => updateSlide(idx, 'zoom_scale', Number(e.target.value))} className="w-full" />
                 </div>
-                <div className="flex flex-col justify-end pb-[2px]">
-                  <label className="text-[10px] uppercase text-muted-foreground mb-1">Color</label>
-                  <input type="color" value={slide.overlay_color || '#022c22'} onChange={(e) => updateSlide(idx, 'overlay_color', e.target.value)} className="w-full h-8 cursor-pointer rounded-sm border-0 p-0" />
+                <div>
+                  <label className="text-[10px] uppercase text-muted-foreground font-semibold">Color ({slide.overlay_color || '#022c22'})</label>
+                  <input type="color" value={slide.overlay_color || '#022c22'} onChange={(e) => updateSlide(idx, 'overlay_color', e.target.value)} className="h-8 w-full cursor-pointer rounded-sm border border-border bg-background p-0.5" />
                 </div>
                 <div>
-                  <label className="text-[10px] uppercase text-muted-foreground">Opacity ({slide.overlay_opacity !== undefined ? slide.overlay_opacity : 60}%)</label>
+                  <label className="text-[10px] uppercase text-muted-foreground font-semibold">Opacity ({slide.overlay_opacity !== undefined ? slide.overlay_opacity : 60}%)</label>
                   <input type="range" min="0" max="100" value={slide.overlay_opacity !== undefined ? slide.overlay_opacity : 60} onChange={(e) => updateSlide(idx, 'overlay_opacity', Number(e.target.value))} className="w-full" />
                 </div>
               </div>
