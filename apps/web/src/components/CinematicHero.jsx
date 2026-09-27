@@ -7,7 +7,7 @@ const DEFAULT_GRADE = 'contrast(1.18) saturate(0.9) brightness(0.94)';
 
 const normalize = (scene) =>
   typeof scene === 'string'
-    ? { src: scene, tilt: 0, position: 'center', grade: DEFAULT_GRADE, mode: 'zoom-in', zoomScale: 1.08, displayDurationMs: SCENE_DURATION, overlayOpacity: 60 }
+    ? { src: scene, tilt: 0, position: 'center', grade: DEFAULT_GRADE, mode: 'zoom-in', zoomScale: 1.08, displayDurationMs: SCENE_DURATION, overlayOpacity: 60, overlayColor: '#022c22' }
     : {
         src: scene.image_url || scene.src,
         tilt: scene.tilt || 0,
@@ -15,8 +15,9 @@ const normalize = (scene) =>
         grade: scene.grade || DEFAULT_GRADE,
         mode: scene.ken_burns_mode || 'zoom-in',
         zoomScale: Number(scene.zoom_scale) || 1.08,
-        displayDurationMs: Number(scene.display_duration_ms) || SCENE_DURATION,
+        DisplayDurationMs: Number(scene.display_duration_ms) || SCENE_DURATION,
         overlayOpacity: scene.overlay_opacity !== undefined ? Number(scene.overlay_opacity) : 60,
+        overlayColor: scene.overlay_color || '#022c22',
       };
 
 export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', className = '' }) {
@@ -74,7 +75,8 @@ export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', cla
             <div
               className="absolute inset-0 pointer-events-none transition-opacity"
               style={{
-                backgroundColor: `rgba(0, 0, 0, ${scene.overlayOpacity / 100})`,
+                backgroundColor: scene.overlayColor,
+                opacity: scene.overlayOpacity / 100,
               }}
             />
           </div>
