@@ -18,7 +18,7 @@ export async function onRequest(context) {
       const data = await request.json();
       const res = await env.DB.prepare(
         `INSERT INTO hero_copy (eyebrow_tag, headline_prefix, headline_italic, subheadline, headline_color, italic_color, subheadline_color, text_shadow_enabled)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        VALUES (?,?,?,?,?,?,?,?)`
       ).bind(
         data.eyebrow_tag || '',
         data.headline_prefix || '',
