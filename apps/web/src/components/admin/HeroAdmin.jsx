@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, Trash2, ArrowUp, ArrowDown, Save, ImageOff } from 'lucide-react';
 import { compressImage } from '../../lib/imageCompression';
-
+const DEFAULT_COPY = {
+  eyebrow_tag: 'CONCIERGE HEALTH COACHING · CANCER SURVIVORS · AUSTIN, TX',
+  headline_prefix: 'Strive Beyond',
+  headline_italic: 'the Diagnosis.',
+  subheadline: 'For high-achievers who have cleared active treatment and refuse to wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness. Not disease management. Survivorship excellence.',
+  headline_color: '#ffffff',
+  italic_color: '#c5a059',
+  subheadline_color: '#a1a1aa',
+  text_shadow_enabled: 1
+};
 export default function HeroAdmin() {
-  const [copy, setCopy] = useState({
-    eyebrow_tag: '', headline_prefix: '', headline_italic: '', subheadline: '',
-    headline_color: '#ffffff', italic_color: '#c5a059', subheadline_color: '#a1a1aa', text_shadow_enabled: 1
-  });
+  const [copy, setCopy] = useState(DEFAULT_COPY);
   const [slides, setSlides] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
   const [failedPreviews, setFailedPreviews] = useState(new Set());
-
   useEffect(() => { fetchHeroData(); }, []);
-
   const fetchHeroData = async () => {
     try {
       const res = await fetch('/api/hero', { credentials: 'include' });
@@ -22,34 +26,33 @@ export default function HeroAdmin() {
         const data = await res.json();
         if (data.copy) {
           setCopy({
-            eyebrow_tag: data.copy.eyebrow_tag || '',
-            headline_prefix: data.copy.headline_prefix || '',
-            headline_italic: data.copy.headline_italic || '',
-            subheadline: data.copy.subheadline || '',
-            headline_color: data.copy.headline_color || '#ffffff',
-            italic_color: data.copy.italic_color || '#c5a059',
-            subheadline_color: data.copy.subheadline_color || '#a1a1aa',
-            text_shadow_enabled: data.copy.text_shadow_enabled ? 1 : 0
+            eyebrow_tag: data.copy.eyebrow_tag ?? DEFAULT_COPY.eyebrow_tag,
+            headline_prefix: data.copy.headline_prefix ?? DEFAULT_COPY.headline_prefix,
+            headline_italic: data.copy.headline_italic ?? DEFAULT_COPY.headline_italic,
+            subheadline: data.copy.subheadline ?? DEFAULT_COPY.subheadline,
+            headline_color: data.copy.headline_color || DEFAULT_COPY.headline_color,
+            italic_color: data.copy.italic_color || DEFAULT_COPY.italic_color,
+            subheadline_color: data.copy.subheadline_color || DEFAULT_COPY.subheadline_color,
+            text_shadow_enabled: data.copy.text_shadow_enabled ?? 1
           });
         }
         if (data.slides) setSlides(data.slides);
       }
     } catch (e) { console.error('Failed to load hero settings', e); }
   };
-
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file || slides.length >= 10) return;
     setUploading(true); setMsg('');
     try {
-      const compressedResult = await compressImage(file, { maxWidth: 1920, maxHeight: 1920, quality: 0.82 });
-      const imageBlob = compressedResult instanceof Blob ? compressedResult : (compressedResult.blob || compressedResult.file || compressedResult);
+      const cR = await compressImage(file, { maxWidth: 1920, maxHeight: 1920, quality: 0.82 });
+      const imageBlob = cR instanceof Blob ? cR : (cR.blob || cR.file || cR);
       const filename = `hero-${Date.now()}.webp`;
-      const uploadRes = await fetch(`/api/files/public/hero/${filename}`, {
+      const uRes = await fetch(`/api/files/public/hero/${filename}`, {
         method: 'POST', body: imageBlob, headers: { 'Content-Type': 'image/webp' }, credentials: 'include'
       });
-      if (!uploadRes.ok) throw new Error('Failed to upload image.');
-      const data = await uploadRes.json();
+      if (!uRes.ok) throw new Error('Failed to upload image.');
+      const data = await uRes.json();
       setSlides((prev) => [...prev, {
         id: 'temp-' + Date.now(), image_url: data.url || `/api/files/public/hero/${filename}`,
         sort_order: slides.length, display_duration_ms: 6000, transition_speed_ms: 1200,
@@ -60,11 +63,7 @@ export default function HeroAdmin() {
     } catch (err) { setMsg('Upload failed: ' + err.message); }
     finally { setUploading(false); }
   };
-
-  const updateSlide = (i, field, val) => {
-    const updated = [...slides]; updated[i][field] = val; setSlides(updated);
-  };
-
+  const updateSlide = (i, field, val) => { const updated = [...slides]; updated[i][field] = val; setSlides(updated); };
   const moveSlide = (i, dir) => {
     const target = i + dir;
     if (target < 0 || target >= slides.length) return;
@@ -74,23 +73,17 @@ export default function HeroAdmin() {
     updated.forEach((s, idx) => (s.sort_order = idx));
     setSlides(updated);
   };
-
   const deleteSlide = async (i, id) => {
     if (typeof id === 'number') await fetch(`/api/hero_slides?id=${id}`, { method: 'DELETE', credentials: 'include' });
     setSlides(slides.filter((_, idx) => idx !== i));
   };
-
   const handleSaveAll = async () => {
     setSaving(true); setMsg('');
     try {
       const copyRes = await fetch('/api/hero_copy', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(copy), credentials: 'include'
       });
-      if (!copyRes.ok) {
-        const errData = await copyRes.json().catch(() => ({}));
-        throw new Error(errData.error || 'Failed to save copy settings.');
-      }
-
+      if (!copyRes.ok) throw new Error('Failed to save copy settings.');
       for (const s of slides) {
         if (typeof s.id === 'string' && s.id.startsWith('temp-')) {
           const postRes = await fetch('/api/hero_slides', {
@@ -99,54 +92,46 @@ export default function HeroAdmin() {
           if (!postRes.ok) throw new Error('Failed to create new slide.');
         }
       }
-
       const slidesRes = await fetch('/api/hero_slides', {
         method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slides }), credentials: 'include'
       });
       if (!slidesRes.ok) throw new Error('Failed to update slides.');
-
       setMsg('Hero Copy & Carousel Settings saved successfully.');
       await fetchHeroData();
-    } catch (err) {
-      setMsg('Save error: ' + err.message);
-    } finally {
-      setSaving(false);
-    }
+    } catch (err) { setMsg('Save error: ' + err.message); }
+    finally { setSaving(false); }
   };
-
   return (
     <div className="space-y-8 text-foreground">
       <div className="rounded-sm border border-border bg-card p-6">
         <h3 className="font-display text-xl font-medium text-primary">Hero Copy Settings & Typography Formatting</h3>
         <div className="mt-4 grid gap-4">
-          <input type="text" placeholder="Eyebrow Tag" value={copy.eyebrow_tag || ''} onChange={(e) => setCopy({ ...copy, eyebrow_tag: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+          <input type="text" placeholder="Eyebrow Tag" value={copy.eyebrow_tag} onChange={(e) => setCopy({...copy, eyebrow_tag: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
           <div className="grid grid-cols-2 gap-4">
-            <input type="text" placeholder="Headline Prefix" value={copy.headline_prefix || ''} onChange={(e) => setCopy({ ...copy, headline_prefix: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
-            <input type="text" placeholder="Headline Italic" value={copy.headline_italic || ''} onChange={(e) => setCopy({ ...copy, headline_italic: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+            <input type="text" placeholder="Headline Prefix" value={copy.headline_prefix} onChange={(e) => setCopy({...copy, headline_prefix: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+            <input type="text" placeholder="Headline Italic" value={copy.headline_italic} onChange={(e) => setCopy({...copy, headline_italic: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
           </div>
-          <textarea rows={2} placeholder="Subheadline" value={copy.subheadline || ''} onChange={(e) => setCopy({ ...copy, subheadline: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
-
+          <textarea rows={2} placeholder="Subheadline" value={copy.subheadline} onChange={(e) => setCopy({...copy, subheadline: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
           <div className="grid grid-cols-2 gap-4 border-t border-border pt-4 md:grid-cols-4 items-center">
             <div>
               <label className="text-[10px] uppercase font-semibold text-muted-foreground">Headline Color</label>
-              <input type="color" value={copy.headline_color || '#ffffff'} onChange={(e) => setCopy({ ...copy, headline_color: e.target.value })} className="h-8 w-full cursor-pointer rounded-sm border p-0.5 bg-background" />
+              <input type="color" value={copy.headline_color} onChange={(e) => setCopy({...copy, headline_color: e.target.value})} className="h-8 w-full cursor-pointer rounded-sm border p-0.5 bg-background" />
             </div>
             <div>
               <label className="text-[10px] uppercase font-semibold text-muted-foreground">Italic Accent Color</label>
-              <input type="color" value={copy.italic_color || '#c5a059'} onChange={(e) => setCopy({ ...copy, italic_color: e.target.value })} className="h-8 w-full cursor-pointer rounded-sm border p-0.5 bg-background" />
+              <input type="color" value={copy.italic_color} onChange={(e) => setCopy({...copy, italic_color: e.target.value})} className="h-8 w-full cursor-pointer rounded-sm border p-0.5 bg-background" />
             </div>
             <div>
               <label className="text-[10px] uppercase font-semibold text-muted-foreground">Subheadline Color</label>
-              <input type="color" value={copy.subheadline_color || '#a1a1aa'} onChange={(e) => setCopy({ ...copy, subheadline_color: e.target.value })} className="h-8 w-full cursor-pointer rounded-sm border p-0.5 bg-background" />
+              <input type="color" value={copy.subheadline_color} onChange={(e) => setCopy({...copy, subheadline_color: e.target.value})} className="h-8 w-full cursor-pointer rounded-sm border p-0.5 bg-background" />
             </div>
             <div className="flex items-center gap-2 pt-3">
-              <input type="checkbox" id="textShadow" checked={Boolean(copy.text_shadow_enabled)} onChange={(e) => setCopy({ ...copy, text_shadow_enabled: e.target.checked ? 1 : 0 })} className="h-4 w-4 rounded border-border" />
+              <input type="checkbox" id="textShadow" checked={Boolean(copy.text_shadow_enabled)} onChange={(e) => setCopy({...copy, text_shadow_enabled: e.target.checked ? 1 : 0})} className="h-4 w-4 rounded border-border" />
               <label htmlFor="textShadow" className="text-xs font-semibold text-foreground cursor-pointer">Contrast Drop-Shadow</label>
             </div>
           </div>
         </div>
       </div>
-
       <div className="rounded-sm border border-border bg-card p-6">
         <div className="flex items-center justify-between">
           <h3 className="font-display text-xl font-medium text-primary">Hero Carousel Images ({slides.length}/10)</h3>
@@ -155,7 +140,6 @@ export default function HeroAdmin() {
             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading || slides.length >= 10} className="hidden" />
           </label>
         </div>
-
         <div className="mt-6 space-y-4">
           {slides.map((slide, idx) => (
             <div key={slide.id || idx} className="flex flex-col gap-4 rounded-sm border border-border bg-background p-4 md:flex-row md:items-center">
@@ -203,7 +187,6 @@ export default function HeroAdmin() {
           ))}
         </div>
       </div>
-
       <div className="flex items-center justify-between border-t border-border pt-4">
         {msg && <p className="text-sm font-semibold text-primary">{msg}</p>}
         <button onClick={handleSaveAll} disabled={saving} className="ml-auto inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
