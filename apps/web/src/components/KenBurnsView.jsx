@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function KenBurnsView({
-  Src,
-  IsActive = false,
-  Tilt = 0,
-  Position = 'center',
-  Grade = 'contrast(1.18) saturate(0.9) brightness(0.94)',
-  Mode = 'zoom-in',
-  ZoomScale = 1.08,
-  DurationMs = 6500,
-  OnLoad,
-  IsEager = false,
-  Alt = '',
-  ClassName = ''
+  src,
+  isActive = false,
+  tilt = 0,
+  position = 'center',
+  grade = 'contrast(1.18) saturate(0.9) brightness(0.94)',
+  mode = 'zoom-in',
+  zoomScale = 1.08,
+  durationMs = 6500,
+  onLoad,
+  isEager = false,
+  alt = '',
+  className = ''
 }) {
   const [animating, setAnimating] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      if (onLoad) onLoad();
+    }
+  }, [src, onLoad]);
 
   useEffect(() => {
     if (isActive) {
       setAnimating(false);
-      const rafId = requestAnimationFrame(() => {
-        requestAnimationFrame(() => setAnimating(true));
-      });
-      return () => cancelAnimationFrame(rafId);
+      if (imgRef.current) {
+        void imgRef.current.offsetHeight;
+      }
+      const timer = setTimeout(() => setAnimating(true), 40);
+      return () => clearTimeout(timer);
     } else {
       setAnimating(false);
     }
@@ -52,18 +60,21 @@ export default function KenBurnsView({
       }}
     >
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         onLoad={onLoad}
         loading={isEager ? 'eager' : 'lazy'}
-        {...(isEager ? { fetchpriority: 'high' } : {})}
+        {...(isEager ? { fetchPriority: 'high' } : {})}
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
         style={{
           objectPosition: position,
           filter: grade,
           transform: `scale3d(${currentScale}, ${currentScale}, 1)`,
-          transition: animating && mode !== 'none' ? `transform ${durationMs}ms cubic-bezier(0.25, 1, 0.5, 1)` : 'none',
+          transition: animating && mode !== 'none'
+            ? `transform ${durationMs}ms cubic-bezier(0.16, 1, 0.3, 1)`
+            : 'none',
           willChange: 'transform',
         }}
       />

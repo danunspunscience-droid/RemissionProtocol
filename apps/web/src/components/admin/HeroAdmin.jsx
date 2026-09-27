@@ -10,9 +10,7 @@ export default function HeroAdmin() {
   const [msg, setMsg] = useState('');
   const [failedPreviews, setFailedPreviews] = useState(new Set());
 
-  useEffect(() => {
-    fetchHeroData();
-  }, []);
+  useEffect(() => { fetchHeroData(); }, []);
 
   const fetchHeroData = async () => {
     try {
@@ -22,9 +20,7 @@ export default function HeroAdmin() {
         if (data.copy) setCopy(data.copy);
         if (data.slides) setSlides(data.slides);
       }
-    } catch (e) {
-      console.error('Failed to load hero settings', e);
-    }
+    } catch (e) { console.error('Failed to load hero settings', e); }
   };
 
   const handleImageUpload = async (e) => {
@@ -59,11 +55,8 @@ export default function HeroAdmin() {
         setSlides([...slides, newSlide]);
         setMsg(`Uploaded successfully (${data.size || imageBlob.size || 0} bytes).`);
       }
-    } catch (err) {
-      setMsg('Upload failed: ' + err.message);
-    } finally {
-      setUploading(false);
-    }
+    } catch (err) { setMsg('Upload failed: ' + err.message); }
+    finally { setUploading(false); }
   };
 
   const updateSlide = (index, field, val) => {
@@ -120,11 +113,8 @@ export default function HeroAdmin() {
 
       setMsg('Hero Copy & Carousel Settings saved.');
       fetchHeroData();
-    } catch (err) {
-      setMsg('Failed to save settings.');
-    } finally {
-      setSaving(false);
-    }
+    } catch (err) { setMsg('Failed to save settings.'); }
+    finally { setSaving(false); }
   };
 
   return (
