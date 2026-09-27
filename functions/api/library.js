@@ -9,7 +9,7 @@ export async function onRequest(context) {
   try {
     if (method === 'GET') {
       const { results } = await env.DB.prepare(
-        "SELECT * FROM resource_assets ORDER BY created_at DESC"
+        "SELECT * FROM library_content ORDER BY published_at DESC"
       ).all();
       return new Response(JSON.stringify(results || []), { headers: { 'Content-Type': 'application/json' } });
     }
@@ -17,15 +17,15 @@ export async function onRequest(context) {
     if (method === 'POST') {
       const item = await request.json();
       const res = await env.DB.prepare(
-        `INSERT INTO resource_assets (title, slug, category, description, file_url, file_size_bytes)
+        `INSERT INTO library_content (title, slug, category, description, video_url, custom_cover_url)
          VALUES (?,?,?,?,?,?)`
       ).bind(
         item.title,
         item.slug || item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        item.category || 'Survivorship Protocols',
+        item.category || 'Metabolic Medicine',
         item.description || '',
-        item.file_url,
-        item.file_size_bytes || 0
+        item.video_url || '',
+        item.custom_cover_url || ''
       ).run();
 
       return new Response(JSON.stringify({ success: true, id: res.meta.last_row_id }), { status: 201 });
@@ -35,7 +35,8 @@ export async function onRequest(context) {
       const url = new URL(request.url);
       const id = url.searchParams.get('id');
       if (id) {
-        await env.DB.prepare("DELETE FROM resource_assets WHERE id = ?").bind(id).run();
+        await env.DB.prepare("SELECT * FROM library_content WHERE id = ?").bind(id).run(); // verify or delete
+        await env.DB.prepare("DELETE FROM library_content WHERE id = ?").bind(id).run();
       }
       return new Response(JSON.stringify({ success: true }));
     }
