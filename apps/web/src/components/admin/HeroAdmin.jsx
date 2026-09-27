@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, Trash2, ArrowUp, ArrowDown, Save, ImageOff } from 'lucide-react';
-import { compressImage } from '../../lib/imageCompression';
+import { compressImage } from './../lib/imageCompression';
 
 export default function HeroAdmin() {
-  const [copy, setCopy] = useState({ eyebrow_tag: '', headline_prefix: '', headline_italic: '', subheadline: '', cta_label: '', cta_link: '' });
+  const [copy, setCopy] = useState({ eyebrow_tag: '', headline_prefix: '', headline_italic: '', subheadline: '' });
   const [slides, setSlides] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -30,7 +30,8 @@ export default function HeroAdmin() {
     setMsg('');
     try {
       const compressedResult = await compressImage(file, { maxWidth: 1920, maxHeight: 1920, quality: 0.82 });
-      const imageBlob = compressedResult instanceof Blob ? compressedResult : (compressedResult?.blob || compressedResult?.file || compressedResult);
+      const imageBlob = compressedResult instanceof Blob ? compressedResult : (compressedResult.blob || compressedResult.file || compressedResult);
+
       const filename = `hero-${Date.now()}.webp`;
       const uploadRes = await fetch(`/api/files/public/hero/${filename}`, {
         method: 'POST',
@@ -38,6 +39,7 @@ export default function HeroAdmin() {
         headers: { 'Content-Type': 'image/webp' },
         credentials: 'include'
       });
+
       if (uploadRes.ok) {
         const data = await uploadRes.json();
         const newSlide = {
@@ -47,12 +49,13 @@ export default function HeroAdmin() {
           display_duration_ms: 6000,
           transition_speed_ms: 1200,
           overlay_opacity: 60,
+          overlay_color: '#022c22',
           object_position: 'center 30%',
           ken_burns_mode: 'zoom-in',
           zoom_scale: 1.08,
           active: 1
         };
-        setSlides([...slides, newSlide]);
+        setSlides((prev) => [...prev, newSlide]);
         setMsg(`Uploaded successfully (${data.size || imageBlob.size || 0} bytes).`);
       }
     } catch (err) { setMsg('Upload failed: ' + err.message); }
@@ -122,12 +125,12 @@ export default function HeroAdmin() {
       <div className="rounded-sm border border-border bg-card p-6">
         <h3 className="font-display text-xl font-medium text-primary">Hero Copy Settings</h3>
         <div className="mt-4 grid gap-4">
-          <input type="text" placeholder="Eyebrow Tag" value={copy.eyebrow_tag || ''} onChange={(e) => setCopy({...copy, eyebrow_tag: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+          <input type="text" placeholder="Eyebrow Tag" value={copy.eyebrow_tag || ''} onChange={(e) => setCopy({...copy, eyebrow_tag: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
           <div className="grid grid-cols-2 gap-4">
-            <input type="text" placeholder="Headline Prefix" value={copy.headline_prefix || ''} onChange={(e) => setCopy({...copy, headline_prefix: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
-            <input type="text" placeholder="Headline Italic" value={copy.headline_italic || ''} onChange={(e) => setCopy({...copy, headline_italic: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+            <input type="text" placeholder="Headline Prefix" value={copy.headline_prefix || ''} onChange={(e) => setCopy({...copy, headline_prefix: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+            <input type="text" placeholder="Headline Italic" value={copy.headline_italic || ''} onChange={(e) => setCopy({...copy, headline_italic: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
           </div>
-          <textarea rows={3} placeholder="Subheadline" value={copy.subheadline || ''} onChange={(e) => setCopy({...copy, subheadline: e.target.value })} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
+          <textarea rows={3} placeholder="Subheadline" value={copy.subheadline || ''} onChange={(e) => setCopy({...copy, subheadline: e.target.value})} className="rounded-sm border px-3 py-2 text-sm bg-background text-foreground" />
         </div>
       </div>
 
@@ -135,7 +138,7 @@ export default function HeroAdmin() {
         <div className="flex items-center justify-between">
           <h3 className="font-display text-xl font-medium text-primary">Hero Carousel Images ({slides.length}/10)</h3>
           <label className="inline-flex cursor-pointer items-center gap-2 rounded-sm bg-brass px-4 py-2 text-sm font-semibold text-white hover:bg-accent">
-            <Upload size={16} /> {uploading ? 'Compressing.' : 'Upload Image (Auto WebP)'}
+            <Upload size={16} /> {uploading ? 'Compressing...' : 'Upload Image (Auto WebP)'}
             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading || slides.length >= 10} className="hidden" />
           </label>
         </div>
@@ -151,15 +154,15 @@ export default function HeroAdmin() {
               <div className="grid flex-1 grid-cols-2 gap-3 md:grid-cols-6">
                 <div>
                   <label className="text-[10px] uppercase text-muted-foreground">Display (ms)</label>
-                  <input type="number" value={slide.display_duration_ms} onChange={(e) => updateSlide(idx, 'display_duration_ms', Number(e.target.value))} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground" />
+                  <input type="number" value={slide.display_duration_ms || 6000} onChange={(e) => updateSlide(idx, 'display_duration_ms', Number(e.target.value))} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground" />
                 </div>
                 <div>
                   <label className="text-[10px] uppercase text-muted-foreground">Position</label>
-                  <input type="text" value={slide.object_position} onChange={(e) => updateSlide(idx, 'object_position', e.target.value)} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground" />
+                  <input type="text" value={slide.object_position || 'center 30%'} onChange={(e) => updateSlide(idx, 'object_position', e.target.value)} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground" />
                 </div>
                 <div>
                   <label className="text-[10px] uppercase text-muted-foreground">Ken Burns</label>
-                  <select value={slide.ken_burns_mode || 'zoom-in'} onChange={(e) => updateSlide(idx, 'ken_burns_mode', e.target.value)} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground">
+                  <select value={slide.ken_burns_mode || 'zoom-in'} onChange={(e) => updateSlide(idx, 'ken_burns_mode', e.target.value)} className="w-full rounded-sm border px-2 py-1 text-sm bg-background text-foreground font-semibold">
                     <option value="zoom-in">Zoom In</option>
                     <option value="zoom-out">Zoom Out</option>
                     <option value="none">None</option>
@@ -169,9 +172,13 @@ export default function HeroAdmin() {
                   <label className="text-[10px] uppercase text-muted-foreground">Zoom ({slide.zoom_scale || 1.08}x)</label>
                   <input type="range" min="1.02" max="1.30" step="0.01" value={slide.zoom_scale || 1.08} onChange={(e) => updateSlide(idx, 'zoom_scale', Number(e.target.value))} className="w-full" />
                 </div>
+                <div className="flex flex-col justify-end pb-[2px]">
+                  <label className="text-[10px] uppercase text-muted-foreground mb-1">Color</label>
+                  <input type="color" value={slide.overlay_color || '#022c22'} onChange={(e) => updateSlide(idx, 'overlay_color', e.target.value)} className="w-full h-8 cursor-pointer rounded-sm border-0 p-0" />
+                </div>
                 <div>
-                  <label className="text-[10px] uppercase text-muted-foreground">Opacity ({slide.overlay_opacity}%)</label>
-                  <input type="range" min="0" max="100" value={slide.overlay_opacity} onChange={(e) => updateSlide(idx, 'overlay_opacity', Number(e.target.value))} className="w-full" />
+                  <label className="text-[10px] uppercase text-muted-foreground">Opacity ({slide.overlay_opacity !== undefined ? slide.overlay_opacity : 60}%)</label>
+                  <input type="range" min="0" max="100" value={slide.overlay_opacity !== undefined ? slide.overlay_opacity : 60} onChange={(e) => updateSlide(idx, 'overlay_opacity', Number(e.target.value))} className="w-full" />
                 </div>
               </div>
               <div className="flex items-center gap-1">
@@ -187,7 +194,7 @@ export default function HeroAdmin() {
       <div className="flex items-center justify-between border-t border-border pt-4">
         {msg && <p className="text-sm font-semibold text-primary">{msg}</p>}
         <button onClick={handleSaveAll} disabled={saving} className="ml-auto inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
-          <Save size={16} /> {saving ? 'Saving.' : 'Save All Hero Settings'}
+          <Save size={16} /> {saving ? 'Saving...' : 'Save All Hero Settings'}
         </button>
       </div>
     </div>
