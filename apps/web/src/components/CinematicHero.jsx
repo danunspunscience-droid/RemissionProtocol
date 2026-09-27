@@ -1,71 +1,98 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import KenBurnsView from './KenBurnsView';
 
-export default function CinematicHero({ slides = [], fallbackScenes = [] }) {
-  const [failedUrls, setFailedUrls] = useState(new Set());
+const SCENE_DURATION = 6500;
+const TRANSITION = 1400;
+const DEFAULT_GRADE = 'contrast(1.18) saturate(0.9) brightness(0.94)';
 
-  const validCustomSlides = slides.filter((s) => s.image_url && !failedUrls.has(s.image_url));
-  const activeSlides = validCustomSlides.length > 0 ? validCustomSlides : fallbackScenes;
+const normalize = (scene) =>
+  typeof scene === 'string'
+    ? { src: scene, tilt: 0, position: 'center', grade: DEFAULT_GRADE, mode: 'zoom-in', zoomScale: 1.08, displayDurationMs: SCENE_DURATION, overlayOpacity: 60 }
+    : {
+        src: scene.image_url || scene.src,
+        tilt: scene.tilt || 0,
+        position: scene.object_position || scene.position || 'center',
+        grade: scene.grade || DEFAULT_GRADE,
+        mode: scene.ken_burns_mode || 'zoom-in',
+        zoomScale: Number(scene.zoom_scale) || 1.08,
+        displayDurationMs: Number(scene.display_duration_ms) || SCENE_DURATION,
+        overlayOpacity: scene.overlay_opacity !== undefined ? Number(scene.overlay_opacity) : 60,
+      };
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const timerRef = useRef(null);
-
-  const activeSlide = activeSlides[currentIndex] || activeSlides[0];
-  const currentDuration = activeSlide?.display_duration_ms || 6000;
+export default function CinematicHero({ scenes = [], alt = 'Cinematic hero', className = '' }) {
+  const items = scenes.map(normalize).filter((s) => Boolean(s.src));
+  const [active, setActive] = useState(0);
+  const [loaded, setLoaded] = useState(() => items.map(() => false));
 
   useEffect(() => {
-    if (activeSlides.length <= 1) return;
-
-    timerRef.current = setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % activeSlides.length);
+    if (items.length <= 1) return undefined;
+    const currentDuration = items[active].displayDurationMs || SCENE_DURATION;
+    const id = setTimeout(() => {
+      setActive((prev) => (prev + 1) % items.length);
     }, currentDuration);
+    return () => clearTimeout(id);
+  }, [items.length, active]);
 
-    return () => clearTimeout(timerRef.current);
-  }, [currentIndex, activeSlides.length, currentDuration]);
+  const markLoaded = (i) =>
+    setLoaded((prev) => {
+      if (prev[i]) return prev;
+      const next = [...prev];
+      next[i] = true;
+      return next;
+    });
 
-  const handleImageError = (url) => {
-    console.warn(`[CinematicHero] Asset load failed for: ${url}. Falling back to baseline scenes.`);
-    setFailedUrls((prev) => new Set(prev).add(url));
-  };
-
-  if (!activeSlides.length) return null;
+  if (!items.length) return null;
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-jewel">
-      {activeSlides.map((slide, idx) => {
-        const isActive = idx === currentIndex;
-        const src = slide.image_url || slide.src;
-        const pos = slide.object_position || slide.position || 'center 30%';
-        const fadeMs = slide.transition_speed_ms || 1200;
-        const opacityPct = (slide.overlay_opacity ?? 60) / 100;
+    <div className={`absolute inset-0 overflow-hidden bg-jewel ${className}`} aria-hidden="true">
+      {items.map((scene, i) => {
+        const isActive = i === active;
 
         return (
           <div
-            key={slide.id || src || idx}
-            className="absolute inset-0 transition-opacity ease-in-out will-change-[opacity]"
+            key={scene.src || i}
+            className="absolute inset-0 transition-opacity ease-out"
             style={{
               opacity: isActive ? 1 : 0,
-              transitionDuration: `${fadeMs}ms`,
-              transform: 'translateZ(0)',
+              transitionDuration: `${TRANSITION}ms`,
+              zIndex: isActive ? 10 : 1,
             }}
           >
-            <img
-              src={src}
-              alt="Remission Protocol Hero"
-              className={`h-full w-full object-cover select-none transition-transform ease-out ${
-                isActive ? 'scale-105 duration-[7000ms]' : 'scale-100 duration-0'
-              }`}
-              style={{ objectPosition: pos }}
-              loading={idx === 0 ? 'eager' : 'lazy'}
-              onError={() => slide.image_url && handleImageError(slide.image_url)}
+            <KenBurnsView
+              src={scene.src}
+              isActive={isActive}
+              tilt={scene.tilt}
+              position={scene.position}
+              grade={scene.grade}
+              mode={scene.mode}
+              zoomScale={scene.zoomScale}
+              durationMs={scene.displayDurationMs}
+              onLoad={() => markLoaded(i)}
+              isEager={i === 0}
+              alt={alt}
             />
             <div
-              className="absolute inset-0 bg-jewel pointer-events-none"
-              style={{ opacity: opacityPct }}
+              className="absolute inset-0 pointer-events-none transition-opacity"
+              style={{
+                backgroundColor: `rgba(0, 0, 0, ${scene.overlayOpacity / 100})`,
+              }}
             />
           </div>
         );
       })}
-      <div className="absolute inset-0 bg-gradient-to-t from-jewel via-jewel/40 to-transparent pointer-events-none" />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-20"
+        style={{ boxShadow: 'inset 0 0 200px 50px rgba(0,0,0,0.55)' }}
+      />
+
+      <noscript>
+        <img
+          src={items[0].src}
+          alt={alt}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </noscript>
     </div>
   );
 }
