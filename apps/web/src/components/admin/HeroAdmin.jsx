@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, Trash2, ArrowUp, ArrowDown, Save, ImageOff } from 'lucide-react';
-import { compressImage } from './../lib/imageCompression';
+import { compressImage } from '../../lib/imageCompression';
 
 export default function HeroAdmin() {
   const [copy, setCopy] = useState({ eyebrow_tag: '', headline_prefix: '', headline_italic: '', subheadline: '' });
