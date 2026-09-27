@@ -8,6 +8,7 @@ const FALLBACK_HERO_SCENES = [
     position: 'center 30%',
     display_duration_ms: 6000,
     overlay_opacity: 60,
+    overlay_color: '#022c22',
     ken_burns_mode: 'zoom-in',
     zoom_scale: 1.08
   }
@@ -31,6 +32,11 @@ export default function HomePage() {
   const headlineItalic = copy.headline_italic || 'the Diagnosis.';
   const subheadline = copy.subheadline || 'For high-achievers who have cleared active treatment and refuse to wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness. Not disease management. Survivorship excellence.';
 
+  const headlineColor = copy.headline_color || '#ffffff';
+  const italicColor = copy.italic_color || '#c5a059';
+  const subheadlineColor = copy.subheadline_color || '#a1a1aa';
+  const hasShadow = Boolean(copy.text_shadow_enabled ?? 1);
+
   const activeSlides = heroData.slides && heroData.slides.length > 0
     ? heroData.slides
     : FALLBACK_HERO_SCENES;
@@ -42,19 +48,18 @@ export default function HomePage() {
         <meta name="description" content={subheadline} />
       </Helmet>
 
-      {/* Hero Section */}
       <section className="relative flex min-h-screen flex-col justify-end overflow-hidden pb-16 pt-32 md:pb-24">
         <CinematicHero scenes={activeSlides} />
 
-        <div className="relative z-30 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className={`relative z-30 mx-auto max-w-7xl px-6 lg:px-8 ${hasShadow ? 'drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]' : ''}`}>
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-widest text-brass uppercase md:text-sm">
+            <p className="text-xs font-semibold tracking-widest uppercase md:text-sm" style={{ color: italicColor }}>
               {eyebrowTag}
             </p>
-            <h1 className="mt-4 font-display text-4xl font-light text-white md:text-6xl lg:text-7xl">
-              {headlinePrefix} <span className="italic text-brass">{headlineItalic}</span>
+            <h1 className="mt-4 font-display text-4xl font-light md:text-6xl lg:text-7xl" style={{ color: headlineColor }}>
+              {headlinePrefix} <span className="italic" style={{ color: italicColor }}>{headlineItalic}</span>
             </h1>
-            <p className="mt-6 text-base text-muted-foreground md:text-lg leading-relaxed">
+            <p className="mt-6 text-base md:text-lg leading-relaxed" style={{ color: subheadlineColor }}>
               {subheadline}
             </p>
 
