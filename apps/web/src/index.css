@@ -91,16 +91,17 @@ body {
   }
 }
 
+/* GPU-Accelerated Ken Burns Zoom Keyframes */
 @keyframes heroKenBurns {
   0% {
-    transform: scale(1.04) translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1);
   }
   100% {
-    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+    transform: scale3d(1.08, 1.08, 1);
   }
 }
 
 .hero-ken-burns {
-  animation: heroKenBurns 7400ms ease-out forwards;
+  animation: heroKenBurns 7s ease-out forwards;
   will-change: transform;
 }
