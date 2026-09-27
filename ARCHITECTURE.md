@@ -11,10 +11,13 @@
 - **Client Authentication:** WebCrypto `SHA-256` against D1 `client_users` table with HTTP-Only `client_session` cookie.
 - **Worker Auth Middleware:** `/api/client/_middleware.js` enforces session validation for all client routes except `/api/client/login`.
 
-## 3. Storage & Document Isolation Standards
+## 3. Storage & Document Isolation Standards & R2 Edge Contract
 - **Public Assets:** `/public/` path in R2.
 - **Private Client Storage:** `/private/clients/{client_id}/` isolated via `files/[key].js` path checking against context identity.
 - **WebP Auto-Compression:** Client-side HTML5 Canvas conversion (`1920px` max dimension, `0.82` WebP quality).
+- **R2 Edge Contract (`/api/files/*`):** Incoming binary streams MUST be materialized via `await request.arrayBuffer()` before `env.STORAGE.put()` calls. Storage path segments must be sanitized against trailing dots/slashes, and Cloudflare Pages Functions require explicit `STORAGE` R2 bucket bindings in both Production and Preview environments.
+- **Client-Side Binary Unpacking:** File uploads in `HeroAdmin.jsx` explicitly unpack raw Blob payloads prior to fetch transmission, eliminating 15-byte string corruption in R2.
+- **Cinematic Hero Failover:** `CinematicHero.jsx` incorporates robust `onError` safety triggers to gracefully fall back to baseline `HERO_SCENES` images if custom R2 assets fail to load.
 
 ## 4. Engineering Standards
 - **File Line Limit:** All React components and handlers must remain strictly under 300 lines (target <200 lines).

@@ -1,23 +1,23 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "remission-protocol",
-	"pages_build_output_dir": "./apps/web/dist",
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "remission-db",
-			"database_id": "71f3ba43-eb86-4909-b343-96713b014478"
-		}
-	],
-	"r2_buckets": [
-		{
-			"bucket_name": "remission-media",
-			"binding": "remission_media"
-		}
-	],
-	"vars": {
-		// Override per-environment with `wrangler pages secret put ADMIN_SESSION_SECRET`.
-		// This local-only default exists so the emulator can issue sessions.
-		"ADMIN_SESSION_SECRET": "local-dev-only-not-a-production-secret"
-	}
+ "$schema": "./node_modules/wrangler/config-schema.json",
+ "name": "remission-protocol",
+ "pages_build_output_dir": "dist/apps/web",
+ "compatibility_date": "2026-01-01",
+ "compatibility_flags": ["nodejs_compat"],
+ "d1_databases": [
+ {
+ "binding": "DB",
+ "database_name": "remission-db",
+ "database_id": "71f3ba43-eb86-4909-b343-96713b014478"
+ }
+ ],
+ "r2_buckets": [
+ {
+ "binding": "STORAGE",
+ "bucket_name": "remission-media"
+ }
+ ],
+ "vars": {
+ "ADMIN_SESSION_SECRET": "local-dev-only-not-a-production-secret"
+ }
 }

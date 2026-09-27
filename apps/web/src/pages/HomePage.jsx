@@ -101,36 +101,29 @@ const TESTIMONIALS = [
 ];
 
 const HomePage = () => {
-    const [liveHero, setLiveHero] = useState(null);
+    const [heroData, setHeroData] = useState({ copy: null, slides: [] });
 
     useEffect(() => {
-    async function loadHeroMedia() {
-      try {
-        const res = await fetch('/api/hero_media');
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            const published = data.find(item => item.is_published) || data[0];
-            if (published) {
-              setLiveHero(published);
+        async function loadHero() {
+            try {
+                const res = await fetch('/api/hero');
+                if (res.ok) {
+                    const data = await res.json();
+                    setHeroData(data);
+                }
+            } catch (err) {
+                console.warn("Using baseline hero configuration:", err);
             }
-          }
         }
-      } catch (err) {
-        console.warn("Using default hero baseline assets:", err);
-      }
-    }
-    loadHeroMedia();
-  }, []);
+        loadHero();
+    }, []);
 
-    const heroHeadline = liveHero?.headline || 'Live Beyond the Prognosis.';
-    const heroSubheading =
-        liveHero?.subheading ||
-        'For high-achievers who have cleared active treatment and refuse to simply wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness. Not disease management. Survivorship excellence.';
-    const heroCtaLabel = liveHero?.cta_label || 'Request a Consultation';
-    const heroCtaLink = liveHero?.cta_link || '/consultation';
-    const heroFileUrl = liveHero?.file ? (liveHero.file.startsWith('http') || liveHero.file.startsWith('/api/') ? liveHero.file : `/api/files/${liveHero.file}`) : null;
-    const heroPosition = liveHero?.object_position || 'center';
+    const eyebrowTag = heroData.copy?.eyebrow || 'Concierge Health Coaching · Cancer Survivors · Austin, TX';
+    const headlinePrefix = heroData.copy?.headline_prefix || 'Live Beyond';
+    const headlineItalic = heroData.copy?.headline_italic || 'the Prognosis.';
+    const heroSubheading = heroData.copy?.subheadline || 'For high-achievers who have cleared active treatment and refuse to simply wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness. Not disease management. Survivorship excellence.';
+    const heroCtaLabel = heroData.copy?.primary_cta_text || 'Request a Consultation';
+    const heroCtaLink = heroData.copy?.primary_cta_url || '/consultation';
 
     return (
         <>
@@ -144,50 +137,18 @@ const HomePage = () => {
 
             {/* Hero */}
             <section className="relative flex min-h-[100dvh] items-end overflow-hidden bg-jewel">
-                {liveHero && liveHero.media_type === 'video' && heroFileUrl ? (
-                    <video
-                        src={heroFileUrl}
-                        className="absolute inset-0 h-full w-full object-cover"
-                        style={{ objectPosition: heroPosition }}
-                        autoPlay={liveHero.video_autoplay ?? true}
-                        muted={liveHero.video_muted ?? true}
-                        loop={liveHero.video_loop ?? true}
-                        controls={liveHero.video_controls ?? false}
-                        playsInline
-                        aria-label={liveHero.headline || 'Remission Protocol hero video'}
-                    />
-                ) : liveHero && liveHero.media_type === 'image' && heroFileUrl ? (
-                    <img
-                        src={heroFileUrl}
-                        alt="Remission Protocol hero"
-                        className="absolute inset-0 h-full w-full object-cover"
-                        style={{ objectPosition: heroPosition }}
-                        loading="eager"
-                        decoding="async"
-                    />
-                ) : (
-                    <CinematicHero
-                        scenes={HERO_SCENES}
-                        alt="Fit, accomplished people in their fifties captured in Austin, San Francisco, Manhattan, Paris, and Singapore through cinematic low-angle and Dutch-angle cinematography"
-                    />
-                )}
+                <CinematicHero slides={heroData.slides} fallbackScenes={HERO_SCENES} />
                 <div className="absolute inset-0 bg-gradient-to-t from-jewel via-jewel/55 to-jewel/15" />
                 <div className="container relative pb-20 pt-40 md:pb-28">
                     <Reveal>
                         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brass">
-                            Concierge Health Coaching · Cancer Survivors · Austin, TX
+                            {eyebrowTag}
                         </p>
                     </Reveal>
                     <Reveal delay={0.1}>
                         <h1 className="mt-6 max-w-4xl font-display text-5xl font-light leading-[1.02] tracking-tight text-jewel-foreground md:text-7xl lg:text-[5.25rem]">
-                            {heroHeadline.includes('the Prognosis') ? (
-                                <>
-                                    Live Beyond{' '}
-                                    <em className="font-medium text-brass">the Prognosis.</em>
-                                </>
-                            ) : (
-                                heroHeadline
-                            )}
+                            {headlinePrefix}{' '}
+                            <em className="font-medium text-brass">{headlineItalic}</em>
                         </h1>
                     </Reveal>
                     <Reveal delay={0.2}>

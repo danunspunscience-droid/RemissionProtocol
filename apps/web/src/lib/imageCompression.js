@@ -52,3 +52,5 @@ export async function compressImageToWebP(file) {
     reader.onerror = (err) => reject(err);
   });
 }
+
+export const compressImage = compressImageToWebP;

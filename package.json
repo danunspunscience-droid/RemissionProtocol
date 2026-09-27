@@ -9,9 +9,11 @@
     "start": "npx wrangler pages dev dist/apps/web",
     "lint": "concurrently --raw \"npm run lint --prefix apps/web\"",
     "start-session": "./scripts/session-start.sh",
-    "end-session": "./scripts/session-end.sh"
+    "end-session": "./scripts/session-end.sh",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "concurrently": "^10.0.4",
     "knip": "^6.32.1"
   },
