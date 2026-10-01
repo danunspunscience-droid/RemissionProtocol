@@ -1,25 +1,22 @@
-# Remission Protocol — Architectural Specification
+# Remission Protocol — Architectural Standards & Binding Index
+Last Updated: October 1, 2026
 
-## Architecture Overview
-- **Frontend:** React + Vite + Tailwind CSS + Lucide React (`apps/web`)
-- **API Layer:** Cloudflare Pages Functions (`functions/api/*`)
-- **Database:** Cloudflare D1 (`remission-db`) SQLite relational database
-- **Storage:** Cloudflare R2 (`remission-media`) with auto-compressed WebP image uploads
-- **Deployment:** Cloudflare Pages continuously deployed via Wrangler CLI (`--branch=main`)
+## Core Architectural Directives
 
----
+### 1. Cloudflare Pages Functions & Type Engine
+- All API handlers inside `functions/api/` MUST be written in TypeScript (`.ts`).
+- Context interface: `PagesFunction<Env>` imported from `@cloudflare/workers-types`.
+- Ambient types defined in `functions/types/env.d.ts`.
+- Dual `tsconfig` boundaries enforce strict isolation:
+  - `apps/web/tsconfig.json`: DOM/Vite bundler scope. Excludes `functions/`.
+  - `functions/tsconfig.json`: Cloudflare Worker V8 Isolate scope. Excludes web code.
 
-## Durable API Endpoints
-- `/api/hero`: Aggregate endpoint returning normalized `{ copy: {...}, slides: [...] }`.
-- `/api/hero_copy`: GET latest hero copy / POST single-row upsert with custom typography colors.
-- `/api/hero_slides`: GET active slides / POST new slide / PUT array update / DELETE by ID.
-- `/api/library`: GET all library items / POST new video lecture / DELETE by ID.
-- `/api/resources`: GET all resource assets / POST new downloadable protocol PDF / DELETE by ID.
-- `/api/files/public/*`: Public R2 media bucket handler with WebP compression for hero slides and video covers.
+### 2. Cloudflare R2 Storage Standard
+- Canonical R2 Binding: `env.MEDIA_BUCKET` (`remission-media`).
+- Object Key Spaces:
+  - `/public/hero/`: Public media assets served via `/api/files/public/*`.
+  - `/private/clients/{client_id}/`: Protected client assets guarded by `functions/api/client/_middleware.ts`.
 
----
-
-## Component Structure & Standards
-- **Line Count Budget:** Every component file MUST remain strictly under 200 lines to prevent context fragmentation and maintain modular assembly.
-- **D1 Prepared Statements:** All SQL queries MUST bind parameters using positional `?` placeholders.
-- **Non-Lead Magnet Standard:** Public protocols and PDF guides are served open-access with direct download links and zero gated email lead capture.
+### 3. Local Development Emulator
+- Command: `npx wrangler pages dev apps/web/dist --ip 127.0.0.1 --port 8790 --inspector-port 9230`
+- IPv4 explicit binding (`127.0.0.1`) is required to prevent Linux loopback IPv6 socket hangs.

@@ -1,37 +1,21 @@
-# Remission Protocol — Project Status & Roadmap
+# Remission Protocol — Project Status & Session Handoff
+Last Updated: October 1, 2026
 
-## Current Status
-- **Active Stage:** Stage 5 Complete / Transitioning to Stage 6 (Auth-Guarded Client Portal & PWA Metric Foundation)
-- **Active Branch:** `main` (Synchronized with `origin/main`)
-- **Deployment Target:** `https://remission-protocol.pages.dev` (Cloudflare Pages Production)
+## 1. Accomplishments (Current Session)
+- **TypeScript & Binding Refactoring:**
+  - Migrated `functions/api/auth.js` and `functions/api/admin/hero.js` to strongly-typed Cloudflare Pages Functions (`.ts`).
+  - Added ambient type interface definitions (`functions/types/env.d.ts`) binding `env.DB` and `env.MEDIA_BUCKET`.
+  - Consolidated R2 bucket access across handlers to `env.MEDIA_BUCKET`.
+- **Emulator & Network Diagnostics:**
+  - Diagnosed and resolved Wrangler port socket hanging on `port 8790` by enforcing explicit IPv4 binding (`127.0.0.1`).
+  - Verified local D1 and R2 responses via direct IPv4 loopback requests for `/api/admin/hero` and `/api/auth`.
 
----
+## 2. Active Feature Branch & Git State
+- **Active Branch:** `feature/hero-admin-wiring`
+- **Status:** Intermediate state; `HeroAdmin.tsx` needs restoration from git history and mounting into `AdminPage.tsx`.
 
-## Accomplishments (Stage 4 & Stage 5)
-1. **Stage 4 — Public Content Hub & Open Access Distribution:**
-   - Created D1 tables `library_content` and `resource_assets`.
-   - Implemented `/api/library` and `/api/resources` supporting GET, POST, and DELETE operations.
-   - Built `LibraryPage.jsx` with YouTube/Vimeo video embeds and high-res custom R2 cover overrides.
-   - Built `ResourcesPage.jsx` providing ungated protocol PDF asset downloads reflecting the non-lead-magnet philosophy.
-
-2. **Stage 5 — Integrated Admin Dashboard CMS:**
-   - Refactored `AdminPage.jsx` into a modular, tabbed control hub (`Hero Engine`, `Content Library`, `Clinical Resources`).
-   - Created `HeroAdmin.jsx` (<200 lines) supporting Ken Burns scale settings, object position controls, display durations, native HTML color swatch pickers (`overlay_color`), and opacity sliders.
-   - Extended `hero_copy` schema and `/api/hero_copy` to persist custom typography colors (`headline_color`, `italic_color`, `subheadline_color`) and contrast drop-shadow toggles (`text_shadow_enabled`).
-   - Implemented single-row SQL upsert logic and non-null JSON normalization in `/api/hero_copy` and `/api/hero` to ensure robust database persistence.
-   - Created `LibraryAdmin.jsx` and `ResourcesAdmin.jsx` for client-side WebP compression/upload of custom video covers and raw document upload of protocol PDFs directly to Cloudflare R2.
-
----
-
-## Active Database Schemas (Cloudflare D1: `remission-db`)
-- `hero_copy`: `id`, `eyebrow_tag`, `headline_prefix`, `headline_italic`, `subheadline`, `headline_color`, `italic_color`, `subheadline_color`, `text_shadow_enabled`, `created_at`
-- `hero_slides`: `id`, `image_url`, `sort_order`, `display_duration_ms`, `transition_speed_ms`, `overlay_opacity`, `overlay_color`, `object_position`, `active`, `ken_burns_mode`, `zoom_scale`
-- `library_content`: `id`, `title`, `slug`, `category`, `description`, `video_url`, `custom_cover_url`, `published_at`, `created_at`
-- `resource_assets`: `id`, `title`, `slug`, `category`, `description`, `file_url`, `file_size_bytes`, `created_at`
-
----
-
-## Next Restoration & Roadmap Steps (Stage 6)
-1. **Worker Auth Guards:** Implement Cloudflare Worker session middleware (`functions/api/client/*`) verifying D1 user sessions and role permissions.
-2. **Private Client Vault:** Establish secure R2 paths `/private/clients/{client_id}/` for isolated client health records and diagnostic PDFs.
-3. **Client Metric Engine:** Create D1 schema (`client_metrics`) to support metabolic, physical performance, and bio-marker tracking for high-achieving cancer survivors.
+## 3. Immediate Resume Actions (Next Session)
+1. Verify restoration of `apps/web/src/components/admin/HeroAdmin.tsx`.
+2. Execute heredoc assembly mounting `HeroAdmin.tsx` into `apps/web/src/pages/AdminPage.tsx` with responsive tabbed navigation (`Hero Engine`, `Content Library`, `Client Portal`, `Settings`).
+3. Run dual-tsconfig build checks (`apps/web` and `functions`) and `knip` audit.
+4. Test Stage 2 Hero CMS browser CRUD at `http://127.0.0.1:8790/admin`.
