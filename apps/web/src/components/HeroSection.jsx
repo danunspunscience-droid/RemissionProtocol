@@ -18,6 +18,7 @@ export const HeroSection = () => {
       {
         id: 1,
         image_url: '/assets/hero-1.webp',
+        mobile_image_url: '/assets/hero-1-mobile.webp',
         overlay_opacity: 0.6,
         overlay_color: '#022C22',
         object_position: 'center 30%',
@@ -27,6 +28,17 @@ export const HeroSection = () => {
   });
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Viewport Width Listener for Responsive Asset Selection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Non-Blocking Deferred Hydration from Edge API
   useEffect(() => {
@@ -95,6 +107,8 @@ export const HeroSection = () => {
             return null;
           }
 
+          const imageSrc = isMobile && slide.mobile_image_url ? slide.mobile_image_url : slide.image_url;
+
           return (
             <div
               key={slide.id || idx}
@@ -104,7 +118,7 @@ export const HeroSection = () => {
               <div
                 className="w-full h-full bg-cover bg-no-repeat gpu-slide-layer"
                 style={{
-                  backgroundImage: `url('${slide.image_url}')`,
+                  backgroundImage: `url('${imageSrc}')`,
                   backgroundPosition: slide.object_position || 'center 30%',
                 }}
               />

@@ -9,8 +9,9 @@
     <meta name="keywords" content="Cancer Survivorship, Concierge Health Coaching, Metabolic Medicine, Austin TX, Physician Guided Health, Remission Protocol" />
     <link rel="canonical" href="https://remissionprotocol.com/" />
 
-    <!-- Preload Primary LCP Hero Visual (Bypasses Client API Network Waterfall) -->
-    <link rel="preload" as="image" href="/assets/hero-1.webp" type="image/webp" fetchpriority="high" />
+    <!-- Responsive LCP Hero Visual Preloading (Zero API Waterfall) -->
+    <link rel="preload" as="image" href="/assets/hero-1-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/hero-1.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
 
     <!-- OpenGraph / Social Metadata -->
     <meta property="og:type" content="website" />
