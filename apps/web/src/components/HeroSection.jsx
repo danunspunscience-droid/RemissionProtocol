@@ -36,7 +36,7 @@ export const HeroSection = () => {
     };
   }, []);
 
-  // Slide Rotation Timer (Decoupled from JS Animation Frames)
+  // Slide Rotation Timer (Pure state trigger, no requestAnimationFrame loops)
   useEffect(() => {
     if (!heroData.slides || heroData.slides.length <= 1) return;
 
@@ -75,7 +75,7 @@ export const HeroSection = () => {
 
   return (
     <div className="relative w-full min-h-screen bg-slate-950 overflow-hidden flex items-center justify-center">
-      {/* Dynamic Keyframe Injection for Hardware-Accelerated Ken Burns */}
+      {/* Zero-Idle Compositor Rules & Reduced Motion Overrides */}
       <style>{`
         @keyframes kenburns-zoom-in {
           0% { transform: scale(1) translate3d(0, 0, 0); }
@@ -85,17 +85,22 @@ export const HeroSection = () => {
           0% { transform: scale(1.08) translate3d(0, 0, 0); }
           100% { transform: scale(1) translate3d(0, 0, 0); }
         }
-        .gpu-slide-layer {
+        .gpu-slide-active {
           will-change: transform, opacity;
           backface-visibility: hidden;
           transform: translate3d(0, 0, 0);
-          contain: strict;
         }
         .animate-ken-burns-in {
           animation: kenburns-zoom-in 8s ease-out forwards;
         }
         .animate-ken-burns-out {
           animation: kenburns-zoom-out 8s ease-out forwards;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-ken-burns-in, .animate-ken-burns-out {
+            animation: none !important;
+            transform: none !important;
+          }
         }
       `}</style>
 
@@ -108,17 +113,20 @@ export const HeroSection = () => {
           const isActive = idx === activeSlideIndex;
           const isZoomIn = slide.ken_burns_mode !== 'Zoom Out';
 
+          // Unmount inactive slide layers from GPU texture memory completely
+          if (!isActive) {
+            return null;
+          }
+
           return (
             <div
               key={slide.id || idx}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out gpu-slide-layer ${
-                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
+              className="absolute inset-0 opacity-100 z-10 gpu-slide-active transition-opacity duration-1000 ease-in-out"
             >
-              {/* Image Transform Layer */}
+              {/* Image Transform Layer (Active Only) */}
               <div
-                className={`w-full h-full bg-cover bg-no-repeat gpu-slide-layer ${
-                  isActive ? (isZoomIn ? 'animate-ken-burns-in' : 'animate-ken-burns-out') : ''
+                className={`w-full h-full bg-cover bg-no-repeat gpu-slide-active ${
+                  isZoomIn ? 'animate-ken-burns-in' : 'animate-ken-burns-out'
                 }`}
                 style={{
                   backgroundImage: `url('${slide.image_url}')`,
@@ -190,7 +198,7 @@ export const HeroSection = () => {
 
             <a
               href="/resources"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-slate-900/80 hover:bg-slate-800/80 text-slate-200 font-medium px-7 py-3.5 rounded-lg text-sm transition-all border border-slate-700/60 backdrop-blur-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-medium px-7 py-3.5 rounded-lg text-sm transition-all border border-slate-700/60"
             >
               <BookOpen className="w-4 h-4 text-amber-400" />
               <span>Explore Our Resources</span>
