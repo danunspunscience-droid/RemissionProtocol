@@ -33,7 +33,7 @@ export function HeroSection() {
 
   const videoSrc = asset.asset_url || defaultVideo;
   const posterSrc = asset.poster_url || defaultPoster;
-  const opacityVal = Math.min(Math.max((asset.overlay_opacity? 60) / 100, 0), 1);
+  const opacityVal = Math.min(Math.max((asset.overlay_opacity ?? 60) / 100, 0), 1);
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-between bg-[#040d0a] text-white overflow-hidden px-6 py-12 sm:px-12 lg:px-20">
