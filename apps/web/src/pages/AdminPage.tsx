@@ -9,7 +9,7 @@ export const AdminPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col">
-      {/* Top Admin Header */}
+      {/* System Governance Header */}
       <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -33,7 +33,7 @@ export const AdminPage: React.FC = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full flex flex-col md:flex-row gap-8">
-        {/* Navigation Sidebar */}
+        {/* Sidebar Navigation */}
         <aside className="w-full md:w-64 flex-shrink-0">
           <nav className="space-y-1 bg-slate-900/40 p-2 rounded-xl border border-slate-800/80">
             <button
