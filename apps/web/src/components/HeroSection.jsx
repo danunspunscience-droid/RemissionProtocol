@@ -2,13 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, BookOpen } from 'lucide-react';
 
 export const HeroSection = () => {
+  // Static Tick-Zero Baseline for Immediate LCP Paint
   const [heroData, setHeroData] = useState({
-    copy: null,
-    slides: [],
+    copy: {
+      eyebrow_tag: 'CONCIERGE HEALTH COACHING · CANCER SURVIVORS · AUSTIN, TX',
+      headline_prefix: 'Live Beyond',
+      headline_italic: 'the Prognosis.',
+      subheadline: 'For high-achievers who have cleared active treatment and refuse to wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness.',
+      headline_color: '#ffffff',
+      italic_color: '#dc2626',
+      subheadline_color: '#3b82f6',
+      text_shadow_enabled: true,
+    },
+    slides: [
+      {
+        id: 1,
+        image_url: '/assets/hero-1.webp',
+        overlay_opacity: 0.6,
+        overlay_color: '#022C22',
+        object_position: 'center 30%',
+        display_duration_ms: 6000,
+      }
+    ],
   });
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
 
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  // Non-Blocking Deferred Hydration from Edge API
   useEffect(() => {
     let isMounted = true;
     const fetchHeroData = async () => {
@@ -16,17 +36,15 @@ export const HeroSection = () => {
         const res = await fetch('/api/hero');
         if (res.ok) {
           const data = await res.json();
-          if (isMounted) {
-            setHeroData({
-              copy: data.copy || null,
-              slides: data.slides || [],
-            });
+          if (isMounted && data.copy) {
+            setHeroData((prev) => ({
+              copy: data.copy || prev.copy,
+              slides: data.slides && data.slides.length > 0 ? data.slides : prev.slides,
+            }));
           }
         }
       } catch (err) {
-        console.error('Failed to fetch hero data:', err);
-      } finally {
-        if (isMounted) setLoading(false);
+        console.warn('Using baseline hero settings:', err);
       }
     };
 
@@ -36,11 +54,11 @@ export const HeroSection = () => {
     };
   }, []);
 
-  // Slide Rotation Timer
+  // Ambient Slide Rotation Timer
   useEffect(() => {
     if (!heroData.slides || heroData.slides.length <= 1) return;
 
-    const currentSlide = heroData.slides[activeSlideIndex];
+    const currentSlide = heroData.slides[activeSlideIndex] || heroData.slides[0];
     const duration = currentSlide?.display_duration_ms || 6000;
 
     const timer = setTimeout(() => {
@@ -50,29 +68,11 @@ export const HeroSection = () => {
     return () => clearTimeout(timer);
   }, [activeSlideIndex, heroData.slides]);
 
-  const copy = heroData.copy || {
-    eyebrow_tag: 'CONCIERGE HEALTH COACHING · CANCER SURVIVORS · AUSTIN, TX',
-    headline_prefix: 'Live Beyond',
-    headline_italic: 'the Prognosis.',
-    subheadline: 'For high-achievers who have cleared active treatment and refuse to wait. Physician guidance and elite coaching on one team — reclaiming vitality after cancer, metabolic syndrome, and serious illness.',
-    headline_color: '#ffffff',
-    italic_color: '#dc2626',
-    subheadline_color: '#3b82f6',
-    text_shadow_enabled: true,
-  };
-
-  const slides = heroData.slides.length > 0 ? heroData.slides : [
-    {
-      id: 1,
-      image_url: '/assets/hero-1.webp',
-      overlay_opacity: 0.6,
-      overlay_color: '#022C22',
-      object_position: 'center 30%',
-    }
-  ];
+  const copy = heroData.copy;
+  const slides = heroData.slides;
 
   return (
-    <div className="relative w-full min-h-screen bg-slate-950 overflow-hidden flex items-center justify-center">
+    <main className="relative w-full min-h-screen bg-slate-950 overflow-hidden flex items-center justify-center">
       {/* Zero-Cost Compositor Rules */}
       <style>{`
         .gpu-slide-layer {
@@ -100,7 +100,7 @@ export const HeroSection = () => {
               key={slide.id || idx}
               className="absolute inset-0 opacity-100 z-10 gpu-slide-layer transition-opacity duration-1000 ease-in-out"
             >
-              {/* Static High-Contrast Image Layer */}
+              {/* High-Performance Static Image Layer */}
               <div
                 className="w-full h-full bg-cover bg-no-repeat gpu-slide-layer"
                 style={{
@@ -181,7 +181,7 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
