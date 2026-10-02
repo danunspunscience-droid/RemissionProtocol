@@ -1,22 +1,21 @@
-# Remission Protocol — Architectural Standards & Binding Index
-Last Updated: October 1, 2026
+# Remission Protocol — System Architecture & Design Decisions
 
-## Core Architectural Directives
+## Core Tech Stack
+- **Frontend:** React 18 + Vite + TypeScript (`apps/web`)
+- **Edge API:** Cloudflare Pages Functions (`functions/api/`)
+- **Database:** Cloudflare D1 (`remission-db`)
+- **Storage:** Cloudflare R2 (`remission-media`)
 
-### 1. Cloudflare Pages Functions & Type Engine
-- All API handlers inside `functions/api/` MUST be written in TypeScript (`.ts`).
-- Context interface: `PagesFunction<Env>` imported from `@cloudflare/workers-types`.
-- Ambient types defined in `functions/types/env.d.ts`.
-- Dual `tsconfig` boundaries enforce strict isolation:
-  - `apps/web/tsconfig.json`: DOM/Vite bundler scope. Excludes `functions/`.
-  - `functions/tsconfig.json`: Cloudflare Worker V8 Isolate scope. Excludes web code.
+## Durable System Decisions
 
-### 2. Cloudflare R2 Storage Standard
-- Canonical R2 Binding: `env.MEDIA_BUCKET` (`remission-media`).
-- Object Key Spaces:
-  - `/public/hero/`: Public media assets served via `/api/files/public/*`.
-  - `/private/clients/{client_id}/`: Protected client assets guarded by `functions/api/client/_middleware.ts`.
+### 1. D1 Singleton Tables (`hero_copy`)
+- Single-row CMS configurations (such as hero copy and site branding) MUST write and read exclusively using `id = 1`.
+- API endpoints use atomic SQLite `UPSERT` statements (`INSERT INTO ... VALUES (1, ...) ON CONFLICT(id) DO UPDATE SET ...`) to guarantee single-record database consistency.
 
-### 3. Local Development Emulator
-- Command: `npx wrangler pages dev apps/web/dist --ip 127.0.0.1 --port 8790 --inspector-port 9230`
-- IPv4 explicit binding (`127.0.0.1`) is required to prevent Linux loopback IPv6 socket hangs.
+### 2. Edge-First LCP Initial Paint Pattern
+- Public components (`HeroSection.jsx`) MUST render a static, high-contrast baseline on tick zero (initial mount) rather than displaying loading spinners or blocking renders on `fetch()` calls.
+- API network requests (`/api/hero`) run asynchronously in the background to re-hydrate state without delaying Largest Contentful Paint (LCP).
+
+### 3. Zero-Idle Animation Standard
+- Full-bleed hero visuals must avoid continuous matrix scale transforms (`transform: scale()`) to preserve GPU clocks and main-thread responsiveness.
+- Slide transitions execute via hardware-accelerated opacity cross-fades (`will-change: opacity`), and hidden slides are completely unmounted from the DOM to free browser texture memory.
