@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Save, Upload, Trash2, ArrowUp, ArrowDown, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface HeroCopyState {
   eyebrow_tag: string;
@@ -11,336 +12,258 @@ interface HeroCopyState {
   text_shadow_enabled: boolean;
 }
 
-interface HeroSlideState {
-  id: string;
+interface HeroSlide {
+  id: number;
   image_url: string;
   sort_order: number;
   display_duration_ms: number;
-  transition_speed_ms: number;
   overlay_opacity: number;
   overlay_color: string;
   object_position: string;
-  active: number;
   ken_burns_mode: string;
   zoom_scale: number;
-}
-
-interface HeroAdminApiResponse {
-  copy?: Omit<Partial<HeroCopyState>, 'text_shadow_enabled'> & { text_shadow_enabled?: number | boolean };
-  slides?: Array<Partial<HeroSlideState> & { url?: string }>;
-}
-
-interface ApiErrorResponse {
-  error?: string;
-  success?: boolean;
+  active: number;
 }
 
 export const HeroAdmin: React.FC = () => {
   const [copy, setCopy] = useState<HeroCopyState>({
-    eyebrow_tag: '',
-    headline_prefix: '',
-    headline_italic: '',
-    subheadline: '',
+    eyebrow_tag: 'CONCIERGE HEALTH COACHING · CANCER SURVIVORS · AUSTIN, TX',
+    headline_prefix: 'Live Beyond',
+    headline_italic: 'the Prognosis.',
+    subheadline: 'For high-achievers who have cleared active treatment and refuse to wait.',
     headline_color: '#ffffff',
     italic_color: '#dc2626',
     subheadline_color: '#3b82f6',
     text_shadow_enabled: true,
   });
 
-  const [slides, setSlides] = useState<HeroSlideState[]>([]);
-  const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
+  const [slides, setSlides] = useState<HeroSlide[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [saving, setSaving] = useState<boolean>(false);
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   useEffect(() => {
-    loadAdminData();
+    fetchHeroData();
   }, []);
 
-  async function loadAdminData() {
+  const fetchHeroData = async () => {
     try {
+      setLoading(true);
       const res = await fetch('/api/hero');
-      if (!res.ok) throw new Error('Failed to fetch hero settings');
-      const data = (await res.json()) as HeroAdminApiResponse;
-      if (data.copy) {
-        setCopy({
-          eyebrow_tag: data.copy.eyebrow_tag || '',
-          headline_prefix: data.copy.headline_prefix || '',
-          headline_italic: data.copy.headline_italic || '',
-          subheadline: data.copy.subheadline || '',
-          headline_color: data.copy.headline_color || '#ffffff',
-          italic_color: data.copy.italic_color || '#dc2626',
-          subheadline_color: data.copy.subheadline_color || '#3b82f6',
-          text_shadow_enabled: data.copy.text_shadow_enabled === 1 || data.copy.text_shadow_enabled === true,
-        });
+      if (res.ok) {
+        const data = await res.json() as { copy?: any; slides?: HeroSlide[] };
+        if (data.copy) {
+          setCopy({
+            eyebrow_tag: data.copy.eyebrow_tag || '',
+            headline_prefix: data.copy.headline_prefix || '',
+            headline_italic: data.copy.headline_italic || '',
+            subheadline: data.copy.subheadline || '',
+            headline_color: data.copy.headline_color || '#ffffff',
+            italic_color: data.copy.italic_color || '#dc2626',
+            subheadline_color: data.copy.subheadline_color || '#3b82f6',
+            text_shadow_enabled: data.copy.text_shadow_enabled === 1 || data.copy.text_shadow_enabled === true,
+          });
+        }
+        if (data.slides) {
+          setSlides(data.slides);
+        }
       }
-      if (Array.isArray(data.slides)) {
-        setSlides(
-          data.slides.map((s: any) => ({
-            id: String(s.id),
-            image_url: s.image_url || s.url || '',
-            sort_order: s.sort_order ?? 1,
-            display_duration_ms: s.display_duration_ms ?? 6000,
-            transition_speed_ms: s.transition_speed_ms ?? 1200,
-            overlay_opacity: s.overlay_opacity ?? 60,
-            overlay_color: s.overlay_color || '#022C22',
-            object_position: s.object_position || 'center 30%',
-            active: s.active ?? 1,
-            ken_burns_mode: s.ken_burns_mode || 'Zoom In',
-            zoom_scale: s.zoom_scale ?? 1.08,
-          }))
-        );
-      }
-    } catch (err: any) {
-      setStatusMessage({ type: 'error', text: err.message || 'Error loading settings' });
-    }
-  }
-
-  async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setIsUploading(true);
-    setStatusMessage(null);
-
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const res = await fetch('/api/hero_slides', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = (await res.json()) as ApiErrorResponse;
-      if (!res.ok || !data.success) throw new Error(data.error || 'Upload failed');
-
-      setStatusMessage({ type: 'success', text: 'Hero image uploaded successfully.' });
-      loadAdminData();
-    } catch (err: any) {
-      setStatusMessage({ type: 'error', text: err.message || 'Upload failed' });
+    } catch (err) {
+      showToast('error', 'Failed to load Hero settings from edge');
     } finally {
-      setIsUploading(false);
+      setLoading(false);
     }
-  }
+  };
 
-  async function handleSaveChanges() {
-    setStatusMessage(null);
+  const showToast = (type: 'success' | 'error', message: string) => {
+    setToast({ type, message });
+    setTimeout(() => setToast(null), 4000);
+  };
+
+  const handleSaveChanges = async () => {
     try {
-      const copyRes = await fetch('/api/hero_copy', {
+      setSaving(true);
+      const res = await fetch('/api/hero_copy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(copy),
       });
 
-      if (!copyRes.ok) {
-        const errData = (await copyRes.json()) as ApiErrorResponse;
-        throw new Error(`Failed to save copy: ${errData.error || copyRes.statusText}`);
+      if (!res.ok) throw new Error('Failed to save hero copy');
+
+      const data = await res.json() as { success?: boolean; copy?: any };
+      if (data.copy) {
+        setCopy({
+          eyebrow_tag: data.copy.eyebrow_tag,
+          headline_prefix: data.copy.headline_prefix,
+          headline_italic: data.copy.headline_italic,
+          subheadline: data.copy.subheadline,
+          headline_color: data.copy.headline_color,
+          italic_color: data.copy.italic_color,
+          subheadline_color: data.copy.subheadline_color,
+          text_shadow_enabled: data.copy.text_shadow_enabled === 1 || data.copy.text_shadow_enabled === true,
+        });
       }
 
-      const slidesRes = await fetch('/api/hero_slides', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(slides),
-      });
-
-      if (!slidesRes.ok) {
-        const errData = (await slidesRes.json()) as ApiErrorResponse;
-        throw new Error(`Failed to save slides: ${errData.error || slidesRes.statusText}`);
-      }
-
-      setStatusMessage({ type: 'success', text: 'Hero section settings saved successfully.' });
+      showToast('success', 'Hero Copy & Settings saved successfully.');
     } catch (err: any) {
-      setStatusMessage({ type: 'error', text: `Save failed: ${err.message}` });
+      showToast('error', err.message || 'Save failed');
+    } finally {
+      setSaving(false);
     }
-  }
+  };
 
-  function updateSlide(index: number, field: keyof HeroSlideState, value: any) {
-    const updated = [...slides];
-    const current = updated[index];
-    if (current) {
-      updated[index] = { ...current, [field]: value } as HeroSlideState;
-      setSlides(updated);
-    }
+  if (loading) {
+    return (
+      <div className="bg-slate-900/40 border border-slate-800/80 rounded-xl p-8 text-center text-slate-400">
+        Loading Hero CMS configuration...
+      </div>
+    );
   }
 
   return (
-    <div className="space-y-8 p-6 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-serif font-bold text-stone-900">Hero Section Settings</h2>
-
-      {statusMessage && (
+    <div className="space-y-8">
+      {toast && (
         <div
-          className={`p-4 rounded border ${
-            statusMessage.type === 'success'
-              ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-              : 'bg-red-50 border-red-200 text-red-700'
+          className={`p-4 rounded-lg flex items-center space-x-3 text-sm border ${
+            toast.type === 'success'
+              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+              : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
           }`}
         >
-          {statusMessage.text}
+          {toast.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
+          <span>{toast.message}</span>
         </div>
       )}
 
-      {/* Copy Settings Form */}
-      <div className="bg-white p-6 rounded border border-stone-200 space-y-4">
-        <div>
-          <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Eyebrow Tag</label>
-          <input
-            type="text"
-            className="w-full border p-2 rounded text-sm"
-            value={copy.eyebrow_tag}
-            onChange={(e) => setCopy({ ...copy, eyebrow_tag: e.target.value })}
-          />
-        </div>
+      {/* Hero Copy Settings */}
+      <section className="bg-slate-900/40 border border-slate-800/80 rounded-xl p-6 space-y-6">
+        <h2 className="text-xl font-bold text-slate-100">Hero Copy Settings & Typography Formatting</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Headline Prefix</label>
+            <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Eyebrow Tag</label>
             <input
               type="text"
-              className="w-full border p-2 rounded text-sm"
-              value={copy.headline_prefix}
-              onChange={(e) => setCopy({ ...copy, headline_prefix: e.target.value })}
+              value={copy.eyebrow_tag}
+              onChange={(e) => setCopy({ ...copy, eyebrow_tag: e.target.value })}
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-slate-200 text-sm focus:border-emerald-500 focus:outline-none"
             />
           </div>
-          <div>
-            <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Headline Italic</label>
-            <input
-              type="text"
-              className="w-full border p-2 rounded text-sm"
-              value={copy.headline_italic}
-              onChange={(e) => setCopy({ ...copy, headline_italic: e.target.value })}
-            />
-          </div>
-        </div>
 
-        <div>
-          <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Subheadline</label>
-          <textarea
-            className="w-full border p-2 rounded text-sm"
-            rows={3}
-            value={copy.subheadline}
-            onChange={(e) => setCopy({ ...copy, subheadline: e.target.value })}
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Headline Color</label>
-            <input
-              type="text"
-              className="w-full border p-2 rounded text-sm"
-              value={copy.headline_color}
-              onChange={(e) => setCopy({ ...copy, headline_color: e.target.value })}
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Italic Color</label>
-            <input
-              type="text"
-              className="w-full border p-2 rounded text-sm"
-              value={copy.italic_color}
-              onChange={(e) => setCopy({ ...copy, italic_color: e.target.value })}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Slide Carousel Settings Form */}
-      <div className="space-y-4">
-        <h3 className="text-xl font-serif font-bold text-stone-900">Hero Slides</h3>
-        {slides.map((slide, idx) => (
-          <div key={slide.id} className="bg-white p-6 rounded border border-stone-200 space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="font-semibold text-sm">Slide {idx + 1}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Headline Prefix</label>
+              <input
+                type="text"
+                value={copy.headline_prefix}
+                onChange={(e) => setCopy({ ...copy, headline_prefix: e.target.value })}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-slate-200 text-sm focus:border-emerald-500 focus:outline-none"
+              />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Image URL</label>
+              <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Headline Italic Accent</label>
               <input
                 type="text"
-                className="w-full border p-2 rounded text-sm bg-stone-50"
-                value={slide.image_url}
-                readOnly
+                value={copy.headline_italic}
+                onChange={(e) => setCopy({ ...copy, headline_italic: e.target.value })}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-slate-200 text-sm focus:border-emerald-500 focus:outline-none"
               />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Display Duration (ms)</label>
-                <input
-                  type="number"
-                  className="w-full border p-2 rounded text-sm"
-                  value={slide.display_duration_ms}
-                  onChange={(e) => updateSlide(idx, 'display_duration_ms', parseInt(e.target.value) || 6000)}
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Transition Speed (ms)</label>
-                <input
-                  type="number"
-                  className="w-full border p-2 rounded text-sm"
-                  value={slide.transition_speed_ms}
-                  onChange={(e) => updateSlide(idx, 'transition_speed_ms', parseInt(e.target.value) || 1200)}
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Overlay Opacity (%)</label>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  className="w-full"
-                  value={slide.overlay_opacity}
-                  onChange={(e) => updateSlide(idx, 'overlay_opacity', parseInt(e.target.value) || 60)}
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold uppercase text-stone-600 mb-1">Overlay Color</label>
-                <input
-                  type="text"
-                  className="w-full border p-2 rounded text-sm"
-                  value={slide.overlay_color}
-                  onChange={(e) => updateSlide(idx, 'overlay_color', e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                id={`active-${slide.id}`}
-                checked={slide.active === 1}
-                onChange={(e) => updateSlide(idx, 'active', e.target.checked ? 1 : 0)}
-              />
-              <label htmlFor={`active-${slide.id}`} className="text-sm font-medium text-stone-700">
-                Active
-              </label>
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* Slide Upload Card */}
-      <div className="bg-white p-6 rounded border border-stone-200">
-        <h4 className="font-serif font-bold text-lg mb-2">Hero Slide Upload</h4>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileUpload}
-          disabled={isUploading}
-          className="text-sm"
-        />
-      </div>
+          <div>
+            <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Subheadline Body</label>
+            <textarea
+              rows={3}
+              value={copy.subheadline}
+              onChange={(e) => setCopy({ ...copy, subheadline: e.target.value })}
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2 text-slate-200 text-sm focus:border-emerald-500 focus:outline-none"
+            />
+          </div>
 
-      <div className="flex justify-end">
-        <button
-          onClick={handleSaveChanges}
-          className="px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors"
-        >
-          Save Changes
-        </button>
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div>
+              <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Headline Color</label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="color"
+                  value={copy.headline_color}
+                  onChange={(e) => setCopy({ ...copy, headline_color: e.target.value })}
+                  className="w-10 h-10 rounded border border-slate-800 bg-slate-950 cursor-pointer"
+                />
+                <input
+                  type="text"
+                  value={copy.headline_color}
+                  onChange={(e) => setCopy({ ...copy, headline_color: e.target.value })}
+                  className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 uppercase"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Italic Accent Color</label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="color"
+                  value={copy.italic_color}
+                  onChange={(e) => setCopy({ ...copy, italic_color: e.target.value })}
+                  className="w-10 h-10 rounded border border-slate-800 bg-slate-950 cursor-pointer"
+                />
+                <input
+                  type="text"
+                  value={copy.italic_color}
+                  onChange={(e) => setCopy({ ...copy, italic_color: e.target.value })}
+                  className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 uppercase"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">Subheadline Color</label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="color"
+                  value={copy.subheadline_color}
+                  onChange={(e) => setCopy({ ...copy, subheadline_color: e.target.value })}
+                  className="w-10 h-10 rounded border border-slate-800 bg-slate-950 cursor-pointer"
+                />
+                <input
+                  type="text"
+                  value={copy.subheadline_color}
+                  onChange={(e) => setCopy({ ...copy, subheadline_color: e.target.value })}
+                  className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 uppercase"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2 pt-2">
+            <input
+              type="checkbox"
+              id="contrast_drop_shadow"
+              checked={copy.text_shadow_enabled}
+              onChange={(e) => setCopy({ ...copy, text_shadow_enabled: e.target.checked })}
+              className="rounded bg-slate-950 border-slate-800 text-emerald-500 focus:ring-emerald-500/20"
+            />
+            <label htmlFor="contrast_drop_shadow" className="text-xs text-slate-300">
+              Contrast Drop-Shadow Effect
+            </label>
+          </div>
+        </div>
+
+        <div className="flex justify-end pt-4 border-t border-slate-800">
+          <button
+            onClick={handleSaveChanges}
+            disabled={saving}
+            className="flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+          >
+            <Save className="w-4 h-4" />
+            <span>{saving ? 'Saving...' : 'Save All Hero Settings'}</span>
+          </button>
+        </div>
+      </section>
     </div>
   );
 };
