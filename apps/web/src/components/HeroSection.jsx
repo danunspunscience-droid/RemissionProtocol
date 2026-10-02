@@ -36,7 +36,7 @@ export const HeroSection = () => {
     };
   }, []);
 
-  // Slide Rotation Timer (Pure state trigger, no requestAnimationFrame loops)
+  // Slide Rotation Timer
   useEffect(() => {
     if (!heroData.slides || heroData.slides.length <= 1) return;
 
@@ -68,52 +68,29 @@ export const HeroSection = () => {
       overlay_opacity: 0.6,
       overlay_color: '#022C22',
       object_position: 'center 30%',
-      ken_burns_mode: 'Zoom In',
-      zoom_scale: 1.08,
     }
   ];
 
   return (
     <div className="relative w-full min-h-screen bg-slate-950 overflow-hidden flex items-center justify-center">
-      {/* Zero-Idle Compositor Rules & Reduced Motion Overrides */}
+      {/* Zero-Cost Compositor Rules */}
       <style>{`
-        @keyframes kenburns-zoom-in {
-          0% { transform: scale(1) translate3d(0, 0, 0); }
-          100% { transform: scale(1.08) translate3d(0, 0, 0); }
-        }
-        @keyframes kenburns-zoom-out {
-          0% { transform: scale(1.08) translate3d(0, 0, 0); }
-          100% { transform: scale(1) translate3d(0, 0, 0); }
-        }
-        .gpu-slide-active {
-          will-change: transform, opacity;
+        .gpu-slide-layer {
+          will-change: opacity;
           backface-visibility: hidden;
           transform: translate3d(0, 0, 0);
         }
-        .animate-ken-burns-in {
-          animation: kenburns-zoom-in 8s ease-out forwards;
-        }
-        .animate-ken-burns-out {
-          animation: kenburns-zoom-out 8s ease-out forwards;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .animate-ken-burns-in, .animate-ken-burns-out {
-            animation: none !important;
-            transform: none !important;
-          }
-        }
       `}</style>
 
-      {/* Background Carousel Canvas (Isolated Compositor Containment) */}
+      {/* Background Carousel Canvas */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{ contain: 'strict' }}
       >
         {slides.map((slide, idx) => {
           const isActive = idx === activeSlideIndex;
-          const isZoomIn = slide.ken_burns_mode !== 'Zoom Out';
 
-          // Unmount inactive slide layers from GPU texture memory completely
+          // Free GPU texture memory completely for hidden slides
           if (!isActive) {
             return null;
           }
@@ -121,13 +98,11 @@ export const HeroSection = () => {
           return (
             <div
               key={slide.id || idx}
-              className="absolute inset-0 opacity-100 z-10 gpu-slide-active transition-opacity duration-1000 ease-in-out"
+              className="absolute inset-0 opacity-100 z-10 gpu-slide-layer transition-opacity duration-1000 ease-in-out"
             >
-              {/* Image Transform Layer (Active Only) */}
+              {/* Static High-Contrast Image Layer */}
               <div
-                className={`w-full h-full bg-cover bg-no-repeat gpu-slide-active ${
-                  isZoomIn ? 'animate-ken-burns-in' : 'animate-ken-burns-out'
-                }`}
+                className="w-full h-full bg-cover bg-no-repeat gpu-slide-layer"
                 style={{
                   backgroundImage: `url('${slide.image_url}')`,
                   backgroundPosition: slide.object_position || 'center 30%',
