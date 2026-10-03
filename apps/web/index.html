@@ -4,46 +4,68 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remission Protocol | Concierge Health Coaching & Metabolic Medicine</title>
-    <meta name="description" content="Evidence-based concierge health coaching and physician guidance for cancer survivors and high-achievers in Austin, TX. Reclaim vitality after illness." />
+    <title>Remission Protocol | Physician-Guided Metabolic Medicine</title>
+    <meta name="description" content="Physician-guided, evidence-based integrative metabolic and lifestyle medicine for cancer remission and metabolic health." />
     <meta name="keywords" content="Cancer Survivorship, Concierge Health Coaching, Metabolic Medicine, Austin TX, Physician Guided Health, Remission Protocol" />
-    <link rel="canonical" href="https://remissionprotocol.com/" />
 
-    <!-- Responsive LCP Hero Visual Preloading (Zero API Waterfall) -->
-    <link rel="preload" as="image" href="/assets/hero-1-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/assets/hero-1.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://remission-protocol.pages.dev/" />
 
-    <!-- OpenGraph / Social Metadata -->
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Remission Protocol | Physician-Guided Metabolic Medicine" />
+    <meta property="og:description" content="Physician-guided, evidence-based integrative metabolic and lifestyle medicine for cancer remission and metabolic health." />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Remission Protocol" />
-    <meta property="og:title" content="Remission Protocol | Live Beyond the Prognosis" />
-    <meta property="og:description" content="Concierge health coaching & medical guidance for high-achievers clearing active cancer treatment." />
-    <meta property="og:image" content="https://remissionprotocol.com/assets/hero-1.webp" />
-    <meta property="og:url" content="https://remissionprotocol.com/" />
+    <meta property="og:url" content="https://remission-protocol.pages.dev/" />
+    <meta property="og:image" content="https://remission-protocol.pages.dev/assets/hero-1-mobile.webp" />
 
-    <!-- Twitter Cards -->
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Remission Protocol | Concierge Health Coaching" />
-    <meta name="twitter:description" content="Physician guidance and elite health coaching for survivors who refuse to wait." />
-    <meta name="twitter:image" content="https://remissionprotocol.com/assets/hero-1.webp" />
+    <meta name="twitter:title" content="Remission Protocol | Physician-Guided Metabolic Medicine" />
+    <meta name="twitter:description" content="Physician-guided, evidence-based integrative metabolic and lifestyle medicine." />
+    <meta name="twitter:image" content="https://remission-protocol.pages.dev/assets/hero-1-mobile.webp" />
 
-    <!-- Structured Data / JSON-LD Medical Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "MedicalBusiness",
-        "name": "Remission Protocol",
-        "url": "https://remissionprotocol.com",
-        "logo": "https://remissionprotocol.com/favicon.svg",
-        "description": "Evidence-based, integrative metabolic & lifestyle medicine for cancer survivors.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Austin",
-          "addressRegion": "TX",
-          "addressCountry": "US"
-        },
-        "medicalSpecialty": ["Oncology", "MetabolicMedicine", "LifestyleMedicine"]
+    <!-- High-Priority AVIF & WebP Preloads for Tick-Zero Mobile LCP -->
+    <link rel="preload" as="image" href="/assets/hero-1-mobile.avif" type="image/avif" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/hero-1-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
+
+    <!-- Inlined Critical CSS for Zero-Delay FCP and CLS Baseline -->
+    <style>
+      :root {
+        --bg-dark: #0f172a;
+        --text-light: #f8fafc;
       }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+
+    <!-- Structured JSON-LD MedicalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Remission Protocol",
+      "url": "https://remission-protocol.pages.dev",
+      "logo": "https://remission-protocol.pages.dev/assets/hero-1-mobile.webp",
+      "description": "Physician-guided, evidence-based integrative metabolic and lifestyle medicine focusing on cancer remission, metabolic health, and survivorship.",
+      "medicalSpecialty": ["Oncology", "Metabolic Medicine"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      }
+    }
     </script>
   </head>
   <body class="bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-950">
