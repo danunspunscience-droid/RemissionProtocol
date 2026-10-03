@@ -7,7 +7,8 @@ interface Env {
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   try {
     const { results } = await context.env.DB.prepare(
-      `SELECT id, title, category, summary, body_text, key_insight, video_url, cover_url, media_type, status, published_at, created_at, slug, description FROM library_content ORDER BY created_at DESC`
+      `SELECT id, title, category, summary, body_text, key_insight, video_url, cover_url, media_type, status, published_at, created_at, slug, description 
+       FROM library_content ORDER BY created_at DESC`
     ).all();
     return jsonResponse({ success: true, data: results });
   } catch (err: any) {

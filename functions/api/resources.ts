@@ -7,7 +7,7 @@ interface Env {
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   try {
     const { results } = await context.env.DB.prepare(
-      `SELECT id, title, description, category, r2_key, download_count, members_only, published, created_at, slug
+      `SELECT id, title, description, category, r2_key, download_count, members_only, published, created_at, slug 
        FROM resource_assets ORDER BY id DESC`
     ).all();
     return jsonResponse({ success: true, data: results });
